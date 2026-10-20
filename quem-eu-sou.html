@@ -1,0 +1,2444 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O Mapa de Quem Eu Sou</title>
+<style>
+:root{
+  --bg:#f7f4ee; --surface:#fffdf8; --ink:#23201b; --muted:#6b6458; --line:#e4ddcf;
+  --accent:#8a5a2b; --accent-soft:#f1e6d6; --shadow-bg:#f6ecec; --shadow-line:#e4c9c9;
+  --forte:#1f6f4a; --forte-bg:#e1f2e8; --medio:#8a6a10; --medio-bg:#f7efd6;
+  --fraco:#6b6458; --fraco-bg:#eeeae2; --solida:#1d5a8a; --solida-bg:#e0ecf7;
+  --espec:#8a3b72; --espec-bg:#f5e4ef; --now:#fff3d6;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130f; --surface:#1e1b16; --ink:#ece6da; --muted:#a89f90; --line:#332e26;
+    --accent:#d9a066; --accent-soft:#2b2318; --shadow-bg:#2a1d1d; --shadow-line:#4a3030;
+    --forte:#7fd1a6; --forte-bg:#163225; --medio:#e6c766; --medio-bg:#332a10;
+    --fraco:#b8afa0; --fraco-bg:#2a2620; --solida:#8cc2ee; --solida-bg:#16283a;
+    --espec:#e7a3d2; --espec-bg:#35192c; --now:#3a3017; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130f; --surface:#1e1b16; --ink:#ece6da; --muted:#a89f90; --line:#332e26;
+  --accent:#d9a066; --accent-soft:#2b2318; --shadow-bg:#2a1d1d; --shadow-line:#4a3030;
+  --forte:#7fd1a6; --forte-bg:#163225; --medio:#e6c766; --medio-bg:#332a10;
+  --fraco:#b8afa0; --fraco-bg:#2a2620; --solida:#8cc2ee; --solida-bg:#16283a;
+  --espec:#e7a3d2; --espec-bg:#35192c; --now:#3a3017; color-scheme:dark;
+}
+*{box-sizing:border-box}
+main,section,.card,td{overflow-wrap:anywhere}
+html{scroll-behavior:smooth; scroll-padding-top:72px}
+body{margin:0; background:var(--bg); color:var(--ink);
+  font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+h1,h2,h3,h4{font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif; line-height:1.25; font-weight:600}
+a{color:var(--accent)}
+header.top{position:sticky; top:0; z-index:10; background:color-mix(in srgb,var(--bg) 92%,transparent);
+  backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
+.bar{display:flex; align-items:center; gap:12px; max-width:1100px; margin:0 auto; padding:10px 16px}
+.brand{font-family:Georgia,serif; font-weight:600; white-space:nowrap; font-size:16px; color:var(--ink); text-decoration:none}
+nav.menu{display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; flex:1; min-width:0}
+nav.menu::-webkit-scrollbar{display:none}
+nav.menu a{white-space:nowrap; text-decoration:none; color:var(--muted); font-size:14px; padding:6px 10px; border-radius:999px}
+nav.menu a.on, nav.menu a:hover{background:var(--accent-soft); color:var(--accent)}
+#theme{border:1px solid var(--line); background:var(--surface); color:var(--ink); border-radius:999px;
+  padding:6px 10px; font-size:14px; cursor:pointer}
+main{max-width:760px; margin:0 auto; padding:24px 16px 80px}
+.hero{padding:40px 0 8px}
+.hero h1{font-size:clamp(30px,6vw,46px); margin:0 0 6px}
+.hero p{color:var(--muted); margin:0}
+.chapter{padding:36px 0 12px; border-bottom:1px solid var(--line)}
+.kicker{text-transform:uppercase; letter-spacing:.12em; font-size:12px; color:var(--accent); margin:0}
+.chapter h2{font-size:clamp(26px,4.5vw,34px); margin:4px 0 16px}
+.chapter h3{font-size:21px; margin:28px 0 8px}
+.lead{font-size:19px; background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--accent);
+  padding:16px 18px; border-radius:10px}
+blockquote{margin:16px 0; padding:14px 18px; font-family:Georgia,serif; font-size:21px; font-style:italic;
+  border-left:4px solid var(--accent); background:var(--accent-soft); border-radius:0 10px 10px 0}
+.badge{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.06em; padding:1px 7px;
+  border-radius:999px; margin:0 3px; vertical-align:2px; white-space:nowrap}
+.b-forte{color:var(--forte); background:var(--forte-bg)}
+.b-medio{color:var(--medio); background:var(--medio-bg)}
+.b-fraco{color:var(--fraco); background:var(--fraco-bg)}
+.b-solida{color:var(--solida); background:var(--solida-bg)}
+.b-espec{color:var(--espec); background:var(--espec-bg)}
+a.src{font-size:11.5px; color:var(--muted); text-decoration:none; border:1px solid var(--line);
+  border-radius:4px; padding:0 5px; margin:0 2px; vertical-align:1px; white-space:nowrap}
+a.src:hover{color:var(--accent); border-color:var(--accent)}
+.why{color:var(--muted); font-size:15px}
+.chain{background:var(--surface); border:1px dashed var(--line); padding:12px 14px; border-radius:10px}
+.themes li{margin-bottom:12px}
+.confirm{margin-top:24px; background:var(--medio-bg); border-radius:10px; padding:4px 18px 10px}
+.confirm h3{margin-top:14px}
+.note,.tip{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-size:16px}
+.tip{border-left:4px solid var(--solida)}
+.note{border-left:4px solid var(--espec)}
+.cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin:12px 0}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:12px 14px}
+.card h4{margin:0 0 6px; font-size:17px}
+.card p{margin:4px 0}
+.card.shadow{background:var(--shadow-bg); border-color:var(--shadow-line)}
+.two{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.two>div{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:4px 14px}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+dl.tensions dt{font-weight:600; margin-top:12px}
+dl.tensions dd{margin:4px 0 0 0; padding-left:14px; border-left:2px solid var(--line)}
+.verdict{background:var(--medio-bg); color:var(--medio); padding:2px 10px; border-radius:999px; font-size:16px}
+ol.timeline{list-style:none; padding:0; border-left:2px solid var(--line); margin-left:6px}
+ol.timeline li{position:relative; padding:8px 0 8px 18px}
+ol.timeline li::before{content:""; position:absolute; left:-7px; top:16px; width:12px; height:12px; border-radius:50%;
+  background:var(--surface); border:2px solid var(--accent)}
+ol.timeline li.now{background:var(--now); border-radius:0 10px 10px 0}
+ol.timeline li.now::before{background:var(--accent)}
+.age{display:inline-block; min-width:92px; font-weight:700; color:var(--accent); font-size:14px}
+ol.actions li, ol.questions li{margin-bottom:10px}
+details.legend{margin-top:16px; font-size:15px}
+details summary{cursor:pointer; font-weight:600}
+#apx{padding-top:36px}
+#apx h2{font-size:30px}
+details.appx{background:var(--surface); border:1px solid var(--line); border-radius:12px; margin:10px 0; padding:12px 16px}
+details.appx>summary{font-family:Georgia,serif; font-size:18px}
+details.appx[open]>summary{margin-bottom:8px}
+.appx-body{font-size:15.5px}
+.appx-body h2{font-size:22px} .appx-body h2.sub{border-top:1px solid var(--line); padding-top:16px; margin-top:28px}
+.appx-body h3{font-size:18px}
+.appx-body blockquote{font-size:15px; font-style:normal; font-family:inherit}
+.tw{overflow-x:auto; margin:10px 0}
+table{border-collapse:collapse; width:100%; font-size:14.5px}
+th,td{border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top}
+th{background:var(--accent-soft)}
+footer{color:var(--muted); font-size:14px; text-align:center; padding:24px 16px 40px}
+:target{animation:flash 1.6s ease}
+@keyframes flash{from{box-shadow:0 0 0 3px var(--accent)}to{box-shadow:0 0 0 0 transparent}}
+@media print{header.top{display:none} details.appx{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="top"><div class="bar">
+<a class="brand" href="#top">Quem Eu Sou</a>
+<nav class="menu" aria-label="Capítulos"><a href="#c0">Abertura</a><a href="#c1">Essência</a><a href="#c2">Facetas</a><a href="#c3">Mente</a><a href="#c4">Emoções</a><a href="#c5">Relações</a><a href="#c6">Família</a><a href="#c7">Vocação</a><a href="#c8">Sombras</a><a href="#c9">Espiritualidade</a><a href="#c10">Linha do tempo</a><a href="#c11">Guia prático</a><a href="#apx">Apêndice</a></nav>
+<button id="theme" type="button" aria-label="Alternar tema">◐</button>
+</div></header>
+<main id="top">
+<div class="hero">
+<h1>O Mapa de Quem Eu Sou</h1>
+<p>Carlos Eduardo Carvalho Geronimo · Mapa astral + Matriz do Destino + Numerologia, integrados</p>
+</div>
+<!-- Capítulos principais (fonte do build). Atalhos: <a class="src" href="#ap-a">Mapa</a>=Mapa <a class="src" href="#ap-c">Matriz</a>=Matriz <a class="src" href="#ap-e">Numerologia</a>=Numerologia <a class="src" href="#ap-d">Análise</a>=Análise <a class="src" href="#ap-g">Web</a>=Web <a class="src" href="#ap-g">Tradição</a>=Tradição <a class="src" href="#ap-g">Fora do esoterismo</a>=Fora do esoterismo; selos <span class="badge b-forte">FORTE</span> <span class="badge b-medio">MÉDIO</span> <span class="badge b-fraco">FRACO</span> <span class="badge b-solida">SÓLIDA</span> <span class="badge b-espec">ESPECULATIVA</span> -->
+
+<section id="c0" class="chapter">
+<p class="kicker">Capítulo 0</p>
+<h2>Abertura</h2>
+<div class="lead">
+<p>Você é alguém que <strong>sustenta o equilíbrio dos outros com estrutura e firmeza</strong>. Busca harmonia, justiça e beleza (cinco pontos fortes de Libra no mapa, Expressão 6, Temperança na Matriz). Faz isso com a seriedade de quem assumiu responsabilidades cedo (Ascendente Capricórnio, o Imperador repetido 5 vezes, Personalidade 4). Seu caminho natural é <strong>ensinar e orientar a partir do que pesquisou a fundo</strong>, com visibilidade. A armadilha é virar o pilar que nunca pode cair: controlar, se cobrar e carregar tudo sozinho. <a class="src" href="#ap-a">Mapa</a><a class="src" href="#ap-c">Matriz</a><a class="src" href="#ap-e">Numerologia</a></p>
+</div>
+<h3>Os 3 temas centrais</h3>
+<ol class="themes">
+<li><strong>Equilíbrio sustentado por estrutura.</strong> <span class="badge b-forte">FORTE</span><span class="badge b-solida">SÓLIDA</span><br><span class="why">Libra + Vênus no comando do mapa <a class="src" href="#ap-a">Mapa</a>. Temperança, Enamorados e Justiça <a class="src" href="#ap-c">Matriz</a>. Expressão 6 e Atitude 2 <a class="src" href="#ap-e">Numerologia</a>. Tudo isso apoiado em Capricórnio/Saturno <a class="src" href="#ap-a">Mapa</a>, no 4 repetido <a class="src" href="#ap-c">Matriz</a> e na Personalidade 4 <a class="src" href="#ap-e">Numerologia</a>.</span></li>
+<li><strong>Ensinar o que se pesquisou a fundo, com visibilidade.</strong> <span class="badge b-forte">FORTE</span><span class="badge b-solida">SÓLIDA</span><br><span class="why">Casa 10 com 5 planetas, Mercúrio-Júpiter em Escorpião, Nodo Norte na casa 3 <a class="src" href="#ap-a">Mapa</a>. Arcano 5 no dinheiro e 19 no retrato <a class="src" href="#ap-c">Matriz</a>. Caminho 1 e Maturidade 7 <a class="src" href="#ap-e">Numerologia</a>.</span></li>
+<li><strong>Força contida que precisa aprender a soltar.</strong> <span class="badge b-forte">FORTE</span><span class="badge b-solida">SÓLIDA</span><br><span class="why">Centro 11 (Força) <a class="src" href="#ap-c">Matriz</a> + Desejo da Alma 11 <a class="src" href="#ap-e">Numerologia</a> + Marte enfraquecido em tensão com o Ascendente e Lua/Lilith em Virgem <a class="src" href="#ap-a">Mapa</a>.</span></li>
+</ol>
+<div class="confirm">
+<h3>Dados a confirmar</h3>
+<ul>
+<li><strong>Data, hora e local de nascimento</strong>: nenhum arquivo traz esses dados. A data provável é <strong>19/10/2006</strong> (dia 19 e mês 10 vêm da Matriz e combinam com as posições dos planetas). Se estiver certa, você tem <strong>20 anos</strong>. (?)</li>
+<li><strong>Aspectos do mapa</strong>: o print não mostra. Eles foram deduzidos da distância entre os graus inteiros, com margem de ±1°. (?)</li>
+<li><strong>Cúspides das casas 2, 3, 5, 6, 8, 9, 11 e 12</strong> e o <strong>sistema de casas</strong> do app (Placidus?). (?)</li>
+<li><strong>Netuno em Aquário 17°</strong>: o dígito está pouco nítido no print. (?)</li>
+<li><strong>Matriz</strong>: os propósitos (pessoal, social e espiritual) e o mapa de chakras não aparecem no diagrama. A função dos pontos <strong>13</strong> e <strong>6</strong> à direita do centro não está identificada. A base 10-4-21 foi lida como cauda cármica só pela posição. (?)</li>
+<li><strong>Numerologia</strong>: Lições e Dívidas cármicas estão bloqueadas no app. Ano Pessoal, Ciclos, Pináculos e Desafios não constam. (?)</li>
+<li><strong>Livros</strong>: nenhum PDF de livro foi recebido. <strong>Web</strong>: só os resumos dos buscadores puderam ser lidos (a rede bloqueou a abertura das páginas).</li>
+</ul>
+</div>
+<details class="legend"><summary>Como ler os selos e as fontes</summary>
+<p><span class="badge b-forte">FORTE</span> aparece em 2 ou mais sistemas · <span class="badge b-medio">MÉDIO</span> 1 sistema, com destaque · <span class="badge b-fraco">FRACO</span> detalhe isolado</p>
+<p><span class="badge b-solida">SÓLIDA</span> vários dados sustentam · <span class="badge b-espec">ESPECULATIVA</span> hipótese interessante, pouco sustentada</p>
+<p>Fontes clicáveis: <a class="src" href="#ap-a">Mapa</a> mapa astral · <a class="src" href="#ap-c">Matriz</a> Matriz do Destino · <a class="src" href="#ap-e">Numerologia</a> numerologia · <a class="src" href="#ap-d">Análise</a> análise anterior · <a class="src" href="#ap-g">Web</a> internet · <a class="src" href="#ap-g">Tradição</a> tradição do sistema (sem livro) · <a class="src" href="#ap-g">Fora do esoterismo</a> conhecimento de fora do esoterismo</p>
+<p>Tudo aqui é material de autoconhecimento, não previsão.</p>
+</details>
+</section>
+
+<section id="c1" class="chapter">
+<p class="kicker">Capítulo 1</p>
+<h2>Minha essência</h2>
+<h3>Identidade</h3>
+<p>Seu Sol está em <strong>Libra 26°, na casa 10</strong> <a class="src" href="#ap-a">Mapa</a>. A casa 10 é a área de carreira e papel público. Ou seja, sua identidade se forma na <strong>vida pública</strong> e passa pelo outro: pelo justo, pelo belo, pelo acordo. Em Libra, o Sol está em <em>queda</em> (sua força depende da relação com os outros) <a class="src" href="#ap-g">Tradição</a><a class="src" href="#ap-g">Web</a>. Por isso, você se conhece muito pelo espelho das pessoas. <span class="badge b-medio">MÉDIO</span></p>
+<p>Seu Ascendente é <strong>Capricórnio 26°</strong>, e o Sol forma com ele uma <strong>quadratura exata (0°)</strong> <a class="src" href="#ap-a">Mapa</a>. É o aspecto mais preciso do mapa: <strong>ser aceito × ser respeitado</strong>. O lado de Libra quer harmonia; o de Capricórnio quer autoridade e resultado. Seu desafio de identidade é não escolher um lado e apagar o outro. <span class="badge b-medio">MÉDIO</span><span class="badge b-solida">SÓLIDA</span></p>
+<h3>Padrão-raiz</h3>
+<blockquote>Ser o ponto de equilíbrio que sustenta tudo, e aprender que o equilíbrio também precisa incluir você.</blockquote>
+<p class="chain"><strong>Cadeia:</strong> Vênus em domicílio colada no Meio do Céu e no comando de todos os planetas <a class="src" href="#ap-a">Mapa</a> + Temperança (14) <a class="src" href="#ap-c">Matriz</a> + Expressão 6 e Atitude 2 <a class="src" href="#ap-e">Numerologia</a> → <em>o equilíbrio é o valor central</em>. Esse valor se apoia em Ascendente Capricórnio/Saturno <a class="src" href="#ap-a">Mapa</a> + Imperador (4) cinco vezes <a class="src" href="#ap-c">Matriz</a> + Personalidade 4 <a class="src" href="#ap-e">Numerologia</a> → <em>sustentar pela estrutura</em>. E também em Lua, Lilith e Nodo Sul em Virgem <a class="src" href="#ap-a">Mapa</a> + centro 11 <a class="src" href="#ap-c">Matriz</a> → <em>sustentar pelo controle e pela autocrítica</em>. <span class="badge b-forte">FORTE</span><span class="badge b-solida">SÓLIDA</span></p>
+<p>A Matriz diz isso de forma literal. A <strong>linha de talentos (10-4-21) é idêntica à cauda cármica (10-4-21)</strong> <a class="src" href="#ap-c">Matriz</a>. Ou seja, o mesmo conjunto de energias é o dom e o padrão a superar. O trabalho não é ganhar outra coisa, e sim <strong>mudar a polaridade</strong> do que você já tem: transformar controle em estrutura que liberta.</p>
+<h3>O que me move</h3>
+<ul>
+<li><strong>Sentido e inspiração.</strong> O Desejo da Alma é <strong>11</strong>, número mestre ligado à intuição e à vontade de servir a algo maior <a class="src" href="#ap-e">Numerologia</a><a class="src" href="#ap-g">Web</a>. É o mesmo 11 que ocupa o <strong>centro</strong> da Matriz, sua zona de conforto <a class="src" href="#ap-c">Matriz</a><a class="src" href="#ap-g">Web</a>. <span class="badge b-forte">FORTE</span><span class="badge b-solida">SÓLIDA</span></li>
+<li><strong>Dominar o difícil com calma.</strong> O Arcano 11 (Força) é a força que doma, não a que ataca <a class="src" href="#ap-g">Tradição</a>. Você se sente em casa quando está no controle de algo exigente sem precisar elevar a voz.</li>
+<li><strong>Ser referência.</strong> Saturno, o regente do seu mapa, está em Leão na casa 8 <a class="src" href="#ap-a">Mapa</a>: autoridade que quer ser reconhecida, mas que tem receio de se exibir. A análise anterior também percebeu isso, como "busca de aprovação" <a class="src" href="#ap-d">Análise</a>. <span class="badge b-medio">MÉDIO</span></li>
+</ul>
+</section>
+
+<section id="c2" class="chapter">
+<p class="kicker">Capítulo 2</p>
+<h2>Minhas facetas</h2>
+<p>Você não é uma coisa só. Abaixo estão as facetas que aparecem nos dados, cada uma com a origem. Elas coexistem, e algumas se chocam.</p>
+<div class="cards">
+<div class="card"><h4>O Arquiteto <span class="badge b-forte">FORTE</span></h4><p>Organiza, estrutura, sustenta, põe limites.</p><p class="why">Ascendente Capricórnio e regente Saturno <a class="src" href="#ap-a">Mapa</a> · 4 Imperador ×5 e talentos 10-4-21 <a class="src" href="#ap-c">Matriz</a> · Personalidade 4 <a class="src" href="#ap-e">Numerologia</a></p></div>
+<div class="card"><h4>O Mediador <span class="badge b-forte">FORTE</span></h4><p>Busca o justo, harmoniza, negocia, tem senso estético.</p><p class="why">Sol, Vênus e Marte em Libra, com Vênus no comando <a class="src" href="#ap-a">Mapa</a> · 14, 8, 6 <a class="src" href="#ap-c">Matriz</a> · Expressão 6 e Atitude 2 <a class="src" href="#ap-e">Numerologia</a></p></div>
+<div class="card"><h4>O Mentor <span class="badge b-forte">FORTE</span></h4><p>Ensina, orienta, transmite valores vividos.</p><p class="why">Lua e Nodo Sul na casa 9; Júpiter junto de Mercúrio na casa 10 <a class="src" href="#ap-a">Mapa</a> · 5 Hierofante no dinheiro <a class="src" href="#ap-c">Matriz</a><a class="src" href="#ap-d">Análise</a> · Maturidade 7 <a class="src" href="#ap-e">Numerologia</a></p></div>
+<div class="card"><h4>O Investigador <span class="badge b-forte">FORTE</span></h4><p>Vai ao fundo, desconfia do raso, pesquisa.</p><p class="why">Mercúrio e Júpiter em Escorpião, Saturno na casa 8 <a class="src" href="#ap-a">Mapa</a> · 9 Eremita, 18 Lua, 13 <a class="src" href="#ap-c">Matriz</a> · Maturidade 7 <a class="src" href="#ap-e">Numerologia</a></p></div>
+<div class="card"><h4>O Sol <span class="badge b-forte">FORTE</span></h4><p>Presença calorosa, carisma, liderança.</p><p class="why">Sol na casa 10 <a class="src" href="#ap-a">Mapa</a> · retrato 19 <a class="src" href="#ap-c">Matriz</a><a class="src" href="#ap-d">Análise</a> · Caminho de Vida 1 e Dia 1 <a class="src" href="#ap-e">Numerologia</a></p></div>
+<div class="card"><h4>O Livre <span class="badge b-medio">MÉDIO</span></h4><p>Humor, irreverência, a sensação de ser diferente.</p><p class="why">Quíron, Netuno e Ceres em Aquário na casa 1 <a class="src" href="#ap-a">Mapa</a> · 22 Louco ×3 <a class="src" href="#ap-c">Matriz</a> · humor citado na <a class="src" href="#ap-d">Análise</a></p></div>
+<div class="card"><h4>O Esteta/Criador <span class="badge b-medio">MÉDIO</span></h4><p>Beleza, forma, criação.</p><p class="why">Vênus em domicílio no Meio do Céu <a class="src" href="#ap-a">Mapa</a> · 3 Imperatriz, 17 Estrela <a class="src" href="#ap-c">Matriz</a> · Expressão 6 <a class="src" href="#ap-e">Numerologia</a></p></div>
+<div class="card shadow"><h4>O Guardião silencioso <span class="badge b-forte">FORTE</span></h4><p>Aguenta calado, controla, se cobra. É a faceta-sombra.</p><p class="why">Lua junto da Lilith em Virgem; Saturno enfraquecido <a class="src" href="#ap-a">Mapa</a> · 11 e 4 em excesso; cauda 10-4-21 <a class="src" href="#ap-c">Matriz</a> · sombra do 4 e do 6 <a class="src" href="#ap-e">Numerologia</a></p></div>
+</div>
+<h3>Tensões produtivas</h3>
+<dl class="tensions">
+<dt>Arquiteto × Livre (controle × liberdade)</dt>
+<dd>São 4 Imperadores contra 3 Loucos <a class="src" href="#ap-c">Matriz</a>, e Capricórnio contra Aquário na casa 1 <a class="src" href="#ap-a">Mapa</a>. <strong>Como vira força:</strong> você constrói estruturas que liberam: rotinas que abrem tempo, sistemas que permitem improvisar. <span class="badge b-solida">SÓLIDA</span></dd>
+<dt>Sol × Mediador (eu × nós)</dt>
+<dd>Caminho 1 contra Expressão 6 e Atitude 2 <a class="src" href="#ap-e">Numerologia</a>. Sol forte na casa 10, mas em queda em Libra <a class="src" href="#ap-a">Mapa</a>. <strong>Como vira força:</strong> uma <em>liderança de mediação</em>, em que você conduz sendo quem equilibra o grupo. <span class="badge b-solida">SÓLIDA</span></dd>
+<dt>Mentor × Investigador</dt>
+<dd>Ensinar (5, casa 9 → 10) contra ficar no estudo profundo (9, Escorpião, Maturidade 7). <strong>Como vira força:</strong> o professor que é especialista. <span class="badge b-solida">SÓLIDA</span></dd>
+<dt>Guardião × Sol</dt>
+<dd>Aguentar calado (11, Lua em Virgem, Personalidade 4) contra brilhar (19). <strong>Como vira força:</strong> a firmeza interna dá credibilidade ao brilho. <strong>O risco</strong> é o brilho virar fachada enquanto o guardião se esgota.</dd>
+</dl>
+<p>A análise anterior registrou as duas imagens, "carismático e contagiante" e "reservado e sério", sem conciliá-las <a class="src" href="#ap-d">Análise</a>. A leitura conjunta resolve isso: são <strong>duas camadas</strong>. Primeiro as pessoas veem o sério e confiável (Ascendente Capricórnio, Personalidade 4) <a class="src" href="#ap-a">Mapa</a><a class="src" href="#ap-e">Numerologia</a>; com confiança, aparece o caloroso e engraçado (19, 22) <a class="src" href="#ap-c">Matriz</a>.</p>
+</section>
+
+<section id="c3" class="chapter">
+<p class="kicker">Capítulo 3</p>
+<h2>Mente e aprendizagem</h2>
+<ul>
+<li><strong>Mercúrio em Escorpião 20°, na casa 10</strong> <a class="src" href="#ap-a">Mapa</a>: sua mente investiga, quer o motivo por trás do motivo e não aceita respostas prontas. Na casa 10, pensar é ferramenta profissional (estratégia, pesquisa, análise). <span class="badge b-medio">MÉDIO</span></li>
+<li><strong>Mercúrio junto de Júpiter (2°)</strong> <a class="src" href="#ap-a">Mapa</a>: visão ampla e facilidade para explicar e convencer. Combinado com o 21 (Mundo) nos talentos, que a análise associa a idiomas e viagens <a class="src" href="#ap-c">Matriz</a><a class="src" href="#ap-d">Análise</a>, aparece facilidade para conectar áreas. Trate isso como tendência, não como garantia. <span class="badge b-forte">FORTE</span><span class="badge b-solida">SÓLIDA</span></li>
+<li><strong>Mercúrio em tensão com Saturno (3°)</strong> <a class="src" href="#ap-a">Mapa</a>: você mede as palavras, se autocensura e às vezes trava antes de falar. <strong>Mercúrio em tensão com Netuno (3°)</strong>: intuição forte, mas também o risco de idealizar ideias ou se confundir com excesso de possibilidades.</li>
+<li><strong>Lua em Virgem na casa 9</strong> <a class="src" href="#ap-a">Mapa</a>: você aprende organizando, classificando e entendendo o porquê. O aprendizado traz segurança emocional, e o caos te inquieta (a análise anterior notou isso) <a class="src" href="#ap-d">Análise</a>.</li>
+<li><strong>Nodo Norte em Peixes na casa 3</strong> <a class="src" href="#ap-a">Mapa</a>: seu crescimento está em comunicar com intuição e compaixão no dia a dia, contando histórias, e não só analisando <a class="src" href="#ap-g">Web</a>. O ponto de partida conhecido (Nodo Sul em Virgem na 9) é corrigir e julgar ideias. <span class="badge b-medio">MÉDIO</span></li>
+<li><strong>Elemento Ar dominante, com 5 pontos</strong> <a class="src" href="#ap-a">Mapa</a>: você pensa comparando, relacionando e pesando os dois lados.</li>
+</ul>
+<p class="tip"><strong>Como você aprende melhor:</strong> estudando a fundo um tema (Escorpião, Maturidade 7) e logo explicando para alguém (Nodo Norte na 3, Arcano 5). O ciclo "estudar → ensinar" fixa o conhecimento. <a class="src" href="#ap-g">Fora do esoterismo</a> Na pedagogia, isso é chamado de <em>efeito protégé</em>: aprende-se mais quando se estuda para ensinar.</p>
+</section>
+
+<section id="c4" class="chapter">
+<p class="kicker">Capítulo 4</p>
+<h2>Emoções</h2>
+<h3>Como sinto</h3>
+<p>Sua Lua está em <strong>Virgem 27°</strong>, colada na <strong>Lilith (2°)</strong> e sobre o <strong>Nodo Sul</strong>, na casa 9 <a class="src" href="#ap-a">Mapa</a>. Você sente <em>pelo filtro da análise</em>: antes de sentir, quer entender; antes de mostrar, quer ter certeza. A Lua forma um <strong>trígono com o Ascendente (1°)</strong>, então por fora você parece calmo e competente mesmo quando há tensão por dentro. <span class="badge b-medio">MÉDIO</span></p>
+<p>A Lua também forma uma <strong>quadratura com Plutão (3°)</strong> <a class="src" href="#ap-a">Mapa</a>: as emoções são intensas, no estilo tudo ou nada, com medo de perder o controle. Saturno, o regente do mapa, está na casa 8 (intimidade e crises), o que reforça a cautela para confiar <a class="src" href="#ap-a">Mapa</a><a class="src" href="#ap-g">Web</a>. <span class="badge b-medio">MÉDIO</span></p>
+<h3>O que me nutre</h3>
+<ul>
+<li>Ordem, sentido e coerência entre o que sente, pensa e faz <a class="src" href="#ap-a">Mapa</a><a class="src" href="#ap-d">Análise</a>.</li>
+<li>Liberdade e grupo: Ceres em Aquário na casa 1 <a class="src" href="#ap-a">Mapa</a>. <span class="badge b-fraco">FRACO</span></li>
+<li>Fé, sentido e recolhimento: a Parte da Fortuna está em Sagitário na casa 12 <a class="src" href="#ap-a">Mapa</a>. <span class="badge b-fraco">FRACO</span></li>
+<li>Equilíbrio como cura: Arcano 14 (Temperança), ponto da "alma" na Matriz (?) <a class="src" href="#ap-c">Matriz</a>.</li>
+</ul>
+<h3>O que me desestabiliza</h3>
+<ul>
+<li><strong>Sentir que só é amado quando é útil.</strong> Lilith em Virgem descreve exatamente essa equação <a class="src" href="#ap-g">Web</a>. Ela se repete na sombra da Expressão 6 (o mártir) <a class="src" href="#ap-e">Numerologia</a> e na "linha feminina" da análise ("amar associado a cuidar e resolver") <a class="src" href="#ap-d">Análise</a>. <span class="badge b-forte">FORTE</span><span class="badge b-solida">SÓLIDA</span></li>
+<li><strong>Raiva engolida.</strong> Marte está enfraquecido em Libra, junto do Sol e em tensão com o Ascendente <a class="src" href="#ap-a">Mapa</a>. A ação direta é adiada pela busca do justo, e a raiva se acumula. O centro 11 (Força) mostra a mesma coisa em sombra: aguentar demais até explodir <a class="src" href="#ap-c">Matriz</a>. <span class="badge b-forte">FORTE</span><span class="badge b-solida">SÓLIDA</span></li>
+<li><strong>Caos e imprevisibilidade.</strong> Lua em Virgem e o 4 em excesso <a class="src" href="#ap-a">Mapa</a><a class="src" href="#ap-c">Matriz</a>.</li>
+</ul>
+<p class="tip"><strong>Prática sugerida:</strong> nomeie a emoção antes de analisá-la ("estou com raiva", e não "isso não foi justo porque..."). <a class="src" href="#ap-g">Fora do esoterismo</a> A psicologia chama isso de <em>rotulação afetiva</em>, e ela reduz a reatividade emocional.</p>
+</section>
+
+<section id="c5" class="chapter">
+<p class="kicker">Capítulo 5</p>
+<h2>Relacionamentos</h2>
+<h3>Amor</h3>
+<ul>
+<li><strong>Vênus em domicílio em Libra, junto do Meio do Céu (2°)</strong> <a class="src" href="#ap-a">Mapa</a>: você é magnético na vida pública e valoriza estética, justiça e delicadeza na relação. É o planeta mais forte do mapa.</li>
+<li><strong>Vênus em sextil com Saturno (0°)</strong> <a class="src" href="#ap-a">Mapa</a>: você busca compromisso, lealdade e algo duradouro. <strong>Vênus em sextil com Plutão (1°)</strong>: atração por vínculos intensos e transformadores. <span class="badge b-medio">MÉDIO</span></li>
+<li><strong>A Lua rege a casa 7 e está na casa 9</strong> <a class="src" href="#ap-a">Mapa</a>: a parceria se forma por troca intelectual, estudo, viagens e visão de mundo. Juno (Virgem, casa 9) mostra que você valoriza competência e cuidado prático <a class="src" href="#ap-a">Mapa</a>. <span class="badge b-fraco">FRACO</span></li>
+<li><strong>Canal do amor na Matriz: 21 → 7 → 4</strong> <a class="src" href="#ap-c">Matriz</a>. O 21 (Mundo) indica relações que ampliam seu mundo. O 7 (Carro) indica uma relação com direção e movimento. O 4 no cruzamento indica estabilidade. <span class="badge b-medio">MÉDIO</span><span class="badge b-solida">SÓLIDA</span></li>
+</ul>
+<div class="note"><strong>Correção à análise anterior:</strong> ela descreve o "par ideal 7" como introspectivo e silencioso <a class="src" href="#ap-d">Análise</a>. Esse é o perfil do <em>número 7 da numerologia</em>. Na Matriz, o <strong>Arcano 7 é o Carro</strong>: movimento, vontade, conquista <a class="src" href="#ap-g">Tradição</a><a class="src" href="#ap-g">Web</a>. A leitura integrada é alguém com quem você <strong>se move junto</strong> (projetos, viagens, estudo) e que tem profundidade. O lado introspectivo combina com a sua Maturidade 7 <a class="src" href="#ap-e">Numerologia</a>, não com o seu par. <span class="badge b-espec">ESPECULATIVA</span></div>
+<h3>Padrões afetivos a observar</h3>
+<ul>
+<li><strong>Agradar para manter a paz</strong>: Atitude 2 e Expressão 6 em sombra <a class="src" href="#ap-e">Numerologia</a> + Sol em queda em Libra <a class="src" href="#ap-a">Mapa</a> + 6 Enamorados ×3 em sombra (indecisão) <a class="src" href="#ap-c">Matriz</a>. <span class="badge b-forte">FORTE</span></li>
+<li><strong>Controlar a rota</strong> da relação: 7 + 4 na linha do amor <a class="src" href="#ap-c">Matriz</a>; Ascendente Capricórnio <a class="src" href="#ap-a">Mapa</a>. <span class="badge b-medio">MÉDIO</span></li>
+</ul>
+<h3>Amizades e grupos</h3>
+<p>Plutão está na casa 11 <a class="src" href="#ap-a">Mapa</a>: grupos e amizades são onde acontecem transformações profundas. Pholus em Sagitário, também na casa 11, sugere que pequenas atitudes suas em grupos têm efeitos grandes <a class="src" href="#ap-a">Mapa</a>. <span class="badge b-fraco">FRACO</span> Quíron em Aquário na casa 1 dá a ferida de se sentir deslocado, e com ela o dom de acolher os diferentes <a class="src" href="#ap-a">Mapa</a><a class="src" href="#ap-g">Web</a>. <span class="badge b-medio">MÉDIO</span></p>
+</section>
+
+<section id="c6" class="chapter">
+<p class="kicker">Capítulo 6</p>
+<h2>Família e ancestralidade</h2>
+<p><strong>Achado estrutural:</strong> as linhas ancestrais da sua Matriz têm <strong>os mesmos arcanos dos dois lados</strong>. A linha masculina e a feminina são ambas 11-17-6 + 18-22-4 <a class="src" href="#ap-c">Matriz</a>. O sistema <em>não diferencia</em> a herança do pai da herança da mãe: os dois lados carregam o mesmo programa. A análise anterior descreveu as duas linhas de forma diferente, sem base nos arcanos <a class="src" href="#ap-d">Análise</a>. <span class="badge b-medio">MÉDIO</span><span class="badge b-solida">SÓLIDA</span></p>
+<div class="two">
+<div><h4>11 – 17 – 6</h4><p>Força, Estrela, Enamorados. <strong>Em equilíbrio:</strong> gente forte, talentosa, que escolhe por amor. <strong>Em sombra:</strong> aguentar em silêncio, talento sem reconhecimento, escolhas afetivas feitas por dever. <a class="src" href="#ap-c">Matriz</a><a class="src" href="#ap-g">Tradição</a></p></div>
+<div><h4>18 – 22 – 4</h4><p>Lua, Louco, Imperador. <strong>Em equilíbrio:</strong> intuição, coragem de romper padrões, capacidade de construir. <strong>Em sombra:</strong> medos e segredos que geram fuga (22) ou controle rígido (4). <a class="src" href="#ap-c">Matriz</a><a class="src" href="#ap-g">Tradição</a></p></div>
+</div>
+<p>No mapa, <strong>Marte, regente da casa 4 (lar e raízes), está na casa 10 e enfraquecido</strong> <a class="src" href="#ap-a">Mapa</a>: a família está ligada a dever, carreira e desempenho. Vertex em Touro na casa 4, em oposição a Júpiter e Mercúrio, sugere encontros marcantes ligados à família que mexem com a carreira e a mente <a class="src" href="#ap-a">Mapa</a>. <span class="badge b-fraco">FRACO</span></p>
+<h3>O que herdei e o que posso transformar</h3>
+<ul>
+<li><strong>Herdei:</strong> capacidade de aguentar e estruturar, a tendência a controlar por medo e a demonstrar amor pela provisão e pelo dever. A análise anterior descreve o mesmo tema <a class="src" href="#ap-d">Análise</a>. <span class="badge b-forte">FORTE</span></li>
+<li><strong>Posso transformar:</strong> estrutura que deixa espaço para leveza (22) e sentimento (6). "Responsabilidade que não exclui presença emocional", na própria frase da análise, que vale manter <a class="src" href="#ap-d">Análise</a>.</li>
+</ul>
+</section>
+
+<section id="c7" class="chapter">
+<p class="kicker">Capítulo 7</p>
+<h2>Vocação, trabalho e dinheiro</h2>
+<h3>Talentos</h3>
+<ul>
+<li><strong>Casa 10 com 5 planetas</strong> <a class="src" href="#ap-a">Mapa</a>: a carreira é o eixo da vida. Quase todos os regentes de casas apontam para lá, mesmo considerando que as cúspides são incertas. <span class="badge b-medio">MÉDIO</span></li>
+<li><strong>Talentos 10-4-21</strong> <a class="src" href="#ap-c">Matriz</a><a class="src" href="#ap-d">Análise</a>: organizar mudanças, liderar, integrar áreas e concluir ciclos.</li>
+<li><strong>Vênus no Meio do Céu</strong> <a class="src" href="#ap-a">Mapa</a>: diplomacia, estética e mediação como marca profissional <a class="src" href="#ap-g">Web</a>.</li>
+<li><strong>Júpiter junto de Mercúrio em Escorpião</strong> <a class="src" href="#ap-a">Mapa</a>: estratégia, pesquisa, psicologia, finanças, investigação.</li>
+</ul>
+<h3>Dinheiro</h3>
+<p>O canal do dinheiro na Matriz é <strong>19 → 5 → 4</strong> <a class="src" href="#ap-c">Matriz</a>. O <strong>Arcano 5 (Hierofante)</strong> traz dinheiro por ensinar, orientar e ser referência. Fontes russas do método dizem o mesmo: "dinheiro vem pela sabedoria, ensino e mentoria"; o que bloqueia é "guardar o conhecimento e quebrar promessas" <a class="src" href="#ap-g">Web</a>. O 19 indica que o dinheiro vem com visibilidade. A análise anterior concorda <a class="src" href="#ap-d">Análise</a>. Do lado astrológico, o Nodo Norte na casa 3 (comunicação) faz trígono com Júpiter e Mercúrio na casa 10 <a class="src" href="#ap-a">Mapa</a>. <span class="badge b-forte">FORTE</span><span class="badge b-solida">SÓLIDA</span></p>
+<p>Urano em Peixes na casa 2 (dinheiro e valores) sugere renda com algum componente não convencional <a class="src" href="#ap-a">Mapa</a>. <span class="badge b-fraco">FRACO</span> O ponto C da Matriz, <strong>8-9-19</strong> (Justiça, Eremita, Sol), aponta para áreas de justiça, conhecimento especializado e visibilidade (?) <a class="src" href="#ap-c">Matriz</a>. <span class="badge b-medio">MÉDIO</span> O número de Geração 8 é coletivo (compartilhado com quem nasceu no mesmo ano) e pesa pouco <a class="src" href="#ap-e">Numerologia</a>. <span class="badge b-fraco">FRACO</span></p>
+<h3>Caminhos possíveis (temas, não profissões garantidas)</h3>
+<p>Em todas as áreas abaixo, os três fios se encontram: <strong>equilíbrio/justiça + ensino + estrutura</strong>.</p>
+<ul class="paths">
+<li>Direito, mediação de conflitos, compliance, gestão pública (Libra + 8 Justiça + 4)</li>
+<li>Ensino, mentoria, educação corporativa, produção de conteúdo (5, Nodo Norte na 3, Júpiter na 10)</li>
+<li>Gestão de pessoas, liderança de projetos, consultoria (4, 10, casa 10)</li>
+<li>Psicologia, pesquisa, estratégia, finanças (Escorpião, 9, 18, Saturno na casa 8)</li>
+<li>Design, arquitetura, estética com estrutura (Vênus forte + Capricórnio + 3)</li>
+</ul>
+<p class="note">A análise anterior sugere educação física e esportes <a class="src" href="#ap-d">Análise</a>. O Arcano 5 não sustenta isso, e nada no mapa ou na numerologia aponta para o corpo. Mantenha essa opção só se ela tiver base na sua experiência real. <span class="badge b-espec">ESPECULATIVA</span></p>
+<h3>Multipotencialidade: veredito <span class="verdict">PARCIAL</span></h3>
+<p><strong>A favor:</strong> Mercúrio junto de Júpiter na casa 10, planetas em dois signos de temas diferentes, o 21 (integração), o 10 (mudança) e o 22 ×3 <a class="src" href="#ap-a">Mapa</a><a class="src" href="#ap-c">Matriz</a>, além de facetas diversas e fortes. <strong>Contra:</strong> só a Lua está em signo mutável entre os planetas pessoais; o perfil é de iniciar e sustentar <a class="src" href="#ap-a">Mapa</a>; há 4 Imperadores <a class="src" href="#ap-c">Matriz</a> e Personalidade 4 <a class="src" href="#ap-e">Numerologia</a>; e a Maturidade 7 aponta para a especialização <a class="src" href="#ap-e">Numerologia</a>.</p>
+<p><strong>Conclusão:</strong> você é um <strong>multipotencial integrador</strong>. Tem vários talentos reais que convergem para um eixo, e não é um curioso disperso. <span class="badge b-forte">FORTE</span><span class="badge b-solida">SÓLIDA</span></p>
+<p><strong>Modelo de vida e trabalho:</strong> <a class="src" href="#ap-g">Fora do esoterismo</a> Emilie Wapnick, em <em>How to Be Everything</em> (2017), propõe alguns modelos para quem tem vários talentos. Os que mais servem a você são:</p>
+<ul>
+<li><strong>"Group Hug" (guarda-chuva)</strong>: um trabalho que junte consultoria/mentoria, ensino e conteúdo em torno de <em>um</em> tema central.</li>
+<li><strong>"Phoenix"</strong>: mergulhar fundo numa área por alguns anos e depois migrar levando a bagagem. Combina com a fase 20-30, que tem a Roda (10) cinco vezes <a class="src" href="#ap-c">Matriz</a>.</li>
+<li><strong>Contra a dispersão:</strong> um eixo fixo (o 4), projetos com prazo (o 7, Carro) e revisão periódica (o 10, Roda).</li>
+</ul>
+</section>
+
+<section id="c8" class="chapter">
+<p class="kicker">Capítulo 8</p>
+<h2>Sombras e desafios</h2>
+<div class="cards">
+<div class="card shadow"><h4>1. O pilar que não pode cair <span class="badge b-forte">FORTE</span></h4><p>Controlar, carregar tudo, não delegar.</p><p class="why">4 Imperador ×5 em sombra <a class="src" href="#ap-c">Matriz</a> · Personalidade 4 <a class="src" href="#ap-e">Numerologia</a> · Saturno, regente do mapa, enfraquecido na casa 8 <a class="src" href="#ap-a">Mapa</a> · tema de "controle e rigidez" na <a class="src" href="#ap-d">Análise</a></p></div>
+<div class="card shadow"><h4>2. Merecer amor sendo útil <span class="badge b-forte">FORTE</span></h4><p>Perfeccionismo e autocrítica; servir para ser aceito.</p><p class="why">Lua junto da Lilith e Nodo Sul em Virgem na casa 9 <a class="src" href="#ap-a">Mapa</a><a class="src" href="#ap-g">Web</a> · sombra da Expressão 6 <a class="src" href="#ap-e">Numerologia</a> · "amar associado a cuidar e resolver" <a class="src" href="#ap-d">Análise</a></p></div>
+<div class="card shadow"><h4>3. Força engolida <span class="badge b-forte">FORTE</span></h4><p>Adiar o confronto até explodir ou se esgotar.</p><p class="why">Marte enfraquecido em tensão com o Ascendente, Lua em tensão com Plutão <a class="src" href="#ap-a">Mapa</a> · 11 Força em sombra <a class="src" href="#ap-c">Matriz</a> · tensão nervosa do 11 <a class="src" href="#ap-e">Numerologia</a></p></div>
+<div class="card shadow"><h4>4. Agradar para manter a paz <span class="badge b-forte">FORTE</span></h4><p>Ceder demais, indecisão, evitar conflito.</p><p class="why">Sol em queda em Libra <a class="src" href="#ap-a">Mapa</a> · 6 Enamorados ×3 <a class="src" href="#ap-c">Matriz</a> · Atitude 2 <a class="src" href="#ap-e">Numerologia</a></p></div>
+<div class="card shadow"><h4>5. Expandir × conter <span class="badge b-medio">MÉDIO</span></h4><p>Oscilar entre ousar e se travar por medo de errar.</p><p class="why">Júpiter em quadratura com Saturno (1°) e Mercúrio em quadratura com Saturno (3°) <a class="src" href="#ap-a">Mapa</a></p></div>
+<div class="card shadow"><h4>6. Orgulho e vaidade <span class="badge b-medio">MÉDIO</span></h4><p>Precisar ser visto como o melhor.</p><p class="why">19 Sol em sombra <a class="src" href="#ap-c">Matriz</a><a class="src" href="#ap-d">Análise</a> · Saturno em Leão <a class="src" href="#ap-a">Mapa</a></p></div>
+</div>
+<h3>Carma (na linguagem da Matriz)</h3>
+<p>A <strong>cauda cármica 10-4-21</strong> (?) <a class="src" href="#ap-c">Matriz</a> aponta o padrão de <strong>tentar controlar o que é cíclico</strong> e de <strong>se sentir preso quando as coisas mudam</strong>. Como ela é idêntica aos talentos, a saída é usar o mesmo conjunto em equilíbrio: <em>dar estrutura às mudanças em vez de resistir a elas</em>. <span class="badge b-medio">MÉDIO</span><span class="badge b-solida">SÓLIDA</span></p>
+<p><strong>Arcanos ausentes:</strong> 1 (Mago), 2 (Sacerdotisa), 12 (Enforcado) e 15 (Diabo) não aparecem em lugar nenhum da Matriz <a class="src" href="#ap-c">Matriz</a>. Leitura: iniciativa individual, receptividade silenciosa, render-se a outro ponto de vista e desejo material sem culpa são energias a <em>desenvolver</em>. Curiosamente, <strong>1 e 2 são o centro da sua numerologia</strong> (Caminho 1, Dia 1, Atitude 2, Alma 11/2) <a class="src" href="#ap-e">Numerologia</a>. <span class="badge b-espec">ESPECULATIVA</span></p>
+<p>As Lições e Dívidas cármicas da numerologia estão <strong>bloqueadas no app</strong> e não foram interpretadas.</p>
+</section>
+
+<section id="c9" class="chapter">
+<p class="kicker">Capítulo 9</p>
+<h2>Espiritualidade e propósito</h2>
+<ul>
+<li><strong>Sentido acima de dogma.</strong> Lilith em Virgem na casa 9 questiona as crenças herdadas <a class="src" href="#ap-a">Mapa</a><a class="src" href="#ap-g">Web</a>. O Arcano 5 (Hierofante) em equilíbrio é "valores vividos, não sermão" <a class="src" href="#ap-c">Matriz</a><a class="src" href="#ap-g">Tradição</a>. O Desejo da Alma 11 é a fome de sentido <a class="src" href="#ap-e">Numerologia</a>. <span class="badge b-forte">FORTE</span><span class="badge b-solida">SÓLIDA</span></li>
+<li><strong>Direção da alma: do analítico ao intuitivo.</strong> O Nodo Sul em Virgem na casa 9 vai para o Nodo Norte em Peixes na casa 3 <a class="src" href="#ap-a">Mapa</a>. Os pontos da Matriz ligados à alma são Temperança (14) e Hierofante (5) (?) <a class="src" href="#ap-c">Matriz</a>. <span class="badge b-medio">MÉDIO</span></li>
+<li><strong>Bastidores.</strong> Palas em Capricórnio na casa 12 indica inteligência estratégica que age nos bastidores. A Parte da Fortuna em Sagitário na casa 12 sugere bem-estar pela fé e pelo recolhimento. Vesta em Libra na casa 9 mostra dedicação a ideais de justiça e estudo <a class="src" href="#ap-a">Mapa</a>. <span class="badge b-fraco">FRACO</span></li>
+<li><strong>Maturidade 7</strong> <a class="src" href="#ap-e">Numerologia</a>: a segunda metade da vida pede estudo, introspecção e espiritualidade.</li>
+</ul>
+<h3>Propósito</h3>
+<p>Os números de propósito pessoal, social e espiritual <strong>não aparecem</strong> no diagrama. A análise anterior cita o 11 <a class="src" href="#ap-d">Análise</a>, o que é coerente com o centro, mas não dá para conferir a posição. Pelo conjunto dos dados, o propósito que aparece com peso FORTE é: <strong>ser ponto de estabilidade e orientação, transformando conflito em entendimento</strong>. Essa frase da análise se confirma pelo mapa (Libra, casa 10) e pela numerologia (6, 11/2) <a class="src" href="#ap-d">Análise</a><a class="src" href="#ap-a">Mapa</a><a class="src" href="#ap-e">Numerologia</a>. <span class="badge b-forte">FORTE</span><span class="badge b-solida">SÓLIDA</span></p>
+</section>
+
+<section id="c10" class="chapter">
+<p class="kicker">Capítulo 10</p>
+<h2>Linha do tempo</h2>
+<p class="note">Os Pináculos e Ciclos da numerologia não constam, e os propósitos por idade da Matriz também não. A linha abaixo usa a linha de idades da Matriz <a class="src" href="#ap-c">Matriz</a>, a Maturidade 7 <a class="src" href="#ap-e">Numerologia</a> e o ciclo de Saturno, de cerca de 29,5 anos (fato astronômico geral, não um cálculo do seu mapa) <a class="src" href="#ap-g">Tradição</a>. Ela depende da data <strong>19/10/2006</strong> (?).</p>
+<ol class="timeline">
+<li><span class="age">0–10</span> 19, 5, 22, 7, 3, 17, 14: infância luminosa e criativa; aprendizado de regras (5). <a class="src" href="#ap-c">Matriz</a></li>
+<li><span class="age">10–20</span> 11, 16, 5, 8, 21, 7, 4, 14: força posta à prova (11, 16), regras e justiça, ampliação aos 15 anos (21). Aos 19, Temperança (14): ajuste interno. A análise acerta esse ponto <a class="src" href="#ap-d">Análise</a>. <a class="src" href="#ap-c">Matriz</a></li>
+<li class="now"><span class="age">20 · AGORA</span> <strong>10 Roda da Fortuna</strong>: virada de ciclo, oportunidades e mudanças. A tarefa é não resistir e dar estrutura (4) ao que muda. <a class="src" href="#ap-c">Matriz</a><span class="badge b-medio">MÉDIO</span></li>
+<li><span class="age">21–22,5</span> <strong>3 Imperatriz</strong>: criar, produzir, cultivar talentos criativos e estéticos. <a class="src" href="#ap-c">Matriz</a></li>
+<li><span class="age">22,5–23,5</span> <strong>20 Julgamento</strong>: um "chamado", revisão de rumo e reconhecimento. <a class="src" href="#ap-c">Matriz</a></li>
+<li><span class="age">23,5–29</span> 3, 10 (aos 25), 20, 10, 10: novos giros de ciclo; decisões de carreira mais definitivas. O retorno de Saturno chega por volta dos 29–30 anos <a class="src" href="#ap-g">Tradição</a>. <a class="src" href="#ap-c">Matriz</a></li>
+<li><span class="age">30</span> <strong>18 Lua</strong>: fase de medos e ilusões, mas também de intuição; hora de testar as estruturas. <a class="src" href="#ap-c">Matriz</a></li>
+<li><span class="age">31–39</span> 8, 8, 16, 8 (aos 35), 6, 16, 6: Justiça (responder pelas escolhas), Torre (rupturas que reestruturam) e Enamorados (escolhas afetivas). A Maturidade 7 começa a pesar <a class="src" href="#ap-e">Numerologia</a>. <a class="src" href="#ap-c">Matriz</a></li>
+<li><span class="age">40</span> <strong>8 Justiça</strong>: ponto de equilíbrio da vida. <a class="src" href="#ap-c">Matriz</a></li>
+<li><span class="age">40–80</span> Espelho das fases anteriores: 40–50 repete 30–40 invertido; 50–60 espelha 20–30; 60–70 espelha 10–20; 70–80 espelha 0–10. A linha é <strong>simétrica</strong>. <a class="src" href="#ap-c">Matriz</a></li>
+</ol>
+<p><strong>Onde você está:</strong> na entrada da fase 20–30, dominada pela <strong>Roda (10)</strong> e pela <strong>Imperatriz (3)</strong>, com o <strong>Julgamento (20)</strong> no meio. É a fase de testar caminhos e produzir, exatamente onde o seu talento (organizar mudanças) e a sua sombra (controle) se encontram. <span class="badge b-medio">MÉDIO</span></p>
+</section>
+
+<section id="c11" class="chapter">
+<p class="kicker">Capítulo 11</p>
+<h2>Guia prático</h2>
+<h3>Meu maior talento</h3>
+<p><strong>Dar forma estável ao que é instável:</strong> perceber o momento (10), estruturar (4) e integrar áreas e pessoas (21), com diplomacia (Libra) e profundidade (Escorpião). <span class="badge b-forte">FORTE</span></p>
+<h3>Minha maior armadilha</h3>
+<p><strong>Virar o pilar que nunca pode cair:</strong> controlar, se cobrar e carregar tudo para merecer lugar e afeto. <span class="badge b-forte">FORTE</span></p>
+<h3>5 ações para agora</h3>
+<ol class="actions">
+<li><strong>Escolha um eixo e três frentes.</strong> Defina um tema central e no máximo três atividades ligadas a ele (estudar, praticar, ensinar). Revise a cada 3 meses. <span class="why">Base: multipotencial integrador; 4 + 10.</span></li>
+<li><strong>Ensine algo em até 30 dias</strong>: monitoria, aula, vídeo, texto ou mentoria de alguém mais novo. <span class="why">Base: Arcano 5 no dinheiro; Nodo Norte na casa 3. É também o antídoto ao perfeccionismo de Virgem na casa 9.</span></li>
+<li><strong>Delegue uma coisa por semana</strong> e anote o que aconteceu. <span class="why">Base: a sombra do 4 e do 6.</span></li>
+<li><strong>Diga um "não" ou um desacordo por semana, com calma.</strong> <span class="why">Base: Marte em Libra em tensão com o Ascendente; o 11 na versão saudável.</span></li>
+<li><strong>Crie algo só por prazer</strong>, sem meta de produtividade. <span class="why">Base: a fase 21–22,5 é a Imperatriz (3); é o contrapeso da Personalidade 4.</span></li>
+</ol>
+<h3>5 perguntas para responder comigo mesmo</h3>
+<ol class="questions">
+<li>Onde estou segurando algo sozinho que poderia ser dividido, e o que eu temo que aconteça se eu soltar?</li>
+<li>Em quais relações eu sinto que preciso ser útil para ser querido?</li>
+<li>O que eu sei a fundo que poderia ensinar amanhã, se não precisasse ser perfeito?</li>
+<li>Quando eu cedo para manter a paz, estou escolhendo o equilíbrio ou evitando o conflito?</li>
+<li>Se os próximos dois anos forem uma "Roda", que mudança eu quero conduzir em vez de só reagir a ela?</li>
+</ol>
+<h3>Como usar este mapa no dia a dia</h3>
+<ul>
+<li><strong>Diante de uma decisão:</strong> pergunte se ela vem do Arquiteto que constrói ou do Guardião que controla por medo.</li>
+<li><strong>Uma vez por mês:</strong> releia as 5 perguntas e anote uma resposta nova.</li>
+<li><strong>A cada 3 meses:</strong> revise o eixo e as três frentes. É a sua "Roda" consciente.</li>
+<li><strong>Quando confirmar a data e a hora de nascimento</strong> e desbloquear as lições cármicas, atualize os itens marcados com (?).</li>
+</ul>
+</section>
+
+<section id="apx">
+<p class="kicker">Apêndice técnico</p>
+<h2>Os dados por trás de tudo</h2>
+<p class="why">Clique para abrir cada parte. As fontes ao longo do texto levam até aqui.</p>
+<details class="appx" id="ap-a"><summary>A. Transcrição completa dos dados (Etapa 1)</summary><div class="appx-body"><blockquote>
+<p>Status: <strong>final</strong> — feita com os 5 arquivos recebidos (3 imagens + 2 PDFs da análise). Você confirmou que não enviaria mais arquivos: <strong>nenhum PDF de livro foi recebido</strong>.
+Regra aplicada: nada foi recalculado. Itens com dúvida de leitura estão marcados com <strong>(?)</strong>. Ausências estão como <strong>não consta</strong>.</p>
+</blockquote>
+<h2>Arquivos recebidos</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Arquivo</th>
+<th>Conteúdo</th>
+<th>Legibilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>mapa-astral.jpg</code> (print do app "horos")</td>
+<td>Tabela de posições + roda do mapa</td>
+<td>Boa; alguns graus pequenos (?)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>matriz-destino.jpg</code></td>
+<td>Diagrama da Matriz do Destino com linha de idades</td>
+<td>Boa</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>leitura_..._.pdf</code> (11 p., Canva, autora: Julia Chomen F / @cosmicmatrizes, 20/02/2026)</td>
+<td>Análise parte 1: Dons, Linhas geracionais, Par ideal, Profissões, Arcanos anuais 19–20</td>
+<td>Texto extraível (não precisou OCR)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>leitura_..._-1.pdf</code> (9 p., mesma autora, 27/02/2026)</td>
+<td>Análise parte 2: Como te veem, Essência, Propósito, Voluntariado, Empatia</td>
+<td>Texto extraível</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>numerologia.jpg</code> (print de app de Numerologia)</td>
+<td>Números da data, do nome, kármicos (bloqueados), Maturidade</td>
+<td>Boa</td>
+</tr>
+<tr>
+<td>–</td>
+<td>PDFs de livros</td>
+<td><strong>Não recebidos</strong> (usuário dispensou)</td>
+<td>–</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>1. Mapa astral <a class="src" href="#ap-a">Mapa</a></h2>
+<p>Fonte: app "horos". Sistema de casas: <strong>não consta</strong> no print (assumido Placidus conforme instrução, (?)).
+Data, hora e local de nascimento: <strong>não constam</strong> no print.</p>
+<h3>1.1 Planetas e pontos</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Corpo</th>
+<th>Signo</th>
+<th>Grau</th>
+<th>Casa</th>
+<th>Obs.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sol</td>
+<td>Libra</td>
+<td>26°</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>Lua</td>
+<td>Virgem</td>
+<td>27°</td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td>Mercúrio</td>
+<td>Escorpião</td>
+<td>20°</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>Vênus</td>
+<td>Libra</td>
+<td>23°</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>Marte</td>
+<td>Libra</td>
+<td>27°</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>Júpiter</td>
+<td>Escorpião</td>
+<td>22°</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>Saturno</td>
+<td>Leão</td>
+<td>23°</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td>Urano</td>
+<td>Peixes</td>
+<td>11°</td>
+<td>2</td>
+<td>Retrógrado (Rx)</td>
+</tr>
+<tr>
+<td>Netuno</td>
+<td>Aquário</td>
+<td>17° (?)</td>
+<td>1</td>
+<td>Retrógrado (Rx); dígito pouco nítido ("1/°")</td>
+</tr>
+<tr>
+<td>Plutão</td>
+<td>Sagitário</td>
+<td>24°</td>
+<td>11</td>
+<td></td>
+</tr>
+<tr>
+<td>Nodo Norte</td>
+<td>Peixes</td>
+<td>23°</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>Nodo Sul</td>
+<td>Virgem</td>
+<td>23°</td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td>Lilith</td>
+<td>Virgem</td>
+<td>25°</td>
+<td>9</td>
+<td>Tipo (média/verdadeira) não consta</td>
+</tr>
+<tr>
+<td>Quíron</td>
+<td>Aquário</td>
+<td>4°</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>Pholus</td>
+<td>Sagitário</td>
+<td>1°</td>
+<td>11</td>
+<td></td>
+</tr>
+<tr>
+<td>Ceres</td>
+<td>Aquário</td>
+<td>13°</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>Palas</td>
+<td>Capricórnio</td>
+<td>8°</td>
+<td>12</td>
+<td></td>
+</tr>
+<tr>
+<td>Juno</td>
+<td>Virgem</td>
+<td>29°</td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td>Vesta</td>
+<td>Libra</td>
+<td>7°</td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td>Parte da Fortuna</td>
+<td>Sagitário</td>
+<td>27°</td>
+<td>12</td>
+<td></td>
+</tr>
+<tr>
+<td>Vertex</td>
+<td>Touro</td>
+<td>22°</td>
+<td>4</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>Minutos de arco: <strong>não constam</strong> (só graus inteiros).</p>
+<h3>1.2 Ângulos</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Ângulo</th>
+<th>Signo</th>
+<th>Grau</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ascendente</td>
+<td>Capricórnio</td>
+<td>26°</td>
+</tr>
+<tr>
+<td>Meio do Céu (MC)</td>
+<td>Libra</td>
+<td>21°</td>
+</tr>
+<tr>
+<td>Descendente</td>
+<td>Câncer</td>
+<td>26°</td>
+</tr>
+<tr>
+<td>Fundo do Céu (IC)</td>
+<td>Áries</td>
+<td>21°</td>
+</tr>
+</tbody>
+</table></div>
+<h3>1.3 Cúspides das casas</h3>
+<p>Casas 1, 4, 7, 10: pelos ângulos acima. <strong>Casas 2, 3, 5, 6, 8, 9, 11, 12: não constam</strong> (a roda do print não mostra os graus das cúspides).</p>
+<h3>1.4 Aspectos</h3>
+<p><strong>Não constam</strong> (o print não traz grade de aspectos nem orbes; a roda mostra linhas coloridas, mas ilegíveis para identificação segura). Na Etapa 2, os aspectos foram <strong>derivados</strong> da distância entre os graus inteiros já listados (orbe ±1°), marcados como (deriv.).</p>
+<h3>1.5 Observações de consistência (sem recalcular)</h3>
+<ul>
+<li><strong>Possível inconsistência (?)</strong>: Vesta em Libra 7° aparece na <strong>casa 9</strong>, enquanto o MC (cúspide da casa 10) está em Libra 21°. Isso é coerente (7° &lt; 21°, então fica antes do MC, na 9). Sem inconsistência.</li>
+<li>Mercúrio e Júpiter em Escorpião aparecem na casa 10. Com MC em Libra 21° e Ascendente em Capricórnio 26°, é plausível (casa 10 grande em Placidus). Cúspide da 11 não consta para conferir.</li>
+<li>Saturno em Leão 23° na casa 8 e Lua em Virgem 27° na casa 9: plausível com Descendente em Câncer 26°.</li>
+</ul>
+<hr />
+<h2>2. Matriz do Destino <a class="src" href="#ap-c">Matriz</a></h2>
+<p>Fonte: diagrama (estilo octograma com quadrado pessoal + quadrado ancestral). Os nomes das posições abaixo seguem o layout padrão do sistema; onde a função da posição não está escrita no diagrama, está marcado (?).</p>
+<h3>2.1 Quadrado pessoal (pontos cardeais)</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Posição</th>
+<th>Idade no ciclo</th>
+<th>Ponto externo</th>
+<th>2º ponto</th>
+<th>3º ponto</th>
+<th>Ponto interno (verde/laranja)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Esquerda (A) – dia</td>
+<td>0 anos</td>
+<td><strong>19</strong> (roxo)</td>
+<td><strong>22</strong> (azul)</td>
+<td><strong>3</strong></td>
+<td><strong>14</strong> (verde)</td>
+</tr>
+<tr>
+<td>Topo (B) – mês</td>
+<td>20 anos</td>
+<td><strong>10</strong> (roxo)</td>
+<td><strong>4</strong> (azul)</td>
+<td><strong>21</strong></td>
+<td><strong>5</strong> (verde)</td>
+</tr>
+<tr>
+<td>Direita (C) – ano</td>
+<td>40 anos</td>
+<td><strong>8</strong> (vermelho)</td>
+<td><strong>9</strong></td>
+<td><strong>19</strong> (laranja)</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Base (D)</td>
+<td>60 anos</td>
+<td><strong>10</strong> (vermelho)</td>
+<td><strong>4</strong></td>
+<td><strong>21</strong> (laranja)</td>
+<td>–</td>
+</tr>
+<tr>
+<td><strong>Centro (E)</strong></td>
+<td>–</td>
+<td><strong>11</strong> (amarelo)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>Observação: a linha do topo (10 – 4 – 21) e a linha da base (10 – 4 – 21) têm <strong>os mesmos três arcanos</strong>.</p>
+<h3>2.2 Quadrado ancestral (diagonais)</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Posição</th>
+<th>Idade</th>
+<th>Externo</th>
+<th>Meio</th>
+<th>Interno</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Superior esquerda</td>
+<td>10 anos</td>
+<td><strong>11</strong></td>
+<td><strong>17</strong></td>
+<td><strong>6</strong></td>
+</tr>
+<tr>
+<td>Superior direita</td>
+<td>30 anos</td>
+<td><strong>18</strong></td>
+<td><strong>22</strong></td>
+<td><strong>4</strong></td>
+</tr>
+<tr>
+<td>Inferior direita</td>
+<td>50 anos</td>
+<td><strong>18</strong></td>
+<td><strong>22</strong></td>
+<td><strong>4</strong></td>
+</tr>
+<tr>
+<td>Inferior esquerda</td>
+<td>70 anos</td>
+<td><strong>11</strong></td>
+<td><strong>17</strong></td>
+<td><strong>6</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Linhas geracionais (indicadas no diagrama):
+- <strong>Linha masculina</strong> (seta roxa): superior esquerda (11–17–6) ↔ inferior direita (18–22–4).
+- <strong>Linha feminina</strong> (seta vermelha): superior direita (18–22–4) ↔ inferior esquerda (11–17–6).</p>
+<h3>2.3 Outros pontos internos</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Ponto</th>
+<th>Arcano</th>
+<th>Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>À direita do centro (círculo grande)</td>
+<td><strong>13</strong></td>
+<td>Não identificada no diagrama (?)</td>
+</tr>
+<tr>
+<td>À direita do 13 (círculo pequeno)</td>
+<td><strong>6</strong></td>
+<td>Não identificada no diagrama (?)</td>
+</tr>
+<tr>
+<td>Linha amor–dinheiro, lado do coração ❤</td>
+<td><strong>7</strong></td>
+<td>Canal do amor (?) – a Análise chama de "par ideal 7"</td>
+</tr>
+<tr>
+<td>Linha amor–dinheiro, ponto central</td>
+<td><strong>4</strong></td>
+<td>Cruzamento amor/dinheiro (?)</td>
+</tr>
+<tr>
+<td>Linha amor–dinheiro, lado do $</td>
+<td><strong>5</strong></td>
+<td>Canal do dinheiro (?) – a Análise confirma "Arcano 5 na área do dinheiro"</td>
+</tr>
+<tr>
+<td>Ponto laranja da base</td>
+<td><strong>21</strong></td>
+<td>Entrada do amor (?)</td>
+</tr>
+<tr>
+<td>Ponto laranja da direita</td>
+<td><strong>19</strong></td>
+<td>Entrada do dinheiro (?)</td>
+</tr>
+</tbody>
+</table></div>
+<h3>2.4 Cauda cármica</h3>
+<p>Pelo layout padrão, a cauda cármica corresponde aos pontos da base: <strong>10 – 4 – 21</strong> (?). O diagrama <strong>não rotula</strong> a cauda cármica — leitura pela posição.</p>
+<h3>2.5 Propósitos (pessoal / social / espiritual)</h3>
+<p><strong>Não constam</strong> no diagrama. A Análise cita o arcano 11 como propósito, mas sem dizer qual propósito — registrar como dado a confirmar.</p>
+<h3>2.6 Mapa de chakras / saúde</h3>
+<p><strong>Não consta</strong>.</p>
+<h3>2.7 Linha de idades (contorno do octógono)</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Faixa</th>
+<th>Arcanos (na ordem das idades)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0 anos</strong></td>
+<td><strong>19</strong></td>
+</tr>
+<tr>
+<td>1–2,5 / 2,5–3,5 / 3,5–4 / <strong>5</strong> / 6–7,5 / 7,5–8,5 / 8,5–9</td>
+<td>5 / 22 / 7 / <strong>3</strong> / 17 / 14 / 7</td>
+</tr>
+<tr>
+<td><strong>10 anos</strong></td>
+<td><strong>11</strong></td>
+</tr>
+<tr>
+<td>11–12,5 / 12,5–13,5 / 13,5–14 / <strong>15</strong> / 16–17,5 / 17,5–18,5 / 18,5–19</td>
+<td>16 / 5 / 8 / <strong>21</strong> / 7 / 4 / 14</td>
+</tr>
+<tr>
+<td><strong>20 anos</strong></td>
+<td><strong>10</strong></td>
+</tr>
+<tr>
+<td>21–22,5 / 22,5–23,5 / 23,5–24 / <strong>25</strong> / 26–27,5 / 27,5–28,5 / 28,5–29</td>
+<td>3 / 20 / 3 / <strong>10</strong> / 20 / 10 / 10</td>
+</tr>
+<tr>
+<td><strong>30 anos</strong></td>
+<td><strong>18</strong></td>
+</tr>
+<tr>
+<td>31–32,5 / 32,5–33,5 / 33,5–34 / <strong>35</strong> / 36–37,5 / 37,5–38,5 / 38,5–39</td>
+<td>8 / 8 / 16 / <strong>8</strong> / 6 / 16 / 6</td>
+</tr>
+<tr>
+<td><strong>40 anos</strong></td>
+<td><strong>8</strong></td>
+</tr>
+<tr>
+<td>41–42,5 / 42,5–43,5 / 43,5–44 / <strong>45</strong> / 46–47,5 / 47,5–48,5 / 48,5–49</td>
+<td>6 / 16 / 6 / <strong>8</strong> / 16 / 8 / 8</td>
+</tr>
+<tr>
+<td><strong>50 anos</strong></td>
+<td><strong>18</strong></td>
+</tr>
+<tr>
+<td>51–52,5 / 52,5–53,5 / 53,5–54 / <strong>55</strong> / 56–57,5 / 57,5–58,5 / 58,5–59</td>
+<td>10 / 10 / 20 / <strong>10</strong> / 3 / 20 / 3</td>
+</tr>
+<tr>
+<td><strong>60 anos</strong></td>
+<td><strong>10</strong></td>
+</tr>
+<tr>
+<td>61–62,5 / 62,5–63,5 / 63,5–64 / <strong>65</strong> / 66–67,5 / 67,5–68,5 / 68,5–69</td>
+<td>14 / 4 / 7 / <strong>21</strong> / 8 / 5 / 16</td>
+</tr>
+<tr>
+<td><strong>70 anos</strong></td>
+<td><strong>11</strong></td>
+</tr>
+<tr>
+<td>71–72,5 / 72,5–73,5 / 73,5–74 / <strong>75</strong> / 76–77,5 / 77,5–78,5 / 78,5–79</td>
+<td>7 / 14 / 17 / <strong>3</strong> / 7 / 22 / 5</td>
+</tr>
+</tbody>
+</table></div>
+<h3>2.8 Frequência dos arcanos no diagrama (contagem, não cálculo)</h3>
+<p>Pontos dos quadrados + internos (sem a linha de idades): 4 aparece <strong>5 vezes</strong> (2º ponto do topo, 2º ponto da base, interno das duas diagonais da direita, cruzamento amor/dinheiro); 11 aparece 3× (centro + 2 diagonais); 10, 21, 18, 22, 17, 6, 19 repetem 2×+. Contagem detalhada fica para a Etapa 3.
+Arcanos que <strong>não aparecem</strong> em nenhum ponto principal: 1, 2, 12, 15, 16 (16 só na linha de idades), 20 (só na linha de idades). Conferência final na Etapa 3.</p>
+<hr />
+<h2>3. Numerologia <a class="src" href="#ap-e">Numerologia</a></h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Número</th>
+<th>Valor</th>
+<th>Obs.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Caminho da Vida</td>
+<td><strong>1</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Atitude</td>
+<td><strong>2</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Geração</td>
+<td><strong>8</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Dia de Nascimento</td>
+<td><strong>1</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Expressão</td>
+<td><strong>6</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Desejo da Alma</td>
+<td><strong>11/2</strong></td>
+<td>Número Mestre 11</td>
+</tr>
+<tr>
+<td>Personalidade</td>
+<td><strong>4</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Lições kármicas</td>
+<td><strong>não consta</strong></td>
+<td>Bloqueado no app (ícone de diamante = conteúdo pago)</td>
+</tr>
+<tr>
+<td>Dívida kármica</td>
+<td><strong>não consta</strong></td>
+<td>Bloqueado no app</td>
+</tr>
+<tr>
+<td>Maturidade</td>
+<td><strong>7</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ano Pessoal</td>
+<td><strong>não consta</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ciclos de vida</td>
+<td><strong>não consta</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Pináculos / Realizações</td>
+<td><strong>não consta</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Desafios</td>
+<td><strong>não consta</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>Números Mestres presentes: <strong>11</strong> (Desejo da Alma). 22 e 33: não constam.</p>
+<hr />
+<h2>4. Análise existente <a class="src" href="#ap-d">Análise</a></h2>
+<p>Autora: Julia Chomen F (@cosmicmatrizes). Seções e arcanos citados:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Seção</th>
+<th>Arcanos citados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dons ("linha dos talentos")</td>
+<td>10, 4, 21</td>
+</tr>
+<tr>
+<td>Linha geracional feminina</td>
+<td>sem arcanos citados</td>
+</tr>
+<tr>
+<td>Linha geracional masculina</td>
+<td>sem arcanos citados</td>
+</tr>
+<tr>
+<td>Par ideal</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Profissões</td>
+<td>5 (área do dinheiro)</td>
+</tr>
+<tr>
+<td>Arcanos anuais 19–20 anos</td>
+<td>14 e 10</td>
+</tr>
+<tr>
+<td>Como as pessoas te veem</td>
+<td>19 (Sol), 11, 4, 5</td>
+</tr>
+<tr>
+<td>Essência mais pura</td>
+<td>5, 4, 14</td>
+</tr>
+<tr>
+<td>Propósito e contribuição</td>
+<td>11, 4, 5, 14</td>
+</tr>
+<tr>
+<td>Voluntariado / Empatia</td>
+<td>sem arcanos citados</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>5. Dados a confirmar</h2>
+<ol>
+<li><strong>Data, hora e local de nascimento</strong> — não constam em nenhum arquivo. Pela Matriz (dia 19, mês 10) e pelas posições planetárias, a data é provavelmente <strong>19/10/2006</strong> (?) — inferência, não recalculo; precisa confirmar. Se correta, a idade atual é <strong>20 anos</strong> (completados ontem).</li>
+<li>Sistema de casas usado pelo app horos (Placidus?).</li>
+<li>Grau de Netuno (17°?).</li>
+<li><strong>Aspectos e orbes</strong> do mapa — ausentes.</li>
+<li>Cúspides das casas intermediárias — ausentes.</li>
+<li>Propósitos (pessoal, social, espiritual) e mapa de chakras da Matriz — ausentes.</li>
+<li>Função dos pontos 13 e 6 à direita do centro da Matriz.</li>
+<li>Lições e Dívidas kármicas — bloqueadas no app.</li>
+<li>Ano Pessoal, Ciclos, Pináculos e Desafios da numerologia — ausentes.</li>
+<li>Nome completo usado na numerologia (presumido "Carlos Eduardo Carvalho Geronimo").</li>
+</ol>
+<h2>Fontes desta etapa</h2>
+<ul>
+<li>Meus arquivos: mapa-astral.jpg <a class="src" href="#ap-a">Mapa</a>, matriz-destino.jpg <a class="src" href="#ap-c">Matriz</a>, numerologia.jpg <a class="src" href="#ap-e">Numerologia</a>, 2 PDFs <a class="src" href="#ap-d">Análise</a>.</li>
+<li>Livros: nenhum recebido.</li>
+<li>Internet: nenhuma (etapa de transcrição).</li>
+</ul></div></details>
+<details class="appx" id="ap-b"><summary>B. Astrologia detalhada (Etapa 2)</summary><div class="appx-body"><blockquote>
+<p><strong>Base:</strong> posições transcritas na Etapa 1 <a class="src" href="#ap-a">Mapa</a>. <strong>Livros:</strong> nenhum PDF de livro foi recebido (você informou que não enviaria mais arquivos), então nenhuma interpretação abaixo tem citação de livro — onde normalmente iria [Livro], vale "não coberto". <strong>Web:</strong> só foi possível ler os resumos dos buscadores; a rede deste ambiente bloqueou a abertura das páginas. As interpretações vêm da tradição astrológica consolidada (dignidades, regências, significado de casas), indicada como <a class="src" href="#ap-g">Tradição</a>, e são conferidas com a web quando houve resultado.</p>
+<p><strong>Sobre os aspectos:</strong> o print não traz aspectos. Os aspectos abaixo foram <strong>derivados</strong> comparando os graus inteiros do print (não é recálculo do mapa: é leitura da distância entre posições já dadas). Como os graus não têm minutos, cada orbe tem margem de ±1°. Marcados como (deriv.).</p>
+</blockquote>
+<h2>a) Estrutura geral</h2>
+<p><strong>Elementos</strong> (10 planetas + Ascendente + MC):</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Corpos</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ar</td>
+<td>Sol, Vênus, Marte (Libra), Netuno (Aquário), MC (Libra)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Água</td>
+<td>Mercúrio, Júpiter (Escorpião), Urano (Peixes)</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Terra</td>
+<td>Lua (Virgem), Ascendente (Capricórnio)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Fogo</td>
+<td>Saturno (Leão), Plutão (Sagitário)</td>
+<td>2</td>
+</tr>
+</tbody>
+</table></div>
+<p>Leitura: <strong>Ar dominante</strong> (pensar, comparar, relacionar, negociar). Entre os planetas pessoais (Sol a Marte), o fogo é <strong>zero</strong>: impulso cru e autoafirmação espontânea não são o motor; a ação passa pelo crivo da relação (Libra) e da profundidade (Escorpião). Peso <span class="badge b-medio">MÉDIO</span>.</p>
+<p><strong>Modalidades</strong> (planetas pessoais + Saturno): Cardinal 3 (Sol, Vênus, Marte em Libra) + Ascendente e MC também cardinais; Fixo 3 (Mercúrio, Júpiter, Saturno); Mutável 1 (Lua). Leitura: perfil <strong>iniciador e sustentador</strong>, pouco mutável. Tende a começar e a segurar, não a dispersar. Isso vai importar no veredito de multipotencialidade (Etapa 7). Peso <span class="badge b-medio">MÉDIO</span>.</p>
+<p><strong>Hemisférios</strong> (10 planetas):
+- Acima do horizonte (casas 7–12): <strong>8</strong> (Sol, Lua, Mercúrio, Vênus, Marte, Júpiter, Saturno, Plutão). Abaixo: 2 (Urano, Netuno). → Vida voltada ao <strong>público, ao visível, à carreira e às ideias</strong>, mais que ao privado.
+- Leste (casas 10–3): <strong>8</strong>. Oeste (4–9): 2 (Lua, Saturno). → Tendência a <strong>conduzir o próprio caminho</strong>, por iniciativa própria.
+- O quadrante dominante é o <strong>4º (casas 10–12)</strong>, com 6 planetas.</p>
+<p><strong>Concentrações (stelliums):</strong>
+- <strong>Casa 10: 5 planetas</strong> — Sol, Vênus, Marte (Libra) + Mercúrio, Júpiter (Escorpião). É a assinatura mais forte do mapa. Casa 10 = carreira, reputação, papel público, autoridade.
+- <strong>Libra: 3 planetas</strong> (Sol, Vênus, Marte) + MC em Libra + Vesta em Libra.
+- <strong>Virgem na casa 9:</strong> Lua, Nodo Sul, Lilith, Juno (4 pontos, entre 23° e 29°).</p>
+<p><strong>Planetas angulares</strong> (perto de Ascendente, MC, Descendente ou IC):
+- <strong>Vênus a 2° do MC</strong> (deriv.) — o planeta mais angular do mapa.
+- Sol a 5° e Marte a 6° do MC (deriv.).
+- Quíron a 8° do Ascendente, dentro da casa 1 (deriv., orbe largo).</p>
+<p><strong>Dispositor final</strong> <a class="src" href="#ap-g">Tradição: regências clássicas</a>: seguindo "quem rege o signo de quem":
+Sol, Marte → Vênus (Libra) · Mercúrio, Júpiter (Escorpião) → Marte → Vênus · Lua (Virgem) → Mercúrio → Marte → Vênus · Saturno (Leão) → Sol → Vênus · Vênus em Libra rege a si mesma.
+→ <strong>Vênus é o dispositor final de todos os planetas clássicos</strong>, está em domicílio e colada no MC. Em linguagem simples: no fim da cadeia, tudo responde ao princípio de <strong>harmonia, valor, estética e relação</strong>. Peso <span class="badge b-medio">MÉDIO</span> (no mapa) — vira <span class="badge b-forte">FORTE</span> no cruzamento (Etapa 6).</p>
+<h2>b) Trio central</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Ponto</th>
+<th>Posição</th>
+<th>Sentido em uma frase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sol (identidade, propósito)</td>
+<td>Libra 26°, casa 10</td>
+<td>Identidade construída no papel público, através de equilíbrio, justiça e parceria</td>
+</tr>
+<tr>
+<td>Lua (emoção, segurança)</td>
+<td>Virgem 27°, casa 9</td>
+<td>Segurança emocional vem de entender, organizar e dar sentido; sente pelo filtro da análise</td>
+</tr>
+<tr>
+<td>Ascendente (como age e se apresenta)</td>
+<td>Capricórnio 26°</td>
+<td>Chega sério, contido, responsável; impressão de maturidade precoce</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Interações (deriv.):</strong>
+- <strong>Sol □ Ascendente (0°)</strong> — o aspecto mais exato do mapa. O Sol de Libra quer agradar, negociar e ser par; o Ascendente de Capricórnio quer controle, hierarquia e resultado. É um atrito entre <strong>"ser aceito"</strong> e <strong>"ser respeitado"</strong>. Peso <span class="badge b-medio">MÉDIO</span>.
+- <strong>Lua △ Ascendente (1°)</strong> — Lua em Virgem e Ascendente em Capricórnio são terra: a emoção apoia a postura séria. Fica natural parecer calmo e competente mesmo quando há tensão por dentro.
+- Sol e Lua em signos vizinhos (Virgem → Libra), sem aspecto maior: a emoção (Virgem, detalhista e crítica) e a identidade (Libra, diplomática e relacional) operam em "canais" diferentes. A pessoa pode mostrar diplomacia por fora e autocrítica por dentro.</p>
+<h2>c) Regente do mapa: Saturno</h2>
+<p>Ascendente em Capricórnio → regente é <strong>Saturno</strong>, em <strong>Leão 23°, casa 8</strong>.
+- <strong>Dignidade:</strong> Saturno em Leão está em <strong>exílio</strong> (Leão é oposto a Aquário, que Saturno rege) <a class="src" href="#ap-g">Web: AstroTwins e Skyscript, via busca; uma fonte antiga diverge sobre Leão vs. Câncer</a>. Exílio = o planeta age "fora de casa", com mais esforço.
+- <strong>Casa 8:</strong> intimidade, crises, recursos compartilhados, transformação, o que não se fala <a class="src" href="#ap-g">Tradição</a>. Um Saturno aqui leva a disciplina e o controle para o terreno emocional profundo: <strong>medo de perder controle na intimidade, cautela para confiar, maturidade forçada por crises</strong> <a class="src" href="#ap-g">Web: astrology.com, &quot;Saturn in 8th House&quot;, via busca</a>.
+- <strong>Leão:</strong> sinal de expressão, orgulho, reconhecimento. Saturno em Leão = <strong>autoridade que precisa ser reconhecida, mas que tem receio de se exibir</strong>. Ponte direta com a análise ("busca interna por aprovação e reconhecimento") <a class="src" href="#ap-d">Análise</a>.
+- <strong>Aspectos do regente (deriv.):</strong> Júpiter □ Saturno (1°), Mercúrio □ Saturno (3°), Saturno ☍ Netuno (6°), Saturno △ Plutão (1°), Vênus ⚹ Saturno (0°), Sol ⚹ Saturno (3°), Saturno ⚹ MC (2°).
+- <strong>O que comanda:</strong> como Saturno é o regente, o mapa inteiro "passa" por um filtro de responsabilidade, esforço e prova. O sextil exato com Vênus (0°) e o sextil com o MC mostram que a disciplina <strong>serve à carreira e às relações</strong> quando bem usada. As quadraturas com Júpiter e Mercúrio (ambos na casa 10) mostram <strong>conflito entre expandir/arriscar (Júpiter) e conter/garantir (Saturno)</strong> e entre <strong>falar o que pensa (Mercúrio em Escorpião) e se censurar (Saturno)</strong>. Peso <span class="badge b-medio">MÉDIO</span>.</p>
+<h2>d) Planetas pessoais</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Planeta</th>
+<th>Posição</th>
+<th>Dignidade</th>
+<th>Aspectos (deriv.)</th>
+<th>Leitura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mercúrio</strong></td>
+<td>Escorpião 20°, casa 10</td>
+<td>Peregrino (sem dignidade)</td>
+<td>☌ Júpiter 2°, □ Saturno 3°, □ Netuno 3°, △ Nodo Norte 3°, ⚹ Lilith 5°</td>
+<td>Mente investigativa, que vai ao fundo e desconfia de respostas prontas. Na casa 10: pensamento como ferramenta profissional (pesquisa, estratégia, análise). Com Júpiter: visão ampla e capacidade de ensinar/convencer. Com Saturno: fala medida, às vezes travada. Com Netuno: intuição, mas também confusão ou idealização de ideias.</td>
+</tr>
+<tr>
+<td><strong>Vênus</strong></td>
+<td>Libra 23°, casa 10</td>
+<td><strong>Domicílio</strong> (forte)</td>
+<td>☌ MC 2°, ⚹ Saturno 0°, ⚹ Plutão 1°, ☌ Sol 3°, ☌ Marte 4°, △ Netuno 6°, □ Ascendente 3°</td>
+<td>O planeta mais forte e mais angular. Gosto estético, senso de justiça, habilidade social e de mediação aparecem <strong>na vida pública</strong>. ⚹ Saturno exato: relações sérias e duradouras, gosto pelo compromisso. ⚹ Plutão: atração por vínculos intensos e transformadores.</td>
+</tr>
+<tr>
+<td><strong>Marte</strong></td>
+<td>Libra 27°, casa 10</td>
+<td><strong>Exílio</strong> (fraco)</td>
+<td>☌ Sol 1°, □ Ascendente 1°, ⚹ Plutão 3°, ⚹ Saturno 4°, □ Quíron 7°</td>
+<td>Ação e raiva passam pelo filtro "isso é justo? vai gerar conflito?". Tende a <strong>adiar o confronto</strong> e a agir por estratégia e aliança, não por impulso. □ Ascendente: a energia de ação colide com a autoimagem contida. □ Quíron: dor ligada a se afirmar.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>e) Sociais e geracionais (só onde tocam pontos pessoais)</h2>
+<ul>
+<li><strong>Júpiter</strong> (Escorpião 22°, casa 10): ☌ Mercúrio 2°, □ Saturno 1°, △ Nodo Norte 1°, □ Netuno 5°, ⚹ Ascendente 4°. Júpiter na casa 10 = expansão através da carreira e reconhecimento; em Escorpião, a expansão vem de profundidade (pesquisa, psicologia, finanças, crise). <strong>△ Nodo Norte exato</strong>: o caminho de crescimento é ajudado por esse Júpiter. Peso <span class="badge b-medio">MÉDIO</span>.</li>
+<li><strong>Plutão</strong> (Sagitário 24°, casa 11): □ Nodo Norte 1°, □ Lilith 1°, ⚹ Vênus 1°, △ Saturno 1°, ⚹ Sol 2°, □ Lua 3°, ⚹ MC 3°. Plutão aqui é geracional, mas fica <strong>pessoal</strong> porque toca Sol, Lua e Vênus. <strong>Lua □ Plutão</strong>: emoções intensas, tudo ou nada, com medo de perder o controle (ponte com Saturno na 8). Casa 11: grupos, amizades, ideais coletivos são onde ocorrem transformações.</li>
+<li><strong>Netuno</strong> (Aquário 17°(?), casa 1, Rx): □ Mercúrio 3°, ☍ Saturno 6°, △ Vênus 6°. Na casa 1: aura difícil de definir, as pessoas projetam coisas sobre você. ☍ Saturno: tensão entre sonho/idealismo e realidade/estrutura.</li>
+<li><strong>Urano</strong> (Peixes 11°, casa 2, Rx): sem aspecto apertado aos pontos pessoais. Casa 2: renda/valores com componente não convencional. Peso <span class="badge b-fraco">FRACO</span>.</li>
+</ul>
+<h2>f) Casas por área da vida</h2>
+<p>Só as cúspides 1, 4, 7 e 10 constam. Para as outras, a <strong>faixa provável</strong> foi deduzida da ordem dos corpos já listados por casa (ex.: Nodo Norte em Peixes 23° na casa 3 e Urano em Peixes 11° na casa 2 ⇒ a cúspide da 3 está entre Peixes 11° e 23°). Isso não é recálculo, mas é inferência: marcado (?).</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Casa</th>
+<th>Área</th>
+<th>Cúspide</th>
+<th>Regente <a class="src" href="#ap-g">Tradição</a></th>
+<th>Onde está o regente</th>
+<th>Leitura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Eu, corpo, postura</td>
+<td>Capricórnio 26°</td>
+<td>Saturno</td>
+<td>Casa 8 (Leão)</td>
+<td>A identidade se forma por provas, crises e intimidade</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Dinheiro, valores</td>
+<td>Aquário 17°–Peixes 11° (?)</td>
+<td>Saturno ou Júpiter (?)</td>
+<td>8 ou 10</td>
+<td>Dinheiro ligado a carreira (se Júpiter) ou a recursos compartilhados (se Saturno)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Comunicação, estudo básico, irmãos</td>
+<td><strong>Peixes</strong> (11°–23°) (?)</td>
+<td>Júpiter (trad.) / Netuno (mod.)</td>
+<td>Casa 10 / casa 1</td>
+<td>Comunicação serve à carreira; Nodo Norte está aqui</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Lar, família, raízes</td>
+<td>Áries 21°</td>
+<td>Marte</td>
+<td>Casa 10 (Libra, exílio)</td>
+<td>Família ligada ao dever e à carreira; o lar cobra desempenho</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Criatividade, prazer, romance</td>
+<td>Touro 22°+ ou Gêmeos (?)</td>
+<td>Vênus ou Mercúrio</td>
+<td>Casa 10</td>
+<td>Prazer e criação conectados ao trabalho</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Rotina, saúde, serviço</td>
+<td>não consta</td>
+<td>–</td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Parcerias</td>
+<td>Câncer 26°</td>
+<td>Lua</td>
+<td>Casa 9 (Virgem)</td>
+<td>Parceiro(a) ligado(a) a estudo, viagem, visão de mundo; vínculo pela troca intelectual</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Intimidade, crises, recursos do outro</td>
+<td>Câncer 26°–Leão 23° (?)</td>
+<td>Lua (se Câncer) ou Sol (se Leão)</td>
+<td>Casa 9 ou casa 10</td>
+<td>Saturno aqui; crises viram entendimento (Lua na 9) ou autoridade pública (Sol na 10)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Estudos superiores, fé, viagens</td>
+<td>Leão 23°–Virgem 23° (?)</td>
+<td>Sol ou Mercúrio</td>
+<td>Casa 10</td>
+<td>Conhecimento é usado profissionalmente</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Carreira, reputação</td>
+<td>Libra 21°</td>
+<td>Vênus</td>
+<td>Casa 10 (domicílio)</td>
+<td>Carreira por mérito próprio, diplomacia, estética, mediação</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Grupos, amigos, futuro</td>
+<td>Escorpião 22°–Sagitário 24° (?)</td>
+<td>Marte ou Júpiter</td>
+<td>Casa 10</td>
+<td>Redes e grupos servem à carreira</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Inconsciente, retiro</td>
+<td><strong>Sagitário</strong> (24°–27°) (?)</td>
+<td>Júpiter</td>
+<td>Casa 10</td>
+<td>O que é oculto e espiritual se manifesta no trabalho</td>
+</tr>
+</tbody>
+</table></div>
+<p>Padrão notável: <strong>quase todos os regentes caem na casa 10</strong>. Mesmo com cúspides incertas, Vênus, Marte e Júpiter estão lá. A carreira/papel público é o "ralo" para onde o mapa escoa. Peso <span class="badge b-medio">MÉDIO</span> (sólido no mapa, cúspides incertas).</p>
+<h2>g) Aspectos mais tensos e mais fluidos (deriv., orbe mais justo primeiro)</h2>
+<p><strong>Mais tensos:</strong>
+1. <strong>Sol □ Ascendente — 0°</strong>: ser aceito × ser respeitado (ver b).
+2. <strong>Júpiter □ Saturno — 1°</strong>: expandir × conter. Oscilação entre otimismo de crescer e medo de errar.
+3. <strong>Marte □ Ascendente — 1°</strong>: a raiva e a ação esbarram na autoimagem controlada; risco de raiva guardada.
+4. <strong>Plutão □ Nodo Norte / Lilith — 1°</strong>: a direção de crescimento passa por perder controle e lidar com poder/intensidade.
+5. <strong>Lua □ Plutão — 3°</strong> (empatado com Mercúrio □ Saturno 3° e Mercúrio □ Netuno 3°): emoção intensa, medo de abandono/perda de controle; tende a dominar as emoções pela análise (Virgem).</p>
+<p><strong>Mais fluidos:</strong>
+1. <strong>Vênus ⚹ Saturno — 0°</strong>: compromisso, lealdade, gosto pelo duradouro; talento para dar forma estável à beleza e às relações.
+2. <strong>Lua △ Ascendente — 1°</strong>: coerência entre o que sente e como se apresenta.
+3. <strong>Júpiter △ Nodo Norte — 1°</strong>: a carreira e o saber ampliado ajudam o crescimento.
+4. <strong>Saturno △ Plutão — 1°</strong>: resistência, capacidade de se reconstruir após crise.
+5. <strong>Vênus ⚹ Plutão — 1°</strong> (e <strong>Sol ☌ Marte — 1°</strong>): magnetismo e intensidade nas relações; identidade e ação unidas.</p>
+<h2>h) Nodos, Quíron, Lilith</h2>
+<ul>
+<li><strong>Nodo Norte em Peixes, casa 3 / Nodo Sul em Virgem, casa 9.</strong> Nodo Sul = zona conhecida; Nodo Norte = direção de crescimento <a class="src" href="#ap-g">Tradição</a>. O conhecido: analisar, corrigir, julgar ideias, buscar a resposta "certa" (Virgem na 9). O caminho: <strong>comunicar com o coração, intuição e compaixão no dia a dia</strong> (Peixes na 3) <a class="src" href="#ap-g">Web: Girl and Her Moon, via busca — &quot;falar a partir do coração; contar histórias ou ensino espiritual&quot;</a>. A Lua e a Lilith estão <strong>sobre o Nodo Sul</strong>: o hábito de análise é emocional e antigo. Nodo Norte △ Júpiter e △ Mercúrio ajuda: a mente de Escorpião serve de ponte. Peso <span class="badge b-medio">MÉDIO</span>.</li>
+<li><strong>Quíron em Aquário 4°, casa 1.</strong> Quíron = ferida que vira dom <a class="src" href="#ap-g">Tradição moderna</a>. Na casa 1 em Aquário: ferida de <strong>sentir-se diferente, deslocado, sem lugar</strong>, com o dom de ajudar outros diferentes a se sentirem pertencentes <a class="src" href="#ap-g">Web: Jessica Davidson; Kerykeion; AstroLibrary, via busca</a>. Aspectos (deriv.): □ Marte 7°, □ Sol 8°, △ Lua 7° (orbes largos). Peso <span class="badge b-medio">MÉDIO</span>.</li>
+<li><strong>Lilith em Virgem 25°, casa 9.</strong> Lilith = o que foi reprimido/rejeitado e volta com força <a class="src" href="#ap-g">Tradição moderna</a>. Em Virgem: <strong>"amor tem que ser merecido sendo útil"</strong>; perfeccionismo, autocrítica <a class="src" href="#ap-g">Web: Augurine, &quot;Lilith in Virgo&quot;, via busca</a>. Na 9: questionar crenças herdadas <a class="src" href="#ap-g">Web: Augurine</a>. ☌ Lua 2°: a emoção e a sombra estão juntas. □ Plutão 1°. Peso <span class="badge b-medio">MÉDIO</span> (e ponte forte com a linha feminina da Análise).</li>
+</ul>
+<p><strong>Pontos menores (peso FRACO, só onde ajudam):</strong>
+- <strong>Juno</strong> Virgem 29°, casa 9: no parceiro(a), valoriza competência, cuidado prático, troca intelectual. A casa de Juno mostra onde a necessidade de relação se manifesta <a class="src" href="#ap-g">Web: notas de &lt;em&gt;Asteroid Goddesses&lt;/em&gt;, Demetra George, via Goodreads</a>.
+- <strong>Vesta</strong> Libra 7°, casa 9: dedicação a ideais de justiça/estudo.
+- <strong>Ceres</strong> Aquário 13°, casa 1: forma de nutrir e se nutrir é pela liberdade e pelo grupo.
+- <strong>Palas</strong> Capricórnio 8°, casa 12: inteligência estratégica que opera nos bastidores.
+- <strong>Pholus</strong> Sagitário 1°, casa 11: pequenas causas, grandes efeitos em grupos.
+- <strong>Parte da Fortuna</strong> Sagitário 27°, casa 12: bem-estar vem de sentido, fé e recolhimento.
+- <strong>Vertex</strong> Touro 22°, casa 4: ☍ Júpiter (0°) e Mercúrio (2°) (deriv.): encontros marcantes ligados a família/raiz que mexem com a carreira e a mente.</p>
+<h2>i) Dignidades e debilidades <a class="src" href="#ap-g">Tradição; conferido Web: AstroTwins, Skyscript</a></h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Planeta</th>
+<th>Signo</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sol</td>
+<td>Libra</td>
+<td><strong>Queda</strong> (o Sol se exalta em Áries; em Libra, a identidade depende do outro)</td>
+</tr>
+<tr>
+<td>Lua</td>
+<td>Virgem</td>
+<td>Peregrina</td>
+</tr>
+<tr>
+<td>Mercúrio</td>
+<td>Escorpião</td>
+<td>Peregrino</td>
+</tr>
+<tr>
+<td>Vênus</td>
+<td>Libra</td>
+<td><strong>Domicílio</strong></td>
+</tr>
+<tr>
+<td>Marte</td>
+<td>Libra</td>
+<td><strong>Exílio</strong></td>
+</tr>
+<tr>
+<td>Júpiter</td>
+<td>Escorpião</td>
+<td>Peregrino</td>
+</tr>
+<tr>
+<td>Saturno</td>
+<td>Leão</td>
+<td><strong>Exílio</strong></td>
+</tr>
+<tr>
+<td>Urano / Netuno / Plutão</td>
+<td>Peixes / Aquário / Sagitário</td>
+<td>Sem dignidade clássica (Netuno em Aquário: sem estado)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Leitura: <strong>um planeta forte (Vênus) e três enfraquecidos (Sol em queda, Marte e Saturno em exílio)</strong>, e os quatro estão ligados entre si (Sol ☌ Marte, Vênus ⚹ Saturno, Sol ⚹ Saturno). Isso desenha o mapa: <strong>a harmonia (Vênus) é o recurso principal</strong>, enquanto a autoafirmação (Sol e Marte em Libra) e a autoridade (Saturno em Leão) exigem esforço consciente. Peso <span class="badge b-medio">MÉDIO</span> → <span class="badge b-forte">FORTE</span> no cruzamento.</p>
+<h2>Fontes desta etapa</h2>
+<ul>
+<li><strong>Meus arquivos:</strong> <a class="src" href="#ap-a">Mapa</a> – todas as posições.</li>
+<li><strong>Livros:</strong> nenhum recebido.</li>
+<li><strong>Web (só resumos de busca, páginas não puderam ser abertas):</strong> astrology.com "Saturn in 8th House" (https://www.astrology.com/planets/saturn-in-8th-house); AstroTwins "Essential Dignities" (https://astrostyle.com/astrology/essential-dignities/); Skyscript glossário (https://www.skyscript.co.uk/gl/detriment.html); Augurine "Libra stellium" (https://www.augurine.com/learn/aspect-patterns/stellium/libra) e "Lilith in Virgo" (https://www.augurine.com/learn/lilith/virgo); Girl and Her Moon "North Node in Pisces" (https://girlandhermoon.com/natal-north-node-in-pisces-in-the-birth-chart/); Jessica Davidson "Natal Chiron in Aquarius" (https://jessicadavidson.co.uk/2015/05/09/natal-chiron-in-aquarius/); Kerykeion "Chiron Aquarius 1st house" (https://kerykeion.net/content/learn-astrology/natal-chiron-aquarius-first-house); AstroLibrary "Chiron in Aquarius" (https://astrolibrary.org/interpretations/chiron-aquarius/).</li>
+<li><strong>Tradição:</strong> regências, dignidades e significados de casas da astrologia ocidental clássica (conhecimento geral, sem livro citado).</li>
+</ul></div></details>
+<details class="appx" id="ap-c"><summary>C. Matriz do Destino detalhada (Etapa 3)</summary><div class="appx-body"><blockquote>
+<p><strong>Base:</strong> diagrama transcrito na Etapa 1 <a class="src" href="#ap-c">Matriz</a>. <strong>Livros:</strong> nenhum recebido. <strong>Web:</strong> fontes russas e brasileiras consultadas pelos resumos de busca (as páginas não puderam ser abertas). O sistema foi criado por Natalia Ladini (Rússia, 2006) <a class="src" href="#ap-g">Web: codingnumerology.substack.com, via busca</a>; as leituras de posição seguem o zoneamento mais difundido desse método. <strong>Não há versão única do método</strong> e autores divergem nos cálculos e nos nomes das posições <a class="src" href="#ap-g">Web: nur.kz, via busca</a>. Por isso, posições não rotuladas no diagrama ficam com (?).</p>
+<p><strong>Arcanos usados:</strong> 3 Imperatriz · 4 Imperador · 5 Hierofante (Papa) · 6 Enamorados · 7 Carro · 8 Justiça · 9 Eremita · 10 Roda da Fortuna · 11 Força · 13 Morte/Transformação · 14 Temperança · 17 Estrela · 18 Lua · 19 Sol · 21 Mundo · 22 Louco (na Matriz o 22 ocupa o lugar do 0).</p>
+</blockquote>
+<h2>Zoneamento usado (layout padrão)</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Posição</th>
+<th>Arcanos</th>
+<th>Função no sistema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A – esquerda (dia)</td>
+<td><strong>19</strong> – 22 – 3</td>
+<td>Retrato / personalidade: como você se apresenta e é visto</td>
+</tr>
+<tr>
+<td>B – topo (mês)</td>
+<td><strong>10</strong> – 4 – 21</td>
+<td>Talentos (linha dos dons)</td>
+</tr>
+<tr>
+<td>C – direita (ano)</td>
+<td><strong>8</strong> – 9 – 19</td>
+<td>Carma material / área de recursos (?)</td>
+</tr>
+<tr>
+<td>D – base</td>
+<td><strong>10</strong> – 4 – 21</td>
+<td>Cauda cármica (padrão trazido para superar) (?)</td>
+</tr>
+<tr>
+<td>E – centro</td>
+<td><strong>11</strong></td>
+<td>Zona de conforto, "ponto de montagem" do caráter <a class="src" href="#ap-g">Web: vikna.tv; dzen, via busca</a></td>
+</tr>
+<tr>
+<td>Verdes internos</td>
+<td>14 (lado A), 5 (lado B)</td>
+<td>Pontos do "coração/alma" (?) – a Análise os usa como "essência"</td>
+</tr>
+<tr>
+<td>Linha amor/dinheiro</td>
+<td>❤ 7 · cruzamento 4 · $ 5; entradas: 21 (amor), 19 (dinheiro)</td>
+<td>Relacionamentos e finanças</td>
+</tr>
+<tr>
+<td>Diagonais</td>
+<td>11–17–6 (sup. esq. e inf. esq.); 18–22–4 (sup. dir. e inf. dir.)</td>
+<td>Quadrado ancestral (linhas masculina e feminina)</td>
+</tr>
+<tr>
+<td>À direita do centro</td>
+<td>13 e 6</td>
+<td>Não identificados (?)</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Arcanos: equilíbrio × sombra (referência usada em todas as posições)</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Arcano</th>
+<th>Em equilíbrio</th>
+<th>Em sombra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3 Imperatriz</td>
+<td>Criatividade, fertilidade de ideias, beleza, cuidar do que cresce</td>
+<td>Possessividade, preguiça, dependência de conforto</td>
+</tr>
+<tr>
+<td>4 Imperador</td>
+<td>Estrutura, liderança, responsabilidade, limites claros</td>
+<td>Controle, rigidez, autoritarismo, não pedir ajuda</td>
+</tr>
+<tr>
+<td>5 Hierofante</td>
+<td>Ensinar, orientar, valores, tradição viva, mentoria</td>
+<td>Moralismo, dogma, "dono da verdade", sermão</td>
+</tr>
+<tr>
+<td>6 Enamorados</td>
+<td>Escolha pelo coração, beleza, vínculo, harmonia</td>
+<td>Indecisão, agradar todo mundo, dependência afetiva</td>
+</tr>
+<tr>
+<td>7 Carro</td>
+<td>Direção, movimento, vitória pela vontade</td>
+<td>Pressa, controle da rota, fuga pelo movimento</td>
+</tr>
+<tr>
+<td>8 Justiça</td>
+<td>Equilíbrio, verdade, responsabilidade pelas consequências</td>
+<td>Julgamento, rigidez moral, burocracia emocional</td>
+</tr>
+<tr>
+<td>9 Eremita</td>
+<td>Sabedoria, estudo, solidão produtiva, profundidade</td>
+<td>Isolamento, frieza, desconfiança</td>
+</tr>
+<tr>
+<td>10 Roda da Fortuna</td>
+<td>Fluxo, timing, sorte por estar em movimento, adaptação</td>
+<td>Instabilidade, esperar "sorte" sem agir, altos e baixos</td>
+</tr>
+<tr>
+<td>11 Força</td>
+<td>Domínio de si, coragem calma, força com doçura, vitalidade</td>
+<td>Força bruta, explosões, excesso de esforço, cansaço</td>
+</tr>
+<tr>
+<td>13 Morte/Transformação</td>
+<td>Encerrar ciclos, renovação profunda</td>
+<td>Medo de mudança, apego, ou cortes bruscos</td>
+</tr>
+<tr>
+<td>14 Temperança</td>
+<td>Medida, harmonia, cura, paciência, integrar opostos</td>
+<td>Morno, evitar extremos a ponto de não decidir</td>
+</tr>
+<tr>
+<td>17 Estrela</td>
+<td>Inspiração, talento visível, esperança, estética</td>
+<td>Vaidade, depender de reconhecimento, ilusões</td>
+</tr>
+<tr>
+<td>18 Lua</td>
+<td>Intuição, imaginação, percepção do invisível</td>
+<td>Medos, ansiedade, autoengano, desconfiança</td>
+</tr>
+<tr>
+<td>19 Sol</td>
+<td>Brilho, alegria, generosidade, liderança calorosa</td>
+<td>Orgulho, ego, vaidade, querer ser o centro</td>
+</tr>
+<tr>
+<td>21 Mundo</td>
+<td>Integração, visão global, conclusão de ciclos, idiomas/viagens</td>
+<td>Dispersão, sentir que "falta algo", não fechar ciclos</td>
+</tr>
+<tr>
+<td>22 Louco</td>
+<td>Liberdade, leveza, começo, espontaneidade</td>
+<td>Irresponsabilidade, fuga, não se comprometer</td>
+</tr>
+</tbody>
+</table></div>
+<p>Fonte da tabela: tradição dos Arcanos Maiores aplicada à Matriz <a class="src" href="#ap-g">Tradição</a>; conferido com <a class="src" href="#ap-g">Web: svitstyle.com.ua (arcano 19: &quot;харизма, умение вести за собой&quot;); tenchat.ru (arcano 5 no canal de dinheiro: &quot;деньги приходят через мудрость, обучение, наставничество&quot;); everycalculators.com (arcano 7 &quot;Drive &amp;amp; Victory&quot;)</a>, via busca.</p>
+<h2>a) Centro e energias pessoais</h2>
+<ul>
+<li><strong>Centro 11 – Força.</strong> Zona de conforto e caráter <a class="src" href="#ap-g">Web: vikna.tv; dzen</a>. Você se sente "em casa" quando está <strong>dominando algo difícil com calma</strong>, sendo o mais forte sem precisar gritar. Equilíbrio: autocontrole, coragem serena, resistência. Sombra: forçar demais, aguentar demais, tensão acumulada, explosões quando o controle quebra. <strong>11 também é o Desejo da Alma na numerologia</strong> (ver Etapa 6). Peso <span class="badge b-forte">FORTE</span> (2 sistemas).</li>
+<li><strong>Retrato (A): 19 – 22 – 3.</strong> Externo 19 Sol: imagem calorosa, carismática, que "ilumina" <a class="src" href="#ap-g">Web: svitstyle.com.ua</a>. 22 Louco: um traço de liberdade, irreverência, humor. 3 Imperatriz: criatividade e gosto estético. Juntos: <strong>imagem luminosa e criativa</strong>, com algo de imprevisível. Sombra: orgulho/vaidade (19), irresponsabilidade (22), comodismo (3).</li>
+<li><strong>Talentos (B): 10 – 4 – 21.</strong> Roda (timing, adaptação), Imperador (estruturar, liderar), Mundo (integrar, visão global). Talento-síntese: <strong>organizar mudanças</strong> — perceber o momento e dar estrutura a ele.</li>
+<li><strong>Pontos verdes:</strong> 14 Temperança (lado A) e 5 Hierofante (lado B): equilíbrio e ensino como "o que alimenta a alma" (?).</li>
+</ul>
+<h2>b) Linhas ancestrais</h2>
+<p><strong>Fato estrutural importante:</strong> as quatro diagonais formam dois pares idênticos: 11–17–6 aparece duas vezes (sup. esq. e inf. esq.) e 18–22–4 aparece duas vezes (sup. dir. e inf. dir.). Pelas setas do diagrama, a <strong>linha masculina</strong> liga 11–17–6 a 18–22–4, e a <strong>linha feminina</strong> liga 18–22–4 a 11–17–6. <strong>As duas linhas têm exatamente os mesmos arcanos.</strong> Logo, o sistema <strong>não diferencia</strong> heranças paterna e materna neste mapa: os dois lados da família carregam o mesmo programa.</p>
+<ul>
+<li><strong>11–17–6 (Força – Estrela – Enamorados):</strong> herança de <strong>força + talento + escolhas afetivas</strong>. Equilíbrio: gente forte, talentosa, que escolhe por amor. Sombra: força usada para aguentar em silêncio, talento não reconhecido, escolhas afetivas difíceis ou por dever.</li>
+<li><strong>18–22–4 (Lua – Louco – Imperador):</strong> herança de <strong>medos/segredos + liberdade + controle</strong>. Sombra típica: medo e ilusão (18) gerando, de um lado, fuga ou instabilidade (22) e, de outro, controle rígido (4). Equilíbrio: intuição, coragem de romper padrões e capacidade de construir estrutura.</li>
+<li>Leitura conjunta: famílias que <strong>aguentam pela força e controlam por medo</strong>; o trabalho é transformar controle (4) e resistência (11) em estrutura que deixa espaço para leveza (22) e sentimento (6). Peso <span class="badge b-medio">MÉDIO</span> (só a Matriz; a Análise confirma o tema "controle/rigidez" mas sem citar arcanos).</li>
+</ul>
+<h2>c) Linha do amor e linha do dinheiro</h2>
+<ul>
+<li><strong>Amor:</strong> entrada 21 (Mundo) → ❤ <strong>7 (Carro)</strong> → cruzamento 4. Relações que <strong>ampliam o mundo</strong> (21: outras culturas, viagens, visão ampla) e que têm <strong>direção e movimento</strong> (7). O 4 no cruzamento: amor e dinheiro se encontram em <strong>estrutura e estabilidade</strong>. Sombra: controlar a rota da relação (7 + 4), ou ficar procurando "o mundo inteiro" (21) sem se fixar.</li>
+<li><strong>Possível inconsistência na Análise:</strong> ela lê o 7 como "par introvertido, silencioso, espiritual" — esse é o perfil do <strong>7 da numerologia</strong> (introspecção), não do <strong>Arcano 7 – Carro</strong> (movimento, vontade, vitória). Ver Etapa 4.</li>
+<li><strong>Dinheiro:</strong> entrada 19 (Sol) → $ <strong>5 (Hierofante)</strong> → cruzamento 4. Dinheiro vem de <strong>ensinar, orientar, ser referência</strong> (5) com <strong>visibilidade e brilho</strong> (19), estruturado (4) <a class="src" href="#ap-g">Web: tenchat.ru, via busca: &quot;деньги приходят через мудрость, обучение, наставничество&quot;; bloqueios: &quot;замалчивание знаний, нарушение обещаний&quot;</a>. A Análise concorda (5 = ensino) <a class="src" href="#ap-d">Análise</a>. Peso <span class="badge b-forte">FORTE</span> (Matriz + Análise + astrologia, ver Etapa 6).</li>
+<li><strong>Ponto C (8 – 9 – 19):</strong> Justiça, Eremita, Sol. Área material ligada a <strong>justiça/correção</strong> (8), <strong>conhecimento especializado</strong> (9) e <strong>visibilidade</strong> (19). (?) sobre a função exata da posição.</li>
+</ul>
+<h2>d) Cauda cármica: 10 – 4 – 21 (?)</h2>
+<p>Padrão a superar (pela posição; o diagrama não rotula). Leitura: <strong>Roda (10)</strong> = histórico de depender das circunstâncias/sorte, ou de instabilidade; <strong>Imperador (4)</strong> = controle e responsabilidade em excesso; <strong>Mundo (21)</strong> = sensação de limitação, de não poder ir "para o mundo".
+Em linguagem simples: um padrão de <strong>tentar controlar o que é cíclico</strong> e de <strong>sentir-se preso</strong> quando as coisas mudam.</p>
+<p><strong>Achado central da Matriz:</strong> a cauda cármica (base) é <strong>idêntica</strong> à linha de talentos (topo): 10–4–21. No método, isso indica que <strong>o mesmo material é o problema e o dom</strong>: a mesma energia que, em sombra, aparece como controle e sensação de prisão, em equilíbrio vira talento de organizar mudanças e integrar áreas. Não há o que "buscar fora": o trabalho é <strong>mudar a polaridade</strong> do mesmo conjunto. Peso <span class="badge b-medio">MÉDIO</span> (estrutural na Matriz; reforçado por astrologia em Etapa 6).</p>
+<h2>e) Propósitos</h2>
+<p><strong>Não constam</strong> no diagrama. A Análise cita o 11 como propósito <a class="src" href="#ap-d">Análise</a>, o que é compatível com o centro, mas a posição exata (pessoal, social ou espiritual) não pode ser conferida. Não foi recalculado.</p>
+<h2>f) Chakras / saúde energética</h2>
+<p><strong>Não consta</strong> no diagrama. Nada a interpretar (e nenhuma conclusão médica seria cabível).</p>
+<h2>g) Repetições e ausências</h2>
+<p>Contagem nos pontos principais (quadrados + internos, sem a linha de idades):</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Arcano</th>
+<th>Vezes</th>
+<th>Onde</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>4 Imperador</strong></td>
+<td><strong>5</strong></td>
+<td>B1, D1, interno sup. dir., interno inf. dir., cruzamento amor/dinheiro</td>
+</tr>
+<tr>
+<td>11 Força</td>
+<td>3</td>
+<td>Centro, sup. esq., inf. esq.</td>
+</tr>
+<tr>
+<td>22 Louco</td>
+<td>3</td>
+<td>A1, meio sup. dir., meio inf. dir.</td>
+</tr>
+<tr>
+<td>6 Enamorados</td>
+<td>3</td>
+<td>Interno sup. esq., interno inf. esq., ponto à dir. do centro</td>
+</tr>
+<tr>
+<td>10, 21, 19, 5, 17, 18</td>
+<td>2 cada</td>
+<td>–</td>
+</tr>
+<tr>
+<td>3, 7, 8, 9, 13, 14</td>
+<td>1 cada</td>
+<td>–</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Excesso:</strong> o <strong>4 (Imperador)</strong> domina: estrutura, controle, responsabilidade. Em sombra, é o maior risco do mapa: <strong>rigidez, carregar tudo, não delegar</strong>. Peso <span class="badge b-forte">FORTE</span> (repetido na Matriz + Personalidade 4 na numerologia + Ascendente Capricórnio/regente Saturno).</p>
+<p><strong>Ausentes</strong> nos pontos principais: <strong>1 (Mago), 2 (Sacerdotisa), 12 (Enforcado), 15 (Diabo), 16 (Torre), 20 (Julgamento)</strong>. 16 e 20 aparecem só na linha de idades (fases 30–50 e 20–30 respectivamente). <strong>1, 2, 12 e 15 não aparecem em lugar nenhum.</strong>
+Leitura: faltam a energia de <strong>iniciativa individual/manifestação (1)</strong>, de <strong>intuição receptiva/silêncio (2)</strong>, de <strong>render-se/ver por outro ângulo (12)</strong> e de <strong>desejo/ambição material sem culpa (15)</strong>. Curiosamente, <strong>1 e 2 são justamente os números centrais da sua numerologia</strong> (Caminho de Vida 1, Dia 1, Atitude 2, Alma 11/2) — ver Etapa 6. Peso <span class="badge b-fraco">FRACO</span> isoladamente (ESPECULATIVA no cruzamento).</p>
+<h2>h) Linha de idades (resumo)</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Arcanos dominantes</th>
+<th>Tema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–10</td>
+<td>19, 5, 22, 7, 3, 17, 14</td>
+<td>Infância luminosa e criativa; aprender regras (5)</td>
+</tr>
+<tr>
+<td>10–20</td>
+<td>11, 16, 5, 8, 21, 7, 4, 14</td>
+<td>Força posta à prova (11, 16), regras e justiça, ampliação aos 15 (21)</td>
+</tr>
+<tr>
+<td><strong>20–30 (agora)</strong></td>
+<td><strong>10</strong>, 3, 20, 3, 10, 20, 10, 10</td>
+<td><strong>Roda × Imperatriz × Julgamento:</strong> ciclos, criação e "chamado"/renascimento</td>
+</tr>
+<tr>
+<td>30–40</td>
+<td>18, 8, 8, 16, 8, 6, 16, 6</td>
+<td>Lua (medos), Justiça repetida, Torre: reestruturações e escolhas afetivas</td>
+</tr>
+<tr>
+<td>40–50</td>
+<td>8, 6, 16, 6, 8, 16, 8, 8</td>
+<td>Mesmo material, invertido: justiça, escolhas, rupturas</td>
+</tr>
+<tr>
+<td>50–60</td>
+<td>18, 10, 10, 20, 10, 3, 20, 3</td>
+<td>Espelho dos 20–30</td>
+</tr>
+<tr>
+<td>60–70</td>
+<td>10, 14, 4, 7, 21, 8, 5, 16</td>
+<td>Espelho dos 10–20</td>
+</tr>
+<tr>
+<td>70–80</td>
+<td>11, 7, 14, 17, 3, 7, 22, 5</td>
+<td>Espelho dos 0–10</td>
+</tr>
+</tbody>
+</table></div>
+<p>A linha de idades é <strong>simétrica</strong> (cada metade espelha a outra), consequência de topo = base e das diagonais em pares iguais.</p>
+<h2>Fontes desta etapa</h2>
+<ul>
+<li><strong>Meus arquivos:</strong> <a class="src" href="#ap-c">Matriz</a> – todos os arcanos; <a class="src" href="#ap-d">Análise</a> – onde citada.</li>
+<li><strong>Livros:</strong> nenhum recebido. Existem obras de referência no sistema (ex.: Uliana Lisovskaya, <em>Programas na Matriz do Destino</em>; Anna Gadzhibek, <em>Matriz do Destino: programas das caudas cármicas</em>; Maria Priemykhova, <em>A força do Clã na Matriz do Destino</em>) <a class="src" href="#ap-g">Web: litres.com; chitai-gorod.ru</a>, mas não foram lidas.</li>
+<li><strong>Web (resumos de busca):</strong> vikna.tv (https://vikna.tv/ru/dlia-tebe/matrytsa-sudby-chto-eto-y-kak-y-o-chem-mozhno-uznat/); dzen.ru (https://dzen.ru/id/62132e1bd71d364e141e203d); svitstyle.com.ua arcano 19 (https://www.svitstyle.com.ua/ru/arkan-19-v-matryczi-doli-glyboke-znachennya-interpretacziya-ta-praktychnyj-vplyv/); tenchat.ru canal de dinheiro (https://tenchat.ru/media/249470-denezhnaya-sfera-v-matritse-ilona-maska); nur.kz (https://www.nur.kz/esoterics/interesting/1981242-matritsa-sudby-chto-eto-takoe-i-kak-rasshifrovat/); codingnumerology.substack.com (https://codingnumerology.substack.com/p/what-is-destiny-matrix); everycalculators.com (https://everycalculators.com/calculadora-matriz-del-destino.html); woman.ru, fórum citando cauda 21-4-10 (https://www.woman.ru/horoscope/thread-numerologiya-mozhet-li-eto-chto-to-znachit-ili-eto-obychnoe-sovpadenie-id6240573/) — sem interpretação útil.</li>
+<li><strong>Tradição:</strong> significados dos Arcanos Maiores do Tarô.</li>
+</ul></div></details>
+<details class="appx" id="ap-d"><summary>D. Auditoria da análise anterior (Etapa 4)</summary><div class="appx-body"><blockquote>
+<p>Objeto: 2 PDFs de "Leitura – Matriz do Destino", @cosmicmatrizes (Julia Chomen F), 20/02/2026 e 27/02/2026 <a class="src" href="#ap-d">Análise</a>. Comparação contra o diagrama <a class="src" href="#ap-c">Matriz</a> e contra o zoneamento padrão do método (Etapa 3).</p>
+</blockquote>
+<h2>a) Fidelidade</h2>
+<p><strong>Acertos (batem com o diagrama):</strong>
+| Afirmação da Análise | Posição no diagrama | Veredito |
+|---|---|---|
+| Dons: 10, depois 4, depois 21 | Topo B: 10 – 4 – 21 | ✅ Correto |
+| "O sol (19) na linha de como os outros te veem" | Ponto A (retrato) = 19 | ✅ Correto |
+| Par ideal 7 | ❤ da linha amor = 7 | ✅ Número correto |
+| "Arcano 5 na área do dinheiro" | $ = 5 | ✅ Correto |
+| Arcanos anuais 19–20 anos: 14 e 10 | Linha de idades: 18,5–19 = 14; 20 = 10 | ✅ Correto |
+| Linhas geracionais com tema de controle/rigidez | Diagonais com 4 (Imperador) | ✅ Compatível (mas sem citar arcanos) |</p>
+<p><strong>Possíveis erros:</strong>
+1. <strong>"Como te veem" usa 11, 4 e 5</strong>, mas o retrato no layout padrão é <strong>19 – 22 – 3</strong>. O 22 (Louco) e o 3 (Imperatriz) são <strong>omitidos</strong>; 11 (centro), 4 e 5 (topo) são de outras posições. Erro de posição ou critério próprio não explicado.
+2. <strong>"Essência mais pura" = 5, 4, 14</strong>: mistura ponto verde do topo (5), um 4 (que aparece 5 vezes — qual deles?) e ponto verde da esquerda (14), sem citar o centro (11), que é o ponto de caráter. Critério não explicado.
+3. <strong>Par ideal 7 descrito como "introspectivo, silencioso, reservado, espiritual, respeita o silêncio"</strong>. Esse é o perfil do <strong>número 7 da numerologia</strong>. Na Matriz, o <strong>Arcano 7 é o Carro</strong>: movimento, direção, vontade, conquista <a class="src" href="#ap-g">Web: everycalculators.com &quot;Drive &amp;amp; Victory&quot;; Tradição</a>. <strong>Erro de sistema provável.</strong> (Curiosamente, a descrição introspectiva combina com sua <strong>Maturidade 7</strong> da numerologia, o que pode ter influenciado.)
+4. <strong>"Na numerologia, o sol [19] representa líderes… com o 1 indicando a sabedoria e o 9 para conclusões"</strong>: "1 = sabedoria" não é o sentido usual do 1 (iniciativa, independência). Sabedoria é associada ao 7 e ao 9.
+5. <strong>Profissões "educação física, esportes, treinador, preparador físico"</strong> a partir do Arcano 5: o Hierofante não tem relação tradicional com corpo/esporte. Pode ter vindo de informação pessoal que você deu à autora; se não, é <strong>extrapolação sem base no arcano</strong>.
+6. <strong>Linhas geracionais com descrições diferentes</strong> (feminina: "mulheres fortes que seguram tudo"; masculina: "exigência, autoridade, dificuldade de expressão") — mas <strong>as duas linhas têm os mesmos arcanos</strong> (11–17–6 + 18–22–4). O sistema não sustenta a diferença; a diferença parece vir de estereótipos de gênero, não do mapa.
+7. <strong>Gênero gramatical trocado:</strong> "capacidade… de se reconstruir <strong>sozinha</strong>". Indício de texto reaproveitado de outra leitura (template).</p>
+<h2>b) Especificidade — trechos genéricos</h2>
+<p>Serviriam para quase qualquer pessoa:
+- "você sente tudo em profundidade, capta o que não é dito"
+- "não é frágil como muitos pensam, por dentro existe firmeza"
+- "mesmo quando finge indiferença, por dentro está tudo sendo registrado"
+- "a empatia é um ponto essencial do teu caminho… quanto mais você usa, mais clareza, respeito e resultado você constrói"
+- quase toda a seção de voluntariado
+- a linha masculina ("busca interna por aprovação… tendência a assumir mais do que deveria") — <strong>embora genérica, ela é confirmada por dado específico</strong>: Saturno (regente) em Leão casa 8 e o 4 repetido. Ou seja: genérica no texto, mas acerta o tema.</p>
+<h2>c) Lacunas — o que não foi abordado</h2>
+<ul>
+<li><strong>Cauda cármica 10 – 4 – 21</strong> e o fato de ser <strong>idêntica à linha de talentos</strong> (o achado estrutural mais importante da Matriz).</li>
+<li><strong>Centro 11</strong> como zona de conforto (é citado como "propósito", não como centro).</li>
+<li><strong>22 (Louco) e 3 (Imperatriz)</strong> no retrato.</li>
+<li><strong>Ponto C: 8 – 9 – 19</strong> (Justiça, Eremita, Sol).</li>
+<li><strong>Entradas 21 (amor) e 19 (dinheiro)</strong> e o <strong>4 no cruzamento</strong>.</li>
+<li><strong>Arcanos das linhas ancestrais</strong> (11, 17, 6, 18, 22, 4) — nenhum citado.</li>
+<li><strong>Pontos 13 e 6</strong> à direita do centro.</li>
+<li><strong>Arcano 4 repetido 5 vezes</strong> e arcanos ausentes (1, 2, 12, 15).</li>
+<li><strong>Linha de idades</strong> além dos 19–20 anos (fase 20–30: 10, 3, 20).</li>
+<li>Propósitos (pessoal/social/espiritual) e chakras não aparecem com números claros.</li>
+</ul>
+<h2>d) Contradições internas</h2>
+<ol>
+<li><strong>Imagem pública:</strong> "carismático, vibrante, otimista, contagia a maioria" (19) × "visto como reservado, sério… marca mais pelo que é do que pelo que fala" (fim da mesma seção). As duas podem coexistir (ver Etapa 7), mas a análise não reconcilia.</li>
+<li><strong>Par ideal "não busca intensidade caótica"</strong> × arcano 7 (Carro), que é movimento e conquista.</li>
+<li><strong>"Pode ser alguém muito engraçado também"</strong> aparece solto, sem arcano que sustente (o 22 sustentaria, mas não foi citado).</li>
+</ol>
+<h2>e) Excessos — certezas que o sistema não sustenta</h2>
+<ul>
+<li>"pode atrair muita prosperidade, sorte, normalmente de forma natural… capaz de mudar o destino dos outros" (10)</li>
+<li>"mostra muito talento para aprender línguas estrangeiras e viajar muito" (21) — tendência, não fato</li>
+<li>"capacidade de receber tudo que o universo tende a dar"</li>
+<li>"não é um vínculo comum, é daqueles que parecem existir antes mesmo do encontro"</li>
+<li>"o dinheiro flui quando você ensina" — ok como tendência, mas apresentado como regra</li>
+<li>Linhas ancestrais descrevendo fatos de família ("homens… com frustrações não ditas", "mulheres… precisaram ser fortes porque não tinham escolha") como se fossem dados.</li>
+</ul>
+<h2>f) Nota</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Critério</th>
+<th>Nota</th>
+<th>Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Precisão</td>
+<td><strong>5/10</strong></td>
+<td>Números de dons, dinheiro, par, anuais e retrato principal corretos; erros de posição ("como te veem", "essência"), confusão Arcano 7 × número 7, linhas geracionais diferenciadas sem base</td>
+</tr>
+<tr>
+<td>Profundidade</td>
+<td><strong>4/10</strong></td>
+<td>Ignora cauda cármica, centro, ponto C, ancestrais por arcano, repetições/ausências e linha de idades</td>
+</tr>
+<tr>
+<td>Utilidade</td>
+<td><strong>5/10</strong></td>
+<td>Boa no tom e em temas certeiros (controle, ensino, estrutura), mas com muito texto genérico e sem ações concretas</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Média: 4,7/10.</strong></p>
+<h2>g) Manter × descartar</h2>
+<p><strong>Manter:</strong>
+- Dons 10 – 4 – 21 como "organizar mudanças, estruturar, integrar".
+- Dinheiro via ensino, orientação, referência (5).
+- Tema de controle/rigidez e de "carregar tudo sozinho" (confirmado por 4 repetido + Saturno regente + Personalidade 4).
+- 19 como imagem calorosa e o alerta sobre orgulho/vaidade.
+- Ano 19–20 (14 → 10): fechamento de uma fase de ajuste e entrada em fase de ciclos.</p>
+<p><strong>Descartar ou corrigir:</strong>
+- Perfil do par ideal como "introspectivo silencioso" → substituir pela leitura do Carro (movimento, direção) + entrada 21.
+- Diferença entre linha masculina e feminina → as duas são iguais.
+- Profissões em educação física/esporte → só manter se tiver outra base (sua experiência real).
+- Promessas de sorte, prosperidade e "vínculo predestinado".</p>
+<h2>Fontes desta etapa</h2>
+<ul>
+<li><strong>Meus arquivos:</strong> <a class="src" href="#ap-d">Análise</a>, <a class="src" href="#ap-c">Matriz</a>.</li>
+<li><strong>Livros:</strong> nenhum.</li>
+<li><strong>Web:</strong> everycalculators.com (arcano 7 = Carro, "Drive &amp; Victory") via busca.</li>
+</ul></div></details>
+<details class="appx" id="ap-e"><summary>E. Numerologia detalhada (Etapa 5)</summary><div class="appx-body"><blockquote>
+<p><strong>Base:</strong> print do app de Numerologia <a class="src" href="#ap-e">Numerologia</a>. <strong>Livros:</strong> nenhum recebido. <strong>Web:</strong> resumos de busca (páginas não puderam ser abertas); as fontes encontradas são majoritariamente comerciais. Os significados seguem a numerologia pitagórica clássica <a class="src" href="#ap-g">Tradição</a>. Nada foi recalculado.</p>
+</blockquote>
+<h2>a) Núcleo</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Número</th>
+<th>Valor</th>
+<th>Sentido em equilíbrio</th>
+<th>Sombra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Caminho de Vida</strong> (lição da vida)</td>
+<td><strong>1</strong></td>
+<td>Independência, iniciativa, liderança, abrir caminho próprio <a class="src" href="#ap-g">Web: birthchartvault, via busca: &quot;the leader&#x27;s path… independence, initiative, self-reliance&quot;</a></td>
+<td>Egocentrismo, impaciência, dificuldade em aceitar ajuda</td>
+</tr>
+<tr>
+<td><strong>Dia de Nascimento</strong> (talento natural)</td>
+<td><strong>1</strong></td>
+<td>Reforça o 1: autonomia, decisão, originalidade</td>
+<td>Teimosia, solidão por orgulho</td>
+</tr>
+<tr>
+<td><strong>Expressão</strong> (como realiza)</td>
+<td><strong>6</strong></td>
+<td>Responsabilidade, cuidado, família, harmonia, estética, servir <a class="src" href="#ap-g">Web: aol.com, via busca: 6 = amor, harmonia, equilíbrio, responsabilidade</a></td>
+<td>Controle pelo cuidado, mártir, perfeccionismo, se meter na vida alheia</td>
+</tr>
+<tr>
+<td><strong>Desejo da Alma</strong> (o que move por dentro)</td>
+<td><strong>11/2</strong></td>
+<td>Inspiração, intuição, sentido, ser canal de algo maior; e (2) paz, parceria <a class="src" href="#ap-g">Web: sunsigns.org; calculacentro.com, via busca</a></td>
+<td>Tensão nervosa, hipersensibilidade, autodúvida, idealismo que paralisa</td>
+</tr>
+<tr>
+<td><strong>Personalidade</strong> (como é percebido)</td>
+<td><strong>4</strong></td>
+<td>Sólido, confiável, trabalhador, prático, organizado</td>
+<td>Rígido, fechado, sério demais</td>
+</tr>
+<tr>
+<td><strong>Atitude</strong> (primeira reação)</td>
+<td><strong>2</strong></td>
+<td>Diplomacia, cooperação, conciliação</td>
+<td>Evitar conflito, ceder demais</td>
+</tr>
+<tr>
+<td><strong>Geração</strong></td>
+<td><strong>8</strong></td>
+<td>Número coletivo do ano (de geração, não pessoal): poder, gestão, mundo material</td>
+<td>Peso FRACO (compartilhado por todos nascidos no mesmo ano)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Como conversam:</strong>
+- <strong>1 × 6/2 — eu × nós.</strong> Caminho de Vida e Dia 1 pedem autonomia e liderança; Expressão 6, Atitude 2 e Alma 11/2 puxam para o outro, a harmonia e a parceria. Tensão central da numerologia: <strong>liderar sem deixar de cuidar, cuidar sem deixar de se afirmar</strong>. Peso <span class="badge b-forte">FORTE</span> (repete o Sol de Libra em queda × Ascendente Capricórnio; ver Etapa 6).
+- <strong>4 por fora, 11 por dentro.</strong> A Personalidade 4 mostra solidez, praticidade, seriedade; a Alma 11 é inspirada, intuitiva, sensível. Os outros veem o "engenheiro", por dentro há um "visionário". Peso <span class="badge b-forte">FORTE</span> (repete Ascendente Capricórnio × Netuno na casa 1 / Lua com Lilith; e o retrato 19-22 × 4 repetido na Matriz).
+- <strong>Atitude 2 × Caminho 1</strong>: a primeira reação é conciliar (2), mesmo quando o caminho pede decidir sozinho (1).</p>
+<h2>b) Números Mestres</h2>
+<ul>
+<li><strong>11 no Desejo da Alma.</strong> O 11 é número mestre (não se reduz) e é a versão "intensificada" do 2 <a class="src" href="#ap-g">Web: birthchartvault, via busca</a>. <strong>Desafio do 11:</strong> sustentar uma sensibilidade alta sem ansiedade; transformar intuição em algo concreto. Como está na <strong>Alma</strong> (motivação íntima), e não no Caminho, é mais uma <strong>fome interior de sentido</strong> do que uma missão pública obrigatória. A versão "/2" mostra que, no dia a dia, ele se expressa como necessidade de paz e parceria.</li>
+<li>22 e 33: não constam.</li>
+</ul>
+<h2>c) Lições e Dívidas cármicas</h2>
+<p><strong>Não constam</strong> — estão bloqueadas no app (conteúdo pago). Não foram calculadas aqui (regra: não recalcular). Registrado em "Dados a confirmar".</p>
+<h2>d) Ciclos de vida, Pináculos e Desafios</h2>
+<p><strong>Não constam</strong> no print. Não foram calculados. A linha do tempo (Etapa 6d) usa só a Matriz e o Maturidade.</p>
+<h2>e) Ano Pessoal</h2>
+<p><strong>Não consta.</strong> Não foi calculado.</p>
+<h2>f) Número de Maturidade: 7</h2>
+<p>Direção da segunda metade da vida (tradicionalmente a partir dos 35–45): <strong>estudo, especialização, introspecção, espiritualidade, sabedoria</strong>. Com Caminho 1 e Expressão 6, o 7 sugere que o líder/cuidador da primeira fase caminha para o <strong>pesquisador/sábio</strong> — alguém que escolhe menos frentes e vai mais fundo. Observação de consistência (sem recalcular): 1 + 6 = 7, compatível com a regra usual (Caminho + Expressão).
+Ponte: na Matriz, a fase 30–50 tem <strong>8 (Justiça)</strong> e <strong>9 (Eremita)</strong> no ponto C, e o 7 é a casa do amor. Ponte astrológica: Lua e Nodo Sul na casa 9 (estudo) e Mercúrio-Júpiter em Escorpião (pesquisa). Peso <span class="badge b-medio">MÉDIO</span>.</p>
+<h2>Fontes desta etapa</h2>
+<ul>
+<li><strong>Meus arquivos:</strong> <a class="src" href="#ap-e">Numerologia</a>.</li>
+<li><strong>Livros:</strong> nenhum recebido.</li>
+<li><strong>Web (resumos de busca):</strong> birthchartvault (https://birthchartvault.onrender.com/life-path-compatibility/1-and-11); sunsigns.org (https://www.sunsigns.org/numerology-minor-hearts-desire-number-11/); calculacentro.com (https://calculacentro.com/ferramenta/numerologia); aol.com número 6 (https://www.aol.com/everything-number-6-could-mean-165900339.html); news24 "numerology 101" (https://www.news24.com/life/numerology-101-20090907).</li>
+<li><strong>Tradição:</strong> numerologia pitagórica clássica.</li>
+</ul></div></details>
+<details class="appx" id="ap-f"><summary>F. Cruzamento dos sistemas (Etapas 6, 7 e 8)</summary><div class="appx-body"><h2 class='sub'>Etapa 6 – Cruzamento dos sistemas</h2><blockquote>
+<p>Interdisciplinaridade: cada linha abaixo junta dados de fontes diferentes. Peso: <span class="badge b-forte">FORTE</span> = 2+ sistemas; <span class="badge b-medio">MÉDIO</span> = 1 sistema com destaque; <span class="badge b-fraco">FRACO</span> = isolado. Conexão: <span class="badge b-solida">SÓLIDA</span> (vários dados) × <span class="badge b-espec">ESPECULATIVA</span> (hipótese).</p>
+</blockquote>
+<h2>a) Tabela de convergências</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Tema</th>
+<th>Mapa</th>
+<th>Matriz</th>
+<th>Numerologia</th>
+<th>Peso</th>
+<th>Conexão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Estrutura, responsabilidade, autoridade</strong></td>
+<td>Ascendente Capricórnio; regente Saturno; 5 planetas na casa 10</td>
+<td><strong>4 Imperador ×5</strong>; talentos 10-4-21</td>
+<td><strong>Personalidade 4</strong></td>
+<td><span class="badge b-forte">FORTE</span></td>
+<td>SÓLIDA</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Equilíbrio, justiça, harmonia, relação</strong></td>
+<td>3 planetas em Libra; <strong>Vênus dispositor final, domicílio, no MC</strong></td>
+<td>14 Temperança; 6 Enamorados ×3; 8 Justiça (C)</td>
+<td><strong>Expressão 6</strong>, Atitude 2, Alma 11/<strong>2</strong></td>
+<td><span class="badge b-forte">FORTE</span></td>
+<td>SÓLIDA</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Força contida / domínio de si</strong></td>
+<td>Marte em exílio □ Asc.; Lua □ Plutão; Saturno em Leão na 8</td>
+<td><strong>Centro 11 Força</strong>; 11 nas diagonais</td>
+<td><strong>Alma 11</strong></td>
+<td><span class="badge b-forte">FORTE</span></td>
+<td>SÓLIDA</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Ensinar, orientar, transmitir sentido</strong></td>
+<td>Lua + Nodo Sul na casa 9; Júpiter ☌ Mercúrio na 10; Nodo Norte na 3 (comunicação) △ Júpiter</td>
+<td><strong>$ = 5 Hierofante</strong>; 5 no ponto verde</td>
+<td>Maturidade 7 (estudo); Alma 11 (inspirar)</td>
+<td><span class="badge b-forte">FORTE</span></td>
+<td>SÓLIDA</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Visibilidade, liderança, brilho próprio</strong></td>
+<td>Sol na casa 10; hemisfério superior com 8 planetas</td>
+<td><strong>Retrato 19 Sol</strong>; 19 na entrada do dinheiro; 21 Mundo</td>
+<td><strong>Caminho de Vida 1, Dia 1</strong></td>
+<td><span class="badge b-forte">FORTE</span></td>
+<td>SÓLIDA</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Controle / perfeccionismo / "amor por utilidade"</strong></td>
+<td>Lua + Lilith + Nodo Sul em Virgem na 9; Saturno regente</td>
+<td>4 em excesso (sombra); cauda 10-4-21</td>
+<td>Personalidade 4; Expressão 6 (sombra: mártir)</td>
+<td><span class="badge b-forte">FORTE</span></td>
+<td>SÓLIDA</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Profundidade, investigação</strong></td>
+<td>Mercúrio e Júpiter em Escorpião; Saturno na 8</td>
+<td>9 Eremita (C); 18 Lua (ancestral); 13</td>
+<td>Maturidade 7</td>
+<td><span class="badge b-forte">FORTE</span></td>
+<td>SÓLIDA</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Sentir-se diferente / liberdade</strong></td>
+<td>Quíron + Netuno + Ceres em Aquário na casa 1</td>
+<td>22 Louco ×3 (retrato e ancestral)</td>
+<td>Alma 11 (o "diferente")</td>
+<td><span class="badge b-forte">FORTE</span></td>
+<td>ESPECULATIVA (11 como "diferente" é leitura indireta)</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Ciclos, mudança, timing</strong></td>
+<td>Júpiter □ Saturno (expandir × conter)</td>
+<td><strong>10 Roda</strong> no topo e na base; fase 20–30 com 10 ×5</td>
+<td>–</td>
+<td>MÉDIO</td>
+<td>SÓLIDA na Matriz</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Criatividade/estética</strong></td>
+<td>Vênus forte no MC; Sol em Libra</td>
+<td>3 Imperatriz (retrato); 17 Estrela (ancestral)</td>
+<td>Expressão 6 (estética)</td>
+<td><span class="badge b-forte">FORTE</span></td>
+<td>SÓLIDA</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Relações com expansão de mundo</strong></td>
+<td>Lua (regente da 7) na casa 9; Juno na 9</td>
+<td>Amor: 21 → 7</td>
+<td>–</td>
+<td>MÉDIO</td>
+<td>SÓLIDA</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>Herança familiar de controle e dever</strong></td>
+<td>Regente da 4 (Marte) na 10 em exílio</td>
+<td>Linhas 18-22-4 e 11-17-6</td>
+<td>– (Lições cármicas bloqueadas)</td>
+<td>MÉDIO</td>
+<td>SÓLIDA no mapa+matriz</td>
+</tr>
+</tbody>
+</table></div>
+<h2>b) Contradições entre sistemas (e leitura possível)</h2>
+<ol>
+<li><strong>Par ideal: introspectivo × em movimento.</strong> A Análise lê o 7 do amor como introspecção (sentido numerológico); o Arcano 7 é o Carro (direção). Astrologia: regente da 7 (Lua) na casa 9 → parceria por troca intelectual, viagens, visão de mundo. <strong>Leitura:</strong> alguém com quem se <strong>move junto</strong> (projetos, viagens, estudo) e que tem <strong>profundidade</strong> — as duas facetas convivem, mas o "silencioso" vem da numerologia (sua Maturidade 7), não da Matriz.</li>
+<li><strong>Caminho 1 (sozinho) × Libra (com o outro).</strong> Numerologia diz "lidere, seja independente"; o mapa diz "o Sol está em queda em Libra: a identidade se constrói na relação". <strong>Leitura:</strong> liderança <strong>mediadora</strong> — você lidera sendo o ponto de equilíbrio do grupo, não o lobo solitário. A falta do Arcano 1 na Matriz (ver 7e) reforça que o "1" é uma lição a desenvolver, não algo pronto.</li>
+<li><strong>19 Sol (expansivo) × Personalidade 4 / Ascendente Capricórnio (contido).</strong> A Matriz mostra imagem luminosa; numerologia e mapa mostram imagem séria. <strong>Leitura:</strong> <strong>duas camadas de impressão</strong> — primeiro sério/confiável (Asc. Capricórnio, Personalidade 4), depois, com confiança, caloroso e engraçado (19, 22). A Análise registra as duas sem conciliar.</li>
+<li><strong>Fogo zero nos pessoais × 19 Sol e 11 Força.</strong> A astrologia mostra pouca chama espontânea; a Matriz mostra arcanos de vitalidade. <strong>Leitura:</strong> a força existe, mas é <strong>canalizada e controlada</strong>, não impulsiva — coerente com "Força" (domar o leão, não ser o leão).</li>
+</ol>
+<h2>c) Por área da vida</h2>
+<ul>
+<li><strong>Personalidade:</strong> estrutura séria por fora (Asc. Cap, Personalidade 4, 4×5), harmonia como valor (Libra, 6, 14), brilho que aparece com confiança (19, 22). <span class="badge b-forte">FORTE</span>.</li>
+<li><strong>Propósito/vocação:</strong> orientar, mediar, estruturar e ensinar com visibilidade (casa 10, 5 Hierofante, 19, Nodo Norte na 3, Maturidade 7). <span class="badge b-forte">FORTE</span>.</li>
+<li><strong>Trabalho e dinheiro:</strong> dinheiro via conhecimento transmitido (5) e reputação (19, casa 10); carreira como eixo da vida (quase todos os regentes na 10). Bloqueio provável: guardar conhecimento, perfeccionismo antes de se expor (Virgem na 9, Mercúrio □ Saturno). <span class="badge b-forte">FORTE</span>.</li>
+<li><strong>Relacionamentos:</strong> busca harmonia e compromisso (Vênus ⚹ Saturno exato, Expressão 6, Alma /2), atração por intensidade (Vênus ⚹ Plutão, Lua □ Plutão), parceria que amplia o mundo (Lua regente da 7 na 9; amor 21 → 7). Risco: agradar demais (Atitude 2, 6 em sombra) e controlar a rota (7 + 4). <span class="badge b-forte">FORTE</span>.</li>
+<li><strong>Família/ancestralidade:</strong> herança de força + controle + medo (11, 4, 18), igual nos dois lados; regente da casa 4 (Marte) em exílio na 10 = família ligada a dever e desempenho. <span class="badge b-medio">MÉDIO</span>.</li>
+<li><strong>Desafios e padrões repetidos:</strong> carregar tudo, controlar, se cobrar (4×5, Virgem na 9, Saturno regente, cauda 10-4-21, Personalidade 4). <span class="badge b-forte">FORTE</span>.</li>
+<li><strong>Espiritualidade:</strong> sentido acima de dogma (Lilith na 9 questiona crenças; 5 Hierofante pede valores vividos; Alma 11; Maturidade 7; Nodo Norte em Peixes). <span class="badge b-forte">FORTE</span>.</li>
+</ul>
+<h2>d) Linha do tempo</h2>
+<p>Pináculos e Ciclos da numerologia <strong>não constam</strong>; propósitos por idade da Matriz <strong>não constam</strong>. A linha do tempo abaixo usa a <strong>linha de idades da Matriz</strong> + Maturidade 7 + o ciclo de Saturno (fato astronômico geral de ~29,5 anos, não um cálculo do seu mapa).</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Idade</th>
+<th>Matriz</th>
+<th>Outros</th>
+<th>Leitura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18,5–19</td>
+<td>14 Temperança</td>
+<td>–</td>
+<td>Ajuste interno (a Análise acerta)</td>
+</tr>
+<tr>
+<td><strong>20 (agora, se a data 19/10/2006 se confirmar)</strong></td>
+<td><strong>10 Roda da Fortuna</strong></td>
+<td>–</td>
+<td><strong>Virada de ciclo</strong>: oportunidades e mudanças; não resistir, mas dar estrutura (4) ao que muda</td>
+</tr>
+<tr>
+<td>21–22,5</td>
+<td>3 Imperatriz</td>
+<td>–</td>
+<td>Criar, produzir, cultivar talentos estéticos/criativos</td>
+</tr>
+<tr>
+<td>22,5–23,5</td>
+<td>20 Julgamento</td>
+<td>–</td>
+<td>"Chamado": revisão de rumo, reconhecimento, família</td>
+</tr>
+<tr>
+<td>23,5–24</td>
+<td>3</td>
+<td>–</td>
+<td>De novo criação</td>
+</tr>
+<tr>
+<td>25</td>
+<td>10</td>
+<td>–</td>
+<td>Novo giro de ciclo</td>
+</tr>
+<tr>
+<td>26–29</td>
+<td>20, 10, 10</td>
+<td>Retorno de Saturno (~29–30) <a class="src" href="#ap-g">Tradição</a></td>
+<td>Decisões de carreira mais definitivas</td>
+</tr>
+<tr>
+<td><strong>30</strong></td>
+<td><strong>18 Lua</strong></td>
+<td>Retorno de Saturno</td>
+<td>Fase de medos/ilusões e intuição; testar estruturas</td>
+</tr>
+<tr>
+<td>31–39</td>
+<td>8 ×3, 16 ×2, 6 ×2</td>
+<td>Maturidade 7 começa a pesar (~35+)</td>
+<td>Justiça, responsabilidade pelas escolhas, rupturas (Torre) que reestruturam</td>
+</tr>
+<tr>
+<td>40</td>
+<td>8 Justiça</td>
+<td>–</td>
+<td>Ponto de equilíbrio da vida</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Onde você está agora:</strong> na entrada da fase <strong>20–30</strong>, dominada por <strong>10 (Roda)</strong> e <strong>3 (Imperatriz)</strong>, com <strong>20 (Julgamento)</strong> no meio. É a fase de <strong>testar caminhos e produzir</strong> — exatamente onde o talento 10-4-21 ("organizar mudanças") e a sombra (controle) se encontram. Peso <span class="badge b-medio">MÉDIO</span> (só Matriz + fato geral de Saturno).</p>
+<h2>Fontes desta etapa</h2>
+<ul>
+<li><strong>Meus arquivos:</strong> <a class="src" href="#ap-a">Mapa</a>, <a class="src" href="#ap-c">Matriz</a>, <a class="src" href="#ap-e">Numerologia</a>, <a class="src" href="#ap-d">Análise</a>.</li>
+<li><strong>Livros:</strong> nenhum.</li>
+<li><strong>Web:</strong> as já citadas nas Etapas 2, 3 e 5.</li>
+<li><strong>Fora do esoterismo:</strong> nenhuma nesta etapa.</li>
+</ul><h2 class='sub'>Etapa 7 – Leitura integrada de identidade</h2><h2>a) Mapa de facetas</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Faceta</th>
+<th>De onde vem</th>
+<th>Peso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>O Arquiteto</strong> (estrutura, organiza, sustenta)</td>
+<td>Asc. Capricórnio + regente Saturno <a class="src" href="#ap-a">Mapa</a>; 4 Imperador ×5, talentos 10-4-21 <a class="src" href="#ap-c">Matriz</a>; Personalidade 4 <a class="src" href="#ap-e">Numerologia</a></td>
+<td>FORTE</td>
+</tr>
+<tr>
+<td><strong>O Mediador</strong> (equilíbrio, justiça, diplomacia)</td>
+<td>Sol, Vênus, Marte em Libra; Vênus dispositor final no MC <a class="src" href="#ap-a">Mapa</a>; 14, 8, 6 <a class="src" href="#ap-c">Matriz</a>; Expressão 6, Atitude 2 <a class="src" href="#ap-e">Numerologia</a></td>
+<td>FORTE</td>
+</tr>
+<tr>
+<td><strong>O Mentor</strong> (ensina, orienta, dá sentido)</td>
+<td>Lua e Nodo Sul na 9; Júpiter ☌ Mercúrio na 10 <a class="src" href="#ap-a">Mapa</a>; 5 Hierofante no dinheiro e no ponto verde <a class="src" href="#ap-c">Matriz</a>; Maturidade 7 <a class="src" href="#ap-e">Numerologia</a></td>
+<td>FORTE</td>
+</tr>
+<tr>
+<td><strong>O Investigador</strong> (vai ao fundo, desconfia do raso)</td>
+<td>Mercúrio e Júpiter em Escorpião; Saturno na 8 <a class="src" href="#ap-a">Mapa</a>; 9 Eremita, 18 Lua, 13 <a class="src" href="#ap-c">Matriz</a>; Maturidade 7 <a class="src" href="#ap-e">Numerologia</a></td>
+<td>FORTE</td>
+</tr>
+<tr>
+<td><strong>O Sol</strong> (presença calorosa, carisma, liderança)</td>
+<td>Sol na casa 10 <a class="src" href="#ap-a">Mapa</a>; retrato 19 <a class="src" href="#ap-c">Matriz</a>; Caminho 1, Dia 1 <a class="src" href="#ap-e">Numerologia</a></td>
+<td>FORTE</td>
+</tr>
+<tr>
+<td><strong>O Louco/Livre</strong> (irreverência, humor, ser diferente)</td>
+<td>Quíron, Netuno, Ceres em Aquário na casa 1 <a class="src" href="#ap-a">Mapa</a>; 22 ×3 <a class="src" href="#ap-c">Matriz</a>; humor citado na <a class="src" href="#ap-d">Análise</a></td>
+<td>MÉDIO</td>
+</tr>
+<tr>
+<td><strong>O Esteta/Criador</strong></td>
+<td>Vênus em domicílio; Sol em Libra <a class="src" href="#ap-a">Mapa</a>; 3 Imperatriz, 17 Estrela <a class="src" href="#ap-c">Matriz</a>; Expressão 6 <a class="src" href="#ap-e">Numerologia</a></td>
+<td>MÉDIO</td>
+</tr>
+<tr>
+<td><strong>O Guardião silencioso</strong> (aguenta, controla, se cobra) — faceta-sombra</td>
+<td>Lua + Lilith em Virgem; Saturno em exílio <a class="src" href="#ap-a">Mapa</a>; 11 Força, 4 em excesso, cauda 10-4-21 <a class="src" href="#ap-c">Matriz</a>; Personalidade 4, sombra do 6 <a class="src" href="#ap-e">Numerologia</a></td>
+<td>FORTE</td>
+</tr>
+</tbody>
+</table></div>
+<h2>b) Tensões produtivas</h2>
+<ol>
+<li><strong>Arquiteto × Louco</strong> (controle × liberdade). Dado: 4 ×5 contra 22 ×3 na Matriz; Ascendente Capricórnio contra Quíron/Netuno em Aquário na casa 1. <strong>Como vira força:</strong> estruturas que <strong>criam liberdade</strong> (rotinas que liberam tempo, sistemas que permitem improvisar). Você é melhor construindo "trilhos" que outros (e você) usam para ir longe.</li>
+<li><strong>Sol (1, 19) × Mediador (Libra, 2, 6).</strong> Eu × nós. <strong>Força:</strong> <strong>liderança de mediação</strong> — liderar sendo quem equilibra, não quem domina. Na prática: coordenar, facilitar, negociar.</li>
+<li><strong>Mentor × Investigador.</strong> Ensinar (5, casa 9/10) × ficar no estudo profundo (9, Escorpião, Maturidade 7). <strong>Força:</strong> ensinar <strong>o que pesquisou a fundo</strong> — o "professor que é especialista" em vez do "especialista que não comunica".</li>
+<li><strong>Guardião silencioso × Sol.</strong> Aguentar calado (11, Lua em Virgem, Personalidade 4) × brilhar (19). <strong>Força:</strong> a força interna dá <strong>credibilidade</strong> ao brilho; o risco é o brilho virar fachada enquanto o guardião se esgota.</li>
+</ol>
+<h2>c) Multipotencialidade — veredito: <strong>PARCIAL (multipotencial integrador)</strong></h2>
+<p><strong>A favor:</strong>
+- Mercúrio ☌ Júpiter na casa 10: mente ampla aplicada à carreira <a class="src" href="#ap-a">Mapa</a>.
+- 5 planetas em uma casa, mas em <strong>dois signos com temas diferentes</strong> (Libra: relação/estética; Escorpião: pesquisa/profundidade) <a class="src" href="#ap-a">Mapa</a>.
+- 21 Mundo (integração de áreas) nos talentos; 10 Roda (mudança); 22 Louco ×3; 3 Imperatriz <a class="src" href="#ap-c">Matriz</a>.
+- Facetas diversas e todas com peso FORTE ou MÉDIO (acima).</p>
+<p><strong>Contra:</strong>
+- Só 1 planeta pessoal em signo mutável (Lua); perfil é cardinal e fixo → <strong>começa e sustenta</strong>, não fica pulando <a class="src" href="#ap-a">Mapa</a>.
+- 4 Imperador ×5 e Personalidade 4: preferência por construir algo sólido <a class="src" href="#ap-c">Matriz</a><a class="src" href="#ap-e">Numerologia</a>.
+- Maturidade 7: com o tempo, tende a <strong>aprofundar e especializar</strong> <a class="src" href="#ap-e">Numerologia</a>.</p>
+<p><strong>Conclusão:</strong> não é o perfil do "curioso disperso". É alguém com <strong>vários talentos reais que convergem para um eixo</strong>: <em>estruturar + mediar + ensinar</em> em torno de temas profundos. Os fios que conectam todas as áreas:
+1. <strong>Equilíbrio/justiça</strong> (Libra, 8, 14, 6).
+2. <strong>Transmitir conhecimento</strong> (5, casa 9 → 10, Nodo Norte na 3).
+3. <strong>Dar estrutura ao que muda</strong> (10-4-21).</p>
+<p><strong>Modelo de vida/trabalho que acomoda isso</strong> <a class="src" href="#ap-g">Fora do esoterismo: Emilie Wapnick, &lt;em&gt;How to Be Everything&lt;/em&gt; (2017), que descreve os modelos &quot;Group Hug&quot;, &quot;Slash&quot;, &quot;Einstein&quot; e &quot;Phoenix&quot; para multipotenciais</a>:
+- <strong>"Group Hug" (abraço coletivo)</strong>: um trabalho-guarda-chuva multifacetado, por exemplo: <strong>consultoria/mentoria + ensino + produção de conteúdo</strong> sobre um tema central (direito, gestão de pessoas, psicologia, finanças, design de sistemas — a escolher pela sua experiência real).
+- Ou <strong>"Phoenix"</strong>: mergulhar fundo numa área por alguns anos e depois migrar, levando a bagagem — compatível com a Roda (10) e com a fase 20–30 cheia de 10.
+- <strong>Como evitar dispersão:</strong> um eixo fixo (o "4") + projetos com prazo (o "Carro") + revisão periódica (a "Roda").</p>
+<h2>d) Padrão-raiz</h2>
+<blockquote>
+<p><strong>Ser o ponto de equilíbrio que sustenta tudo — e aprender que o equilíbrio também precisa incluir você.</strong></p>
+</blockquote>
+<p>Cadeia: Vênus/Libra como dispositor final + 14 + Expressão 6 + Atitude 2 (<strong>equilíbrio como valor central</strong>) <strong>+</strong> Ascendente Capricórnio + Saturno regente + 4 ×5 + Personalidade 4 (<strong>sustentar pela estrutura</strong>) <strong>+</strong> Lua/Lilith/Nodo Sul em Virgem + centro 11 + cauda 10-4-21 (<strong>sustentar pelo controle e pela autocrítica</strong>) → o mesmo padrão aparece como <strong>talento</strong> (organizar, mediar, liderar) e como <strong>armadilha</strong> (controlar, carregar sozinho, merecer amor por ser útil). A Matriz diz isso de forma literal: <strong>cauda cármica = linha de talentos</strong>. Peso <span class="badge b-forte">FORTE</span>, conexão <span class="badge b-solida">SÓLIDA</span>.
+<a class="src" href="#ap-g">Fora do esoterismo: na psicologia, o padrão &quot;merecer afeto sendo útil/agradando&quot; aparece descrito como &lt;em&gt;people-pleasing&lt;/em&gt; e como &quot;perfeccionismo socialmente prescrito&quot; (Hewitt &amp;amp; Flett) — aqui só como paralelo para entender o padrão, não como diagnóstico.</a></p>
+<h2>e) As 5 conexões mais surpreendentes</h2>
+<ol>
+<li><strong>Cauda cármica = Talentos (10-4-21) ↔ Vênus forte cercada de planetas fracos.</strong> Na Matriz, o problema e o dom são o mesmo conjunto; no mapa, o único planeta forte (Vênus) é o que "comanda" os três fracos (Sol em queda, Marte e Saturno em exílio). Nos dois sistemas: <strong>o recurso está dentro do próprio desafio</strong>. <a class="src" href="#ap-c">Matriz</a>+<a class="src" href="#ap-a">Mapa</a> → <span class="badge b-solida">SÓLIDA</span>.</li>
+<li><strong>Os números ausentes da Matriz (1 e 2) são o núcleo da numerologia (Caminho 1, Dia 1, Atitude 2, Alma 11/2).</strong> O que o nome e a data pedem como lição (iniciativa própria e receptividade) é exatamente o que a Matriz não "traz pronto". <a class="src" href="#ap-c">Matriz</a>+<a class="src" href="#ap-e">Numerologia</a> → <span class="badge b-espec">ESPECULATIVA</span> (os dois sistemas usam números com sentidos diferentes).</li>
+<li><strong>Ponto do dinheiro = 5 (Hierofante) ↔ Nodo Norte na casa 3 △ Júpiter-Mercúrio na casa 10.</strong> A Matriz diz "dinheiro por ensinar"; o mapa diz "crescer comunicando, com a mente de Escorpião na carreira". Dois sistemas independentes apontam <strong>ensino/comunicação profissional</strong>. <a class="src" href="#ap-c">Matriz</a>+<a class="src" href="#ap-a">Mapa</a>+<a class="src" href="#ap-d">Análise</a> → <span class="badge b-solida">SÓLIDA</span>.</li>
+<li><strong>Centro 11 (Força) + Alma 11 + Marte em exílio □ Ascendente.</strong> O 11 aparece no coração dos dois sistemas numéricos, e o mapa mostra o porquê: a força existe, mas a <strong>ação direta é travada</strong> (Marte em Libra, □ Asc.). A "Força" do Arcano 11 é justamente a força que doma, não que ataca. <a class="src" href="#ap-c">Matriz</a>+<a class="src" href="#ap-e">Numerologia</a>+<a class="src" href="#ap-a">Mapa</a> → <span class="badge b-solida">SÓLIDA</span>.</li>
+<li><strong>Linhas ancestrais idênticas (masculina = feminina) ↔ regente da casa 4 (Marte) na casa 10.</strong> A Matriz não separa pai e mãe; o mapa liga a família (casa 4) diretamente à carreira (casa 10). Leitura: <strong>a herança familiar inteira chega como "dever de desempenho"</strong>, não como "lado do pai × lado da mãe". <a class="src" href="#ap-c">Matriz</a>+<a class="src" href="#ap-a">Mapa</a> → <span class="badge b-espec">ESPECULATIVA</span> (casas não são linhas ancestrais).</li>
+</ol>
+<h2>Fontes desta etapa</h2>
+<ul>
+<li><strong>Meus arquivos:</strong> <a class="src" href="#ap-a">Mapa</a>, <a class="src" href="#ap-c">Matriz</a>, <a class="src" href="#ap-e">Numerologia</a>, <a class="src" href="#ap-d">Análise</a>.</li>
+<li><strong>Livros:</strong> nenhum.</li>
+<li><strong>Fora do esoterismo:</strong> Emilie Wapnick, <em>How to Be Everything: A Guide for Those Who (Still) Don't Know What They Want to Be When They Grow Up</em>, HarperOne, 2017; P. Hewitt &amp; G. Flett, modelo multidimensional de perfeccionismo (1991) — citados de conhecimento geral, sem consulta online.</li>
+</ul><h2 class='sub'>Etapa 8 – Síntese final</h2><h2>Os 3 temas centrais (só FORTE)</h2>
+<ol>
+<li><strong>Equilíbrio sustentado por estrutura</strong> — mediar, harmonizar e organizar (Libra + Vênus dispositor final; 14, 6, 8; Expressão 6) apoiado em responsabilidade e firmeza (Asc. Capricórnio, Saturno; 4 ×5; Personalidade 4).</li>
+<li><strong>Ensinar o que se pesquisou a fundo, com visibilidade</strong> — casa 10 cheia, Mercúrio-Júpiter em Escorpião, Lua/Nodo Sul na 9, Nodo Norte na 3; 5 no dinheiro, 19 no retrato; Maturidade 7, Caminho 1.</li>
+<li><strong>Força contida que precisa aprender a soltar</strong> — centro 11 e Alma 11; Marte em exílio □ Ascendente, Lua □ Plutão, Lua + Lilith em Virgem; cauda 10-4-21; sombra do 4.</li>
+</ol>
+<h2>Maior talento</h2>
+<p><strong>Dar forma estável ao que é instável</strong> — perceber o momento (10), estruturar (4), integrar áreas e pessoas (21) com diplomacia (Libra) e profundidade (Escorpião). É o conjunto 10-4-21 em equilíbrio, sustentado pela Vênus forte no MC.</p>
+<h2>Maior armadilha</h2>
+<p><strong>Virar o "pilar" que nunca pode cair</strong> — controlar, se cobrar e carregar tudo sozinho para merecer lugar e afeto. É o mesmo 10-4-21 em sombra (cauda cármica), somado a Lua/Lilith em Virgem e Saturno regente em exílio.</p>
+<h2>5 ações práticas para agora (fase 20 anos: Roda 10 → Imperatriz 3)</h2>
+<ol>
+<li><strong>Escolha um eixo e três frentes.</strong> Defina um tema central (o "4") e no máximo três atividades ligadas a ele (estudar, praticar, ensinar/publicar). Revise a cada 3 meses (a "Roda"). <em>Base: veredito de multipotencialidade parcial.</em></li>
+<li><strong>Ensine algo em 30 dias.</strong> Monitoria, aula, vídeo, texto, mentoria de alguém mais novo — qualquer formato. Objetivo: testar o canal de dinheiro 5 e o Nodo Norte na 3 sem esperar estar "pronto" (antídoto à Virgem na 9).</li>
+<li><strong>Delegue uma coisa por semana</strong> e anote o que aconteceu. É treino direto contra a sombra do 4 e do 6.</li>
+<li><strong>Diga um "não" ou um desacordo por semana, com calma.</strong> Marte em Libra □ Ascendente aprende pela prática de afirmar sem romper. É a "Força" do 11 em versão saudável.</li>
+<li><strong>Crie algo só por prazer</strong> (fase 21–22,5 = Imperatriz 3): desenho, música, escrita, design, cozinha. Sem meta de produtividade — é o contrapeso da Personalidade 4.</li>
+</ol>
+<h2>5 perguntas de reflexão</h2>
+<ol>
+<li>Onde eu estou segurando algo sozinho que poderia ser dividido — e o que eu temo que aconteça se eu soltar?</li>
+<li>Em quais relações eu sinto que preciso ser útil para ser querido?</li>
+<li>O que eu sei a fundo que poderia ensinar amanhã, se eu não precisasse que fosse perfeito?</li>
+<li>Quando eu cedo para manter a paz, estou escolhendo o equilíbrio ou evitando o conflito?</li>
+<li>Se a vida dos próximos dois anos for uma "Roda", que mudança eu quero conduzir, em vez de só reagir a ela?</li>
+</ol>
+<h2>O que ficou incerto / dependente de dado ausente</h2>
+<ul>
+<li><strong>Data, hora e local de nascimento</strong> (provável 19/10/2006, a confirmar) → afeta idade atual e linha do tempo.</li>
+<li><strong>Aspectos e cúspides</strong> foram derivados/inferidos dos graus inteiros do print → orbes com margem de ±1°; regentes das casas 2, 5, 6, 8, 9, 11 incertos.</li>
+<li><strong>Sistema de casas</strong> do app (Placidus?).</li>
+<li><strong>Netuno 17°?</strong></li>
+<li><strong>Propósitos e chakras da Matriz</strong>, função dos pontos <strong>13 e 6</strong> ao lado do centro, e se a base <strong>10-4-21</strong> é de fato a cauda cármica no layout usado.</li>
+<li><strong>Lições e Dívidas cármicas</strong> (bloqueadas no app), <strong>Ano Pessoal, Ciclos, Pináculos, Desafios</strong> (ausentes).</li>
+<li><strong>Livros:</strong> nenhum PDF de livro foi recebido → nenhuma citação [Livro].</li>
+<li><strong>Web:</strong> as páginas não puderam ser abertas (bloqueio de rede do ambiente); só resumos dos buscadores foram usados.</li>
+</ul></div></details>
+<details class="appx" id="ap-g"><summary>G. Todas as fontes e checagem de cobertura</summary><div class="appx-body"><h2>G1. Seus arquivos (base, nunca substituída)</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Arquivo</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="src" href="#ap-a">Mapa</a></td>
+<td>Print do app "horos": posições, casas, ângulos, roda</td>
+<td>Etapas 1, 2, 6, 7</td>
+</tr>
+<tr>
+<td><a class="src" href="#ap-c">Matriz</a></td>
+<td>Diagrama da Matriz do Destino com linha de idades</td>
+<td>Etapas 1, 3, 6, 7</td>
+</tr>
+<tr>
+<td><a class="src" href="#ap-e">Numerologia</a></td>
+<td>Print do app de Numerologia</td>
+<td>Etapas 1, 5, 6, 7</td>
+</tr>
+<tr>
+<td><a class="src" href="#ap-d">Análise</a></td>
+<td>2 PDFs "Leitura – Matriz do Destino", @cosmicmatrizes (Julia Chomen F), fev/2026</td>
+<td>Etapas 1, 4 e citações pontuais</td>
+</tr>
+</tbody>
+</table></div>
+<h2>G2. Livros (PDF)</h2>
+<p><strong>Nenhum recebido.</strong> Você informou que não enviaria mais arquivos. Por isso, nenhuma afirmação deste site traz a citação [Livro]. Obras de referência que existem no sistema da Matriz, mas <strong>não foram lidas</strong>: Uliana Lisovskaya, <em>Programas na Matriz do Destino</em> (litres.com); Anna Gadzhibek, <em>Matriz do Destino: programas das caudas cármicas</em> (litres.com); Maria Priemykhova, <em>A força do Clã na Matriz do Destino</em> (chitai-gorod.ru).</p>
+<h2>G3. Internet</h2>
+<p><strong>Limitação:</strong> a rede deste ambiente bloqueou a abertura das páginas. Só foi possível ler os <strong>resumos dos buscadores</strong>, o que contraria a instrução de "abrir e ler as páginas". Muitas fontes encontradas são comerciais ou de qualidade média; nenhuma foi tratada como autoridade acima da tradição.</p>
+<p><strong>Astrologia</strong>
+1. astrology.com – Saturn in 8th House – https://www.astrology.com/planets/saturn-in-8th-house
+2. AstroTwins – Essential Dignities – https://astrostyle.com/astrology/essential-dignities/
+3. Skyscript – glossário "detriment" – https://www.skyscript.co.uk/gl/detriment.html
+4. Augurine – Libra stellium – https://www.augurine.com/learn/aspect-patterns/stellium/libra
+5. Augurine – Lilith in Virgo – https://www.augurine.com/learn/lilith/virgo
+6. Girl and Her Moon – North Node in Pisces – https://girlandhermoon.com/natal-north-node-in-pisces-in-the-birth-chart/
+7. Jessica Davidson – Natal Chiron in Aquarius – https://jessicadavidson.co.uk/2015/05/09/natal-chiron-in-aquarius/
+8. Kerykeion – Chiron in Aquarius, 1st house – https://kerykeion.net/content/learn-astrology/natal-chiron-aquarius-first-house
+9. AstroLibrary – Chiron in Aquarius – https://astrolibrary.org/interpretations/chiron-aquarius/
+10. coda.io – nodal placements – https://coda.io/@consciouslyconcepted/astrotransit-report-kelly-nie/nodal-placements-2
+11. Goodreads – notas de <em>Asteroid Goddesses</em> (Demetra George), Juno nas casas – https://www.goodreads.com/notes/20698760-asteroid-goddesses/7429292-erik?page=2</p>
+<p><strong>Matriz do Destino</strong></p>
+<ol>
+<li>vikna.tv – Матрица судьбы – https://vikna.tv/ru/dlia-tebe/matrytsa-sudby-chto-eto-y-kak-y-o-chem-mozhno-uznat/</li>
+<li>dzen.ru – centro como zona de conforto – https://dzen.ru/id/62132e1bd71d364e141e203d</li>
+<li>svitstyle.com.ua – Arcano 19 na Matriz – https://www.svitstyle.com.ua/ru/arkan-19-v-matryczi-doli-glyboke-znachennya-interpretacziya-ta-praktychnyj-vplyv/</li>
+<li>tenchat.ru – esfera do dinheiro / arcano 5 – https://tenchat.ru/media/249470-denezhnaya-sfera-v-matritse-ilona-maska</li>
+<li>nur.kz – Matriz do Destino, métodos divergentes – https://www.nur.kz/esoterics/interesting/1981242-matritsa-sudby-chto-eto-takoe-i-kak-rasshifrovat/</li>
+<li>codingnumerology.substack.com – What is Destiny Matrix (origem: Natalia Ladini, 2006) – https://codingnumerology.substack.com/p/what-is-destiny-matrix</li>
+<li>everycalculators.com – Arcano 7 = Carro – https://everycalculators.com/calculadora-matriz-del-destino.html</li>
+<li>woman.ru – fórum citando cauda 21-4-10 (sem interpretação útil) – https://www.woman.ru/horoscope/thread-numerologiya-mozhet-li-eto-chto-to-znachit-ili-eto-obychnoe-sovpadenie-id6240573/</li>
+</ol>
+<p><strong>Numerologia</strong></p>
+<ol>
+<li>birthchartvault – Life Path 1 / 11 – https://birthchartvault.onrender.com/life-path-compatibility/1-and-11</li>
+<li>sunsigns.org – Heart's Desire 11 – https://www.sunsigns.org/numerology-minor-hearts-desire-number-11/</li>
+<li>calculacentro.com – numerologia (números mestres) – https://calculacentro.com/ferramenta/numerologia</li>
+<li>aol.com – número 6 – https://www.aol.com/everything-number-6-could-mean-165900339.html</li>
+<li>news24 – numerology 101 – https://www.news24.com/life/numerology-101-20090907</li>
+</ol>
+<h2>G4. Tradição (conhecimento geral do sistema, sem livro)</h2>
+<p>Regências, dignidades, significado de casas e aspectos da astrologia ocidental clássica; significados dos 22 Arcanos Maiores do Tarô; numerologia pitagórica clássica; ciclo de Saturno de cerca de 29,5 anos (fato astronômico).</p>
+<h2>G5. Fora do esoterismo</h2>
+<ul>
+<li>Emilie Wapnick, <em>How to Be Everything</em>, HarperOne, 2017: modelos de carreira para multipotenciais.</li>
+<li>P. Hewitt &amp; G. Flett (1991): perfeccionismo multidimensional (socialmente prescrito).</li>
+<li>M. Lieberman et al. (2007): <em>affect labeling</em>, ou rotulação afetiva.</li>
+<li>C. Chase et al. (2009): <em>protégé effect</em>, ou aprender ensinando.</li>
+</ul>
+<p>Citados de conhecimento geral, sem consulta online. Servem como paralelo explicativo, não como diagnóstico.</p>
+<h2>G6. Contagem</h2>
+<p><strong>5 arquivos seus</strong> (3 imagens + 2 PDFs da análise) · <strong>0 livros</strong> · <strong>24 páginas web</strong> (só resumos) · <strong>4 referências fora do esoterismo</strong> · tradição dos 3 sistemas. <strong>Total: 33 fontes citadas.</strong></p>
+<h2>G7. Checagem de cobertura (Etapa 1 → capítulos)</h2>
+<p>Cada item da transcrição foi conferido. "✓ cap." = interpretado num capítulo; "Apêndice" = só no detalhamento técnico.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Onde</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sol, Lua, Mercúrio, Vênus, Marte, Júpiter, Saturno</td>
+<td>✓ caps. 1, 3, 4, 5, 7, 8</td>
+</tr>
+<tr>
+<td>Urano (casa 2)</td>
+<td>✓ cap. 7</td>
+</tr>
+<tr>
+<td>Netuno (casa 1)</td>
+<td>✓ caps. 2, 3</td>
+</tr>
+<tr>
+<td>Plutão</td>
+<td>✓ caps. 4, 5</td>
+</tr>
+<tr>
+<td>Nodo Norte / Nodo Sul</td>
+<td>✓ caps. 3, 9</td>
+</tr>
+<tr>
+<td>Lilith, Quíron</td>
+<td>✓ caps. 4, 5, 8</td>
+</tr>
+<tr>
+<td>Pholus, Ceres, Palas, Juno, Vesta, Parte da Fortuna, Vertex</td>
+<td>✓ caps. 4, 5, 6, 9 (peso FRACO)</td>
+</tr>
+<tr>
+<td>Ascendente, MC</td>
+<td>✓ caps. 1, 5</td>
+</tr>
+<tr>
+<td>Descendente (Câncer 26°)</td>
+<td>✓ cap. 5, pela regência (Lua, regente da 7)</td>
+</tr>
+<tr>
+<td>Fundo do Céu (Áries 21°)</td>
+<td>✓ cap. 6, pela regência (Marte, regente da 4)</td>
+</tr>
+<tr>
+<td>Cúspides intermediárias</td>
+<td>Apêndice B (incertas)</td>
+</tr>
+<tr>
+<td>Aspectos principais (10 mais justos)</td>
+<td>✓ caps. 1, 3, 4, 5, 8; lista completa no Apêndice B</td>
+</tr>
+<tr>
+<td>Aspectos só no apêndice</td>
+<td>Saturno △ Plutão, Saturno ☍ Netuno, Lua △ Quíron, Marte □ Quíron, Sol □ Quíron, Vênus △ Netuno, Júpiter □ Netuno (orbes 4–8°, peso baixo)</td>
+</tr>
+<tr>
+<td>Matriz: 19, 22, 3, 14 (lado A)</td>
+<td>✓ caps. 2, 4</td>
+</tr>
+<tr>
+<td>Matriz: 10, 4, 21, 5 (lado B)</td>
+<td>✓ caps. 1, 7, 9</td>
+</tr>
+<tr>
+<td>Matriz: 8, 9, 19 (lado C)</td>
+<td>✓ cap. 7</td>
+</tr>
+<tr>
+<td>Matriz: 10, 4, 21 (base / cauda)</td>
+<td>✓ caps. 1, 8</td>
+</tr>
+<tr>
+<td>Matriz: centro 11</td>
+<td>✓ cap. 1</td>
+</tr>
+<tr>
+<td>Matriz: 11-17-6 e 18-22-4</td>
+<td>✓ cap. 6</td>
+</tr>
+<tr>
+<td>Matriz: amor 21-7-4; dinheiro 19-5-4</td>
+<td>✓ caps. 5, 7</td>
+</tr>
+<tr>
+<td>Matriz: <strong>13 e 6 à direita do centro</strong></td>
+<td><strong>Não interpretados</strong>: a função da posição não está identificada no diagrama (o 13 só entra na faceta "Investigador" como reforço, com (?))</td>
+</tr>
+<tr>
+<td>Matriz: linha de idades completa</td>
+<td>✓ cap. 10</td>
+</tr>
+<tr>
+<td>Matriz: propósitos e chakras</td>
+<td>Não constam no arquivo</td>
+</tr>
+<tr>
+<td>Numerologia: Caminho 1, Dia 1, Atitude 2, Expressão 6, Alma 11/2, Personalidade 4, Maturidade 7</td>
+<td>✓ caps. 1, 2, 5, 7, 8, 9, 10</td>
+</tr>
+<tr>
+<td>Numerologia: Geração 8</td>
+<td>✓ cap. 7 (peso FRACO)</td>
+</tr>
+<tr>
+<td>Lições/Dívidas cármicas, Ano Pessoal, Ciclos, Pináculos, Desafios</td>
+<td>Não constam no arquivo</td>
+</tr>
+</tbody>
+</table></div></div></details>
+</section>
+</main>
+<footer>Material de autoconhecimento, não previsão. Gerado a partir dos seus arquivos; itens com (?) dependem de confirmação.</footer>
+<script>
+(function(){
+  var root=document.documentElement, KEY="qes-theme";
+  try{var t=localStorage.getItem(KEY); if(t) root.setAttribute("data-theme",t);}catch(e){}
+  document.getElementById("theme").addEventListener("click",function(){
+    var cur=root.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
+    var nx=cur==="dark"?"light":"dark"; root.setAttribute("data-theme",nx);
+    try{localStorage.setItem(KEY,nx);}catch(e){}
+  });
+  // abre o apêndice ao clicar numa fonte
+  function openTarget(){var el=document.getElementById(location.hash.slice(1)); if(el&&el.tagName==="DETAILS") el.open=true;}
+  window.addEventListener("hashchange",openTarget); openTarget();
+  // destaca o capítulo atual no menu
+  var links=[].slice.call(document.querySelectorAll("nav.menu a"));
+  var map={}; links.forEach(function(a){map[a.getAttribute("href").slice(1)]=a;});
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){links.forEach(function(l){l.classList.remove("on")});
+        var a=map[e.target.id]; if(a){a.classList.add("on"); a.scrollIntoView({block:"nearest",inline:"center"});}}
+    });},{rootMargin:"-40% 0px -55% 0px"});
+    Object.keys(map).forEach(function(id){var s=document.getElementById(id); if(s) io.observe(s);});
+  }
+})();
+</script>
+</body>
+</html>

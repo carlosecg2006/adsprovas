@@ -1,6 +1,6 @@
 # Etapa 1 – Transcrição dos dados
 
-> Status: **versão parcial** — feita com os 5 arquivos recebidos até agora (3 imagens + 2 PDFs da análise). Será completada quando chegarem os 3 arquivos anunciados (livros e/ou dados extras).
+> Status: **final** — feita com os 5 arquivos recebidos (3 imagens + 2 PDFs da análise). Você confirmou que não enviaria mais arquivos: **nenhum PDF de livro foi recebido**.
 > Regra aplicada: nada foi recalculado. Itens com dúvida de leitura estão marcados com **(?)**. Ausências estão como **não consta**.
 
 ## Arquivos recebidos
@@ -12,7 +12,7 @@
 | 3 | `leitura_..._.pdf` (11 p., Canva, autora: Julia Chomen F / @cosmicmatrizes, 20/02/2026) | Análise parte 1: Dons, Linhas geracionais, Par ideal, Profissões, Arcanos anuais 19–20 | Texto extraível (não precisou OCR) |
 | 4 | `leitura_..._-1.pdf` (9 p., mesma autora, 27/02/2026) | Análise parte 2: Como te veem, Essência, Propósito, Voluntariado, Empatia | Texto extraível |
 | 5 | `numerologia.jpg` (print de app de Numerologia) | Números da data, do nome, kármicos (bloqueados), Maturidade | Boa |
-| – | PDFs de livros | **Ainda não recebidos** | – |
+| – | PDFs de livros | **Não recebidos** (usuário dispensou) | – |
 
 ---
 
@@ -62,7 +62,7 @@ Minutos de arco: **não constam** (só graus inteiros).
 Casas 1, 4, 7, 10: pelos ângulos acima. **Casas 2, 3, 5, 6, 8, 9, 11, 12: não constam** (a roda do print não mostra os graus das cúspides).
 
 ### 1.4 Aspectos
-**Não constam** (o print não traz grade de aspectos nem orbes; a roda mostra linhas coloridas, mas ilegíveis para identificação segura).
+**Não constam** (o print não traz grade de aspectos nem orbes; a roda mostra linhas coloridas, mas ilegíveis para identificação segura). Na Etapa 2, os aspectos foram **derivados** da distância entre os graus inteiros já listados (orbe ±1°), marcados como (deriv.).
 
 ### 1.5 Observações de consistência (sem recalcular)
 - **Possível inconsistência (?)**: Vesta em Libra 7° aparece na **casa 9**, enquanto o MC (cúspide da casa 10) está em Libra 21°. Isso é coerente (7° < 21°, então fica antes do MC, na 9). Sem inconsistência.
@@ -189,7 +189,7 @@ Autora: Julia Chomen F (@cosmicmatrizes). Seções e arcanos citados:
 
 ---
 
-## 5. Dados a confirmar (até agora)
+## 5. Dados a confirmar
 
 1. **Data, hora e local de nascimento** — não constam em nenhum arquivo. Pela Matriz (dia 19, mês 10) e pelas posições planetárias, a data é provavelmente **19/10/2006** (?) — inferência, não recalculo; precisa confirmar. Se correta, a idade atual é **20 anos** (completados ontem).
 2. Sistema de casas usado pelo app horos (Placidus?).
@@ -204,5 +204,5 @@ Autora: Julia Chomen F (@cosmicmatrizes). Seções e arcanos citados:
 
 ## Fontes desta etapa
 - Meus arquivos: mapa-astral.jpg [Mapa], matriz-destino.jpg [Matriz], numerologia.jpg [Numerologia], 2 PDFs [Análise].
-- Livros: nenhum ainda.
+- Livros: nenhum recebido.
 - Internet: nenhuma (etapa de transcrição).
