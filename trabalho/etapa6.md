@@ -43,7 +43,7 @@ Pináculos e Ciclos da numerologia **não constam**; propósitos por idade da Ma
 | Idade | Matriz | Outros | Leitura |
 |---|---|---|---|
 | 18,5–19 | 14 Temperança | – | Ajuste interno (a Análise acerta) |
-| **20 (agora, se a data 19/10/2006 se confirmar)** | **10 Roda da Fortuna** | – | **Virada de ciclo**: oportunidades e mudanças; não resistir, mas dar estrutura (4) ao que muda |
+| **20 (agora — data 19/10/2006 confirmada)** | **10 Roda da Fortuna** | – | **Virada de ciclo**: oportunidades e mudanças; não resistir, mas dar estrutura (4) ao que muda |
 | 21–22,5 | 3 Imperatriz | – | Criar, produzir, cultivar talentos estéticos/criativos |
 | 22,5–23,5 | 20 Julgamento | – | "Chamado": revisão de rumo, reconhecimento, família |
 | 23,5–24 | 3 | – | De novo criação |

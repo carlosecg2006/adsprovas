@@ -26,7 +26,7 @@
 5. Se a vida dos próximos dois anos for uma "Roda", que mudança eu quero conduzir, em vez de só reagir a ela?
 
 ## O que ficou incerto / dependente de dado ausente
-- **Data, hora e local de nascimento** (provável 19/10/2006, a confirmar) → afeta idade atual e linha do tempo.
+- Data e nome **confirmados** (19/10/2006; Carlos Eduardo Carvalho Geronimo). **Hora e local** de nascimento não constam → não dá para conferir casas e Ascendente.
 - **Aspectos e cúspides** foram derivados/inferidos dos graus inteiros do print → orbes com margem de ±1°; regentes das casas 2, 5, 6, 8, 9, 11 incertos.
 - **Sistema de casas** do app (Placidus?).
 - **Netuno 17°?**

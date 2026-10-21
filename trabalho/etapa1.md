@@ -19,7 +19,7 @@
 ## 1. Mapa astral [Mapa]
 
 Fonte: app "horos". Sistema de casas: **não consta** no print (assumido Placidus conforme instrução, (?)).
-Data, hora e local de nascimento: **não constam** no print.
+Data de nascimento: **19/10/2006** (confirmada por você em 21/10/2026). Hora e local: **não constam**.
 
 ### 1.1 Planetas e pontos
 
@@ -191,7 +191,7 @@ Autora: Julia Chomen F (@cosmicmatrizes). Seções e arcanos citados:
 
 ## 5. Dados a confirmar
 
-1. **Data, hora e local de nascimento** — não constam em nenhum arquivo. Pela Matriz (dia 19, mês 10) e pelas posições planetárias, a data é provavelmente **19/10/2006** (?) — inferência, não recalculo; precisa confirmar. Se correta, a idade atual é **20 anos** (completados ontem).
+1. ~~Data de nascimento~~ → **confirmada: 19/10/2006, 20 anos.** Hora e local de nascimento continuam sem constar (afetam a confirmação das casas e do Ascendente).
 2. Sistema de casas usado pelo app horos (Placidus?).
 3. Grau de Netuno (17°?).
 4. **Aspectos e orbes** do mapa — ausentes.
@@ -200,7 +200,7 @@ Autora: Julia Chomen F (@cosmicmatrizes). Seções e arcanos citados:
 7. Função dos pontos 13 e 6 à direita do centro da Matriz.
 8. Lições e Dívidas kármicas — bloqueadas no app.
 9. Ano Pessoal, Ciclos, Pináculos e Desafios da numerologia — ausentes.
-10. Nome completo usado na numerologia (presumido "Carlos Eduardo Carvalho Geronimo").
+10. ~~Nome completo~~ → **confirmado: Carlos Eduardo Carvalho Geronimo.**
 
 ## Fontes desta etapa
 - Meus arquivos: mapa-astral.jpg [Mapa], matriz-destino.jpg [Matriz], numerologia.jpg [Numerologia], 2 PDFs [Análise].
