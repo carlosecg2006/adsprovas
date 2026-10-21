@@ -1,5 +1,7 @@
 # Etapa 3 – Matriz do Destino
 
+> **Atualização (21/10/2026):** com data, hora (11:40) e nome confirmados, os itens que faltavam foram **calculados** e estão no Apêndice H e nas seções ponto a ponto do site [Calc]. Os pontos antes marcados (?) por falta de dado foram resolvidos ali.
+
 > **Base:** diagrama transcrito na Etapa 1 [Matriz]. **Livros:** nenhum recebido. **Web:** fontes russas e brasileiras consultadas pelos resumos de busca (as páginas não puderam ser abertas). O sistema foi criado por Natalia Ladini (Rússia, 2006) [Web: codingnumerology.substack.com, via busca]; as leituras de posição seguem o zoneamento mais difundido desse método. **Não há versão única do método** e autores divergem nos cálculos e nos nomes das posições [Web: nur.kz, via busca]. Por isso, posições não rotuladas no diagrama ficam com (?).
 >
 > **Arcanos usados:** 3 Imperatriz · 4 Imperador · 5 Hierofante (Papa) · 6 Enamorados · 7 Carro · 8 Justiça · 9 Eremita · 10 Roda da Fortuna · 11 Força · 13 Morte/Transformação · 14 Temperança · 17 Estrela · 18 Lua · 19 Sol · 21 Mundo · 22 Louco (na Matriz o 22 ocupa o lugar do 0).
@@ -70,13 +72,13 @@ Em linguagem simples: um padrão de **tentar controlar o que é cíclico** e de 
 
 **Achado central da Matriz:** a cauda cármica (base) é **idêntica** à linha de talentos (topo): 10–4–21. No método, isso indica que **o mesmo material é o problema e o dom**: a mesma energia que, em sombra, aparece como controle e sensação de prisão, em equilíbrio vira talento de organizar mudanças e integrar áreas. Não há o que "buscar fora": o trabalho é **mudar a polaridade** do mesmo conjunto. Peso **MÉDIO** (estrutural na Matriz; reforçado por astrologia em Etapa 6).
 
-## e) Propósitos
+## e) Propósitos [Calc]
 
-**Não constam** no diagrama. A Análise cita o 11 como propósito [Análise], o que é compatível com o centro, mas a posição exata (pessoal, social ou espiritual) não pode ser conferida. Não foi recalculado.
+Céu 20 (Julgamento) · Terra 9 (Eremita) · **Pessoal 11 (Força)** · Masculina 11 · Feminina 11 · **Social 22 (Louco)** · **Espiritual 6 (Enamorados)** · Planetário 10 (Roda). O 11 pessoal confirma o que a Análise citou [Análise].
 
-## f) Chakras / saúde energética
+## f) Chakras / saúde energética [Calc]
 
-**Não consta** no diagrama. Nada a interpretar (e nenhuma conclusão médica seria cabível).
+Sahasrara 19/10/11 · Ajna 22/4/8 · Vishuddha 3/21/6 · Anahata 14/5/19 · Manipura 11/11/22 · Svadhisthana 19/21/4 · Muladhara 8/10/18 · Total 15/10/16. Leitura simbólica, sem conclusão médica: coração = Sol (19), plexo = Louco (22), total físico = Diabo (15, atenção a excessos).
 
 ## g) Repetições e ausências
 
@@ -93,7 +95,7 @@ Contagem nos pontos principais (quadrados + internos, sem a linha de idades):
 
 **Excesso:** o **4 (Imperador)** domina: estrutura, controle, responsabilidade. Em sombra, é o maior risco do mapa: **rigidez, carregar tudo, não delegar**. Peso **FORTE** (repetido na Matriz + Personalidade 4 na numerologia + Ascendente Capricórnio/regente Saturno).
 
-**Ausentes** nos pontos principais: **1 (Mago), 2 (Sacerdotisa), 12 (Enforcado), 15 (Diabo), 16 (Torre), 20 (Julgamento)**. 16 e 20 aparecem só na linha de idades (fases 30–50 e 20–30 respectivamente). **1, 2, 12 e 15 não aparecem em lugar nenhum.**
+**Ausentes** nos pontos principais: **1 (Mago), 2 (Sacerdotisa), 12 (Enforcado), 15 (Diabo), 16 (Torre), 20 (Julgamento)**. 16 e 20 aparecem só na linha de idades (fases 30–50 e 20–30 respectivamente). **1, 2 e 12 não aparecem em lugar nenhum** (o 15 só surge no total físico dos chakras calculado).
 Leitura: faltam a energia de **iniciativa individual/manifestação (1)**, de **intuição receptiva/silêncio (2)**, de **render-se/ver por outro ângulo (12)** e de **desejo/ambição material sem culpa (15)**. Curiosamente, **1 e 2 são justamente os números centrais da sua numerologia** (Caminho de Vida 1, Dia 1, Atitude 2, Alma 11/2) — ver Etapa 6. Peso **FRACO** isoladamente (ESPECULATIVA no cruzamento).
 
 ## h) Linha de idades (resumo)

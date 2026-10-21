@@ -110,6 +110,38 @@ details.appx[open]>summary{margin-bottom:8px}
 table{border-collapse:collapse; width:100%; font-size:14.5px}
 th,td{border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top}
 th{background:var(--accent-soft)}
+.intro{color:var(--muted)}
+details.item{background:var(--surface); border:1px solid var(--line); border-radius:12px; margin:8px 0}
+details.item>summary{list-style:none; display:flex; align-items:center; gap:12px; padding:10px 14px; cursor:pointer}
+details.item>summary::-webkit-details-marker{display:none}
+details.item>summary::after{content:"+"; margin-left:auto; color:var(--muted); font-size:20px; padding-left:8px}
+details.item[open]>summary::after{content:"–"}
+details.item[open]{border-color:var(--accent)}
+.glyph{flex:0 0 40px; height:40px; border-radius:50%; display:grid; place-items:center; background:var(--accent-soft);
+  color:var(--accent); font-size:20px; font-weight:700; font-family:Georgia,serif}
+.glyph.num,.glyph.arc{font-size:14px}
+.it-t{display:flex; flex-direction:column; min-width:0}
+.it-s{color:var(--muted); font-size:14px}
+.item-b{padding:0 16px 12px 66px}
+@media (max-width:600px){.item-b{padding:0 14px 12px}}
+.what{color:var(--accent); font-weight:600; margin:4px 0}
+.asp{font-size:15px; color:var(--muted)}
+.ls p{margin:4px 0; font-size:15px}
+.lz,.sb{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:1px 7px; border-radius:999px; margin-right:6px}
+.lz{color:var(--forte); background:var(--forte-bg)} .sb{color:var(--espec); background:var(--espec-bg)}
+.filters{display:flex; flex-wrap:wrap; gap:6px; margin:12px 0}
+.filters button{border:1px solid var(--line); background:var(--surface); color:var(--ink); border-radius:999px; padding:5px 12px; font-size:14px; cursor:pointer}
+.filters button.on{background:var(--accent); color:var(--bg); border-color:var(--accent)}
+ul.asplist{list-style:none; padding:0; margin:0}
+ul.asplist li{display:grid; grid-template-columns:62px 1fr; gap:2px 10px; padding:9px 0; border-bottom:1px solid var(--line)}
+.orb{grid-row:span 2; font-variant-numeric:tabular-nums; color:var(--muted); font-size:14px; padding-top:2px}
+.pair{font-weight:600}
+.t-tenso{color:var(--espec)} .t-fluido{color:var(--forte)} .t-neutro{color:var(--accent)} .t-menor{color:var(--muted)}
+.atxt{font-size:15px}
+.bars{display:grid; gap:6px; margin:10px 0}
+.bar-r{display:grid; grid-template-columns:20px 1fr 24px; align-items:center; gap:8px; font-variant-numeric:tabular-nums}
+.bar-r i{display:block; height:12px; border-radius:6px; background:var(--accent); min-width:2px}
+.bar-r b{font-weight:600; color:var(--muted)}
 footer{color:var(--muted); font-size:14px; text-align:center; padding:24px 16px 40px}
 :target{animation:flash 1.6s ease}
 @keyframes flash{from{box-shadow:0 0 0 3px var(--accent)}to{box-shadow:0 0 0 0 transparent}}
@@ -148,6 +180,12 @@ footer{color:var(--muted); font-size:14px; text-align:center; padding:24px 16px 
   // abre o apêndice ao clicar numa fonte
   function openTarget(){var el=document.getElementById(location.hash.slice(1)); if(el&&el.tagName==="DETAILS") el.open=true;}
   window.addEventListener("hashchange",openTarget); openTarget();
+  // filtro de aspectos
+  var fb=[].slice.call(document.querySelectorAll(".filters button"));
+  fb.forEach(function(b){b.addEventListener("click",function(){
+    fb.forEach(function(x){x.classList.remove("on")}); b.classList.add("on"); var f=b.getAttribute("data-f");
+    [].forEach.call(document.querySelectorAll("ul.asplist li"),function(li){li.hidden=!(f==="all"||li.getAttribute("data-t")===f);});
+  });});
   // destaca o capítulo atual no menu
   var links=[].slice.call(document.querySelectorAll("nav.menu a"));
   var map={}; links.forEach(function(a){map[a.getAttribute("href").slice(1)]=a;});

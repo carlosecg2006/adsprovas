@@ -25,12 +25,9 @@
 4. Quando eu cedo para manter a paz, estou escolhendo o equilíbrio ou evitando o conflito?
 5. Se a vida dos próximos dois anos for uma "Roda", que mudança eu quero conduzir, em vez de só reagir a ela?
 
-## O que ficou incerto / dependente de dado ausente
-- Data e nome **confirmados** (19/10/2006; Carlos Eduardo Carvalho Geronimo). **Hora e local** de nascimento não constam → não dá para conferir casas e Ascendente.
-- **Aspectos e cúspides** foram derivados/inferidos dos graus inteiros do print → orbes com margem de ±1°; regentes das casas 2, 5, 6, 8, 9, 11 incertos.
-- **Sistema de casas** do app (Placidus?).
-- **Netuno 17°?**
-- **Propósitos e chakras da Matriz**, função dos pontos **13 e 6** ao lado do centro, e se a base **10-4-21** é de fato a cauda cármica no layout usado.
-- **Lições e Dívidas cármicas** (bloqueadas no app), **Ano Pessoal, Ciclos, Pináculos, Desafios** (ausentes).
-- **Livros:** nenhum PDF de livro foi recebido → nenhuma citação [Livro].
-- **Web:** as páginas não puderam ser abertas (bloqueio de rede do ambiente); só resumos dos buscadores foram usados.
+## O que ficou incerto
+- **Local de nascimento** não informado → cúspides calculadas com local estimado (≈ 22,5°S 48°O); as posições nas casas conferem com o print.
+- **Lilith:** o app usa uma Lilith diferente da média calculada (25° × 29°58'); mantido o valor do app.
+- **Matriz:** função dos pontos **13 e 6** ao lado do centro; a base 10-4-21 lida como cauda cármica pela posição.
+- **Dívida cármica 13** depende do método de soma.
+- **Livros:** nenhum PDF recebido. **Web:** só resumos de busca (páginas bloqueadas pela rede).

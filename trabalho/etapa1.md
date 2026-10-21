@@ -1,5 +1,7 @@
 # Etapa 1 – Transcrição dos dados
 
+> **Atualização (21/10/2026):** com data, hora (11:40) e nome confirmados, os itens que faltavam foram **calculados** e estão no Apêndice H e nas seções ponto a ponto do site [Calc]. Os pontos antes marcados (?) por falta de dado foram resolvidos ali.
+
 > Status: **final** — feita com os 5 arquivos recebidos (3 imagens + 2 PDFs da análise). Você confirmou que não enviaria mais arquivos: **nenhum PDF de livro foi recebido**.
 > Regra aplicada: nada foi recalculado. Itens com dúvida de leitura estão marcados com **(?)**. Ausências estão como **não consta**.
 
@@ -19,7 +21,7 @@
 ## 1. Mapa astral [Mapa]
 
 Fonte: app "horos". Sistema de casas: **não consta** no print (assumido Placidus conforme instrução, (?)).
-Data de nascimento: **19/10/2006** (confirmada por você em 21/10/2026). Hora e local: **não constam**.
+Data e hora de nascimento: **19/10/2006, 11:40** (confirmadas por você). Local: **não informado** (estimado ≈ 22,5°S 48°O no Apêndice H).
 
 ### 1.1 Planetas e pontos
 
@@ -192,14 +194,15 @@ Autora: Julia Chomen F (@cosmicmatrizes). Seções e arcanos citados:
 ## 5. Dados a confirmar
 
 1. ~~Data de nascimento~~ → **confirmada: 19/10/2006, 20 anos.** Hora e local de nascimento continuam sem constar (afetam a confirmação das casas e do Ascendente).
-2. Sistema de casas usado pelo app horos (Placidus?).
-3. Grau de Netuno (17°?).
-4. **Aspectos e orbes** do mapa — ausentes.
-5. Cúspides das casas intermediárias — ausentes.
-6. Propósitos (pessoal, social, espiritual) e mapa de chakras da Matriz — ausentes.
+2. Sistema de casas do app: cúspides calculadas em Placidus batem com todas as posições do print ✅.
+3. ~~Grau de Netuno~~ → **17°03'** confirmado pelo cálculo ✅.
+4. ~~Aspectos~~ → calculados com orbe em minutos ✅.
+5. ~~Cúspides~~ → calculadas (local estimado) ✅.
+6. ~~Propósitos e chakras~~ → calculados ✅.
 7. Função dos pontos 13 e 6 à direita do centro da Matriz.
-8. Lições e Dívidas kármicas — bloqueadas no app.
-9. Ano Pessoal, Ciclos, Pináculos e Desafios da numerologia — ausentes.
+8. ~~Lições e Dívidas~~ → Lição cármica **2**; Dívidas **19** e **13** (calculadas) ✅.
+9. ~~Ano Pessoal, Ciclos, Pináculos, Desafios~~ → calculados ✅.
+11. **Local de nascimento** — não informado (só afeta levemente as cúspides).
 10. ~~Nome completo~~ → **confirmado: Carlos Eduardo Carvalho Geronimo.**
 
 ## Fontes desta etapa

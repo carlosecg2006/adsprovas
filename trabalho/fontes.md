@@ -49,6 +49,9 @@
 ## G4. Tradição (conhecimento geral do sistema, sem livro)
 Regências, dignidades, significado de casas e aspectos da astrologia ocidental clássica; significados dos 22 Arcanos Maiores do Tarô; numerologia pitagórica clássica; ciclo de Saturno de cerca de 29,5 anos (fato astronômico).
 
+## G4b. Cálculo
+PyEphem 4.2.1 (efemérides VSOP87/ELP) para planetas; fórmulas de Placidus; tabela pitagórica; fórmulas padrão da Matriz. Ver Apêndice H.
+
 ## G5. Fora do esoterismo
 - Emilie Wapnick, *How to Be Everything*, HarperOne, 2017: modelos de carreira para multipotenciais.
 - P. Hewitt & G. Flett (1991): perfeccionismo multidimensional (socialmente prescrito).
@@ -75,9 +78,10 @@ Cada item da transcrição foi conferido. "✓ cap." = interpretado num capítul
 | Ascendente, MC | ✓ caps. 1, 5 |
 | Descendente (Câncer 26°) | ✓ cap. 5, pela regência (Lua, regente da 7) |
 | Fundo do Céu (Áries 21°) | ✓ cap. 6, pela regência (Marte, regente da 4) |
-| Cúspides intermediárias | Apêndice B (incertas) |
+| Cúspides das 12 casas | ✓ calculadas: seção Casas |
 | Aspectos principais (10 mais justos) | ✓ caps. 1, 3, 4, 5, 8; lista completa no Apêndice B |
-| Aspectos só no apêndice | Saturno △ Plutão, Saturno ☍ Netuno, Lua △ Quíron, Marte □ Quíron, Sol □ Quíron, Vênus △ Netuno, Júpiter □ Netuno (orbes 4–8°, peso baixo) |
+| Aspectos (todos, 48) | ✓ seção Aspectos, cada um com leitura |
+| Aspectos antes só no apêndice | Saturno △ Plutão, Saturno ☍ Netuno, Lua △ Quíron, Marte □ Quíron, Sol □ Quíron, Vênus △ Netuno, Júpiter □ Netuno (orbes 4–8°, peso baixo) |
 | Matriz: 19, 22, 3, 14 (lado A) | ✓ caps. 2, 4 |
 | Matriz: 10, 4, 21, 5 (lado B) | ✓ caps. 1, 7, 9 |
 | Matriz: 8, 9, 19 (lado C) | ✓ cap. 7 |
@@ -87,7 +91,7 @@ Cada item da transcrição foi conferido. "✓ cap." = interpretado num capítul
 | Matriz: amor 21-7-4; dinheiro 19-5-4 | ✓ caps. 5, 7 |
 | Matriz: **13 e 6 à direita do centro** | **Não interpretados**: a função da posição não está identificada no diagrama (o 13 só entra na faceta "Investigador" como reforço, com (?)) |
 | Matriz: linha de idades completa | ✓ cap. 10 |
-| Matriz: propósitos e chakras | Não constam no arquivo |
+| Matriz: propósitos e chakras | ✓ calculados: seção Matriz e cap. 9 |
 | Numerologia: Caminho 1, Dia 1, Atitude 2, Expressão 6, Alma 11/2, Personalidade 4, Maturidade 7 | ✓ caps. 1, 2, 5, 7, 8, 9, 10 |
 | Numerologia: Geração 8 | ✓ cap. 7 (peso FRACO) |
-| Lições/Dívidas cármicas, Ano Pessoal, Ciclos, Pináculos, Desafios | Não constam no arquivo |
+| Lição cármica, Dívidas, Ano Pessoal, Ciclos, Pináculos, Desafios, Paixão oculta | ✓ calculados: seção Numerologia e caps. 5, 8, 10 |

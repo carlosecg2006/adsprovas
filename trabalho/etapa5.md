@@ -1,5 +1,7 @@
 # Etapa 5 – Numerologia completa
 
+> **Atualização (21/10/2026):** com data, hora (11:40) e nome confirmados, os itens que faltavam foram **calculados** e estão no Apêndice H e nas seções ponto a ponto do site [Calc]. Os pontos antes marcados (?) por falta de dado foram resolvidos ali.
+
 > **Base:** print do app de Numerologia [Numerologia]. **Livros:** nenhum recebido. **Web:** resumos de busca (páginas não puderam ser abertas); as fontes encontradas são majoritariamente comerciais. Os significados seguem a numerologia pitagórica clássica [Tradição]. Nada foi recalculado.
 
 ## a) Núcleo
@@ -23,14 +25,23 @@
 - **11 no Desejo da Alma.** O 11 é número mestre (não se reduz) e é a versão "intensificada" do 2 [Web: birthchartvault, via busca]. **Desafio do 11:** sustentar uma sensibilidade alta sem ansiedade; transformar intuição em algo concreto. Como está na **Alma** (motivação íntima), e não no Caminho, é mais uma **fome interior de sentido** do que uma missão pública obrigatória. A versão "/2" mostra que, no dia a dia, ele se expressa como necessidade de paz e parceria.
 - 22 e 33: não constam.
 
-## c) Lições e Dívidas cármicas
-**Não constam** — estão bloqueadas no app (conteúdo pago). Não foram calculadas aqui (regra: não recalcular). Registrado em "Dados a confirmar".
+## c) Lições e Dívidas cármicas [Calc]
+- **Lição cármica 2** (nenhuma letra B, K, T): cooperação, paciência, escuta, aceitar ser parte. Também é o arcano ausente na Matriz e o 1º Pináculo.
+- **Dívida 19** (Caminho de Vida e Dia 19): poder pessoal sem egoísmo; aceitar ajuda. Ecoa o 19 do retrato da Matriz.
+- **Dívida 13** (Personalidade 85 → 13 → 4): disciplina sem rigidez, sem atalhos. Depende do método (a soma por palavra não gera 13).
 
-## d) Ciclos de vida, Pináculos e Desafios
-**Não constam** no print. Não foram calculados. A linha do tempo (Etapa 6d) usa só a Matriz e o Maturidade.
+## d) Ciclos, Pináculos e Desafios [Calc]
+| | Valor | Idade |
+|---|---|---|
+| 1º Pináculo | **2** | 0–35 |
+| 2º Pináculo | 9 | 36–44 |
+| 3º Pináculo | **11** | 45–53 |
+| 4º Pináculo | 9 | 54+ |
+| Desafios | 0 · 7 · 7 · 7 (principal 7) | 0–35 · 36–44 · vida toda · 54+ |
+| Ciclos | 1 · 1 · 8 | ~0–27 · ~28–54 · ~55+ |
 
-## e) Ano Pessoal
-**Não consta.** Não foi calculado.
+## e) Ano Pessoal [Calc]
+2026 (até o aniversário de 2027) = **3**: expressão, comunicação, criatividade. 2027 = **22/4**: construção. Meses: out/26 = 13/4 · nov = 14/5 · dez = 15/6.
 
 ## f) Número de Maturidade: 7
 Direção da segunda metade da vida (tradicionalmente a partir dos 35–45): **estudo, especialização, introspecção, espiritualidade, sabedoria**. Com Caminho 1 e Expressão 6, o 7 sugere que o líder/cuidador da primeira fase caminha para o **pesquisador/sábio** — alguém que escolhe menos frentes e vai mais fundo. Observação de consistência (sem recalcular): 1 + 6 = 7, compatível com a regra usual (Caminho + Expressão).

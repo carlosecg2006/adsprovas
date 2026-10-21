@@ -1,5 +1,7 @@
 # Etapa 6 – Cruzamento dos sistemas
 
+> **Atualização (21/10/2026):** com data, hora (11:40) e nome confirmados, os itens que faltavam foram **calculados** e estão no Apêndice H e nas seções ponto a ponto do site [Calc]. Os pontos antes marcados (?) por falta de dado foram resolvidos ali.
+
 > Interdisciplinaridade: cada linha abaixo junta dados de fontes diferentes. Peso: **FORTE** = 2+ sistemas; **MÉDIO** = 1 sistema com destaque; **FRACO** = isolado. Conexão: **SÓLIDA** (vários dados) × **ESPECULATIVA** (hipótese).
 
 ## a) Tabela de convergências
@@ -17,6 +19,11 @@
 | 9 | **Ciclos, mudança, timing** | Júpiter □ Saturno (expandir × conter) | **10 Roda** no topo e na base; fase 20–30 com 10 ×5 | – | MÉDIO | SÓLIDA na Matriz |
 | 10 | **Criatividade/estética** | Vênus forte no MC; Sol em Libra | 3 Imperatriz (retrato); 17 Estrela (ancestral) | Expressão 6 (estética) | **FORTE** | SÓLIDA |
 | 11 | **Relações com expansão de mundo** | Lua (regente da 7) na casa 9; Juno na 9 | Amor: 21 → 7 | – | MÉDIO | SÓLIDA |
+| 13 | **O 2 que falta e é pedido** | Sol em queda em Libra (identidade pelo outro) | Arcano 2 ausente | Lição cármica 2; 1º Pináculo 2; Atitude 2; Alma 11/2 [Calc] | **FORTE** | SÓLIDA |
+| 14 | **O 11 em tudo** | – | Centro 11; propósito pessoal 11; linhas 11 [Calc] | Alma 11; 3º Pináculo 11 [Calc] | **FORTE** | SÓLIDA |
+| 15 | **19: brilho × ego** | Sol na 10; Saturno em Leão | Retrato 19; entrada do dinheiro 19 | Dívida cármica 19 [Calc] | **FORTE** | SÓLIDA |
+| 16 | **7: confiar e se abrir** | Lua/Nodo Sul na 9 (análise como refúgio) | Canal do amor 7; 9 Eremita | Maturidade 7; Desafio principal 7 [Calc] | **FORTE** | SÓLIDA |
+| 17 | **3 agora** | – | Arcano 3 aos 21–22,5 | Ano Pessoal 3 [Calc] | MÉDIO | SÓLIDA (coincidência de fase) |
 | 12 | **Herança familiar de controle e dever** | Regente da 4 (Marte) na 10 em exílio | Linhas 18-22-4 e 11-17-6 | – (Lições cármicas bloqueadas) | MÉDIO | SÓLIDA no mapa+matriz |
 
 ## b) Contradições entre sistemas (e leitura possível)

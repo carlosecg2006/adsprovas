@@ -1,5 +1,7 @@
 # Etapa 2 – Astrologia completa
 
+> **Atualização (21/10/2026):** com data, hora (11:40) e nome confirmados, os itens que faltavam foram **calculados** e estão no Apêndice H e nas seções ponto a ponto do site [Calc]. Os pontos antes marcados (?) por falta de dado foram resolvidos ali.
+
 > **Base:** posições transcritas na Etapa 1 [Mapa]. **Livros:** nenhum PDF de livro foi recebido (você informou que não enviaria mais arquivos), então nenhuma interpretação abaixo tem citação de livro — onde normalmente iria [Livro], vale "não coberto". **Web:** só foi possível ler os resumos dos buscadores; a rede deste ambiente bloqueou a abertura das páginas. As interpretações vêm da tradição astrológica consolidada (dignidades, regências, significado de casas), indicada como [Tradição], e são conferidas com a web quando houve resultado.
 >
 > **Sobre os aspectos:** o print não traz aspectos. Os aspectos abaixo foram **derivados** comparando os graus inteiros do print (não é recálculo do mapa: é leitura da distância entre posições já dadas). Como os graus não têm minutos, cada orbe tem margem de ±1°. Marcados como (deriv.).
@@ -47,7 +49,7 @@ Sol, Marte → Vênus (Libra) · Mercúrio, Júpiter (Escorpião) → Marte → 
 | Ascendente (como age e se apresenta) | Capricórnio 26° | Chega sério, contido, responsável; impressão de maturidade precoce |
 
 **Interações (deriv.):**
-- **Sol □ Ascendente (0°)** — o aspecto mais exato do mapa. O Sol de Libra quer agradar, negociar e ser par; o Ascendente de Capricórnio quer controle, hierarquia e resultado. É um atrito entre **"ser aceito"** e **"ser respeitado"**. Peso **MÉDIO**.
+- **Sol □ Ascendente (0°52' calculado)** — um dos aspectos mais exatos (o mais exato é Marte □ Ascendente, 0°20'). O Sol de Libra quer agradar, negociar e ser par; o Ascendente de Capricórnio quer controle, hierarquia e resultado. É um atrito entre **"ser aceito"** e **"ser respeitado"**. Peso **MÉDIO**.
 - **Lua △ Ascendente (1°)** — Lua em Virgem e Ascendente em Capricórnio são terra: a emoção apoia a postura séria. Fica natural parecer calmo e competente mesmo quando há tensão por dentro.
 - Sol e Lua em signos vizinhos (Virgem → Libra), sem aspecto maior: a emoção (Virgem, detalhista e crítica) e a identidade (Libra, diplomática e relacional) operam em "canais" diferentes. A pessoa pode mostrar diplomacia por fora e autocrítica por dentro.
 
