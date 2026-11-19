@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Meus 6 Arcanos</title>
+<style>
+  :root{
+    --bg1:#140f24; --bg2:#2a1840; --gold:#e6c27a; --gold2:#b8904a;
+    --ink:#f4ecdc; --muted:#b9aed0; --card:rgba(255,255,255,.05); --line:rgba(230,194,122,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1920px;overflow:hidden}
+  body{
+    background:
+      radial-gradient(900px 700px at 50% 8%, rgba(230,194,122,.18), transparent 70%),
+      radial-gradient(800px 900px at 50% 100%, rgba(140,90,200,.25), transparent 70%),
+      linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:var(--ink); font-family:Inter, sans-serif;
+    display:flex; flex-direction:column; align-items:center; padding:210px 60px 230px;
+  }
+  .stars{position:absolute; inset:0; pointer-events:none}
+  .kicker{letter-spacing:.38em; text-transform:uppercase; font-size:22px; color:var(--gold); font-weight:500}
+  h1{font-family:Caladea, "Bitstream Charter", serif; font-weight:700; font-size:80px; line-height:1; margin:12px 0 6px; text-align:center}
+  .sub{color:var(--muted); font-size:26px; letter-spacing:.04em}
+  .orn{width:420px; height:24px; margin:16px 0 22px}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; width:100%}
+  .card{
+    background:var(--card); border:2px solid var(--line); border-radius:28px;
+    padding:18px 20px 20px; display:flex; flex-direction:column; align-items:center; text-align:center;
+    position:relative; box-shadow:0 0 0 8px rgba(230,194,122,.04) inset;
+  }
+  .nome{min-height:80px; display:flex; align-items:center}
+  .tipo{font-size:19px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); font-weight:600}
+  .icon{width:62px; height:62px; margin:10px 0 2px}
+  .num{font-family:Caladea, serif; font-size:24px; color:var(--gold2); letter-spacing:.12em}
+  .nome{font-family:Caladea, "Bitstream Charter", serif; font-size:38px; font-weight:700; line-height:1.05; margin:2px 0 10px}
+  .words{display:flex; flex-direction:column; gap:2px; font-size:25px; font-weight:500}
+  .words span::before{content:"✦ "; color:var(--gold); font-size:22px; vertical-align:3px}
+  .foot{margin-top:auto; padding-top:20px; font-size:28px !important; font-family:Caladea, serif; font-style:italic; font-size:34px; color:var(--muted); text-align:center; line-height:1.4}
+  .foot b{color:var(--gold); font-style:normal; font-weight:700}
+  svg *{fill:none; stroke:var(--gold); stroke-width:4; stroke-linecap:round; stroke-linejoin:round}
+</style>
+</head>
+<body>
+<svg class="stars" viewBox="0 0 1080 1920" aria-hidden="true">
+  <g style="fill:#fff;stroke:none;opacity:.55">
+    <circle cx="90" cy="140" r="2.4" style="fill:#fff;stroke:none"/><circle cx="980" cy="210" r="2" style="fill:#fff;stroke:none"/>
+    <circle cx="160" cy="420" r="1.6" style="fill:#fff;stroke:none"/><circle cx="1010" cy="520" r="2.4" style="fill:#fff;stroke:none"/>
+    <circle cx="40" cy="900" r="2" style="fill:#fff;stroke:none"/><circle cx="1050" cy="1100" r="1.8" style="fill:#fff;stroke:none"/>
+    <circle cx="70" cy="1500" r="2.2" style="fill:#fff;stroke:none"/><circle cx="1000" cy="1700" r="2" style="fill:#fff;stroke:none"/>
+    <circle cx="880" cy="80" r="1.6" style="fill:#fff;stroke:none"/><circle cx="240" cy="1840" r="1.8" style="fill:#fff;stroke:none"/>
+  </g>
+</svg>
+
+<div class="kicker">Tarô · Cartas de nascimento</div>
+<h1>Meus 6 Arcanos</h1>
+<div class="sub">19 · 10 · 2006</div>
+<svg class="orn" viewBox="0 0 420 24"><path d="M10 12H170M250 12H410"/><path d="M210 2l10 10-10 10-10-10z"/></svg>
+
+<div class="grid">
+  <div class="card">
+    <div class="tipo">Pessoal</div>
+    <svg class="icon" viewBox="0 0 100 100"><circle cx="50" cy="50" r="20"/><path d="M50 8v14M50 78v14M8 50h14M78 50h14M20 20l10 10M70 70l10 10M80 20L70 30M30 70L20 80"/></svg>
+    <div class="num">XIX</div><div class="nome">O Sol</div>
+    <div class="words"><span>Luz</span><span>Autenticidade</span><span>Calor</span></div>
+  </div>
+  <div class="card">
+    <div class="tipo">Personalidade</div>
+    <svg class="icon" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38"/><circle cx="50" cy="50" r="10"/><path d="M50 12v28M50 60v28M12 50h28M60 50h28M23 23l20 20M57 57l20 20M77 23L57 43M43 57L23 77"/></svg>
+    <div class="num">X</div><div class="nome">A Roda<br>da Fortuna</div>
+    <div class="words"><span>Ciclos</span><span>Adaptação</span><span>Movimento</span></div>
+  </div>
+  <div class="card">
+    <div class="tipo">Alma</div>
+    <svg class="icon" viewBox="0 0 100 100"><path d="M50 50c-10-14-32-14-32 0s22 14 32 0 32-14 32 0-22 14-32 0z"/><path d="M50 70v22M38 92h24"/><path d="M50 8v18M44 14l6-6 6 6"/></svg>
+    <div class="num">I</div><div class="nome">O Mago</div>
+    <div class="words"><span>Criação</span><span>Iniciativa</span><span>Potencial</span></div>
+  </div>
+  <div class="card">
+    <div class="tipo">Destino</div>
+    <svg class="icon" viewBox="0 0 100 100"><path d="M50 84C24 64 14 50 14 36c0-12 9-20 19-20 8 0 14 5 17 12 3-7 9-12 17-12 10 0 19 8 19 20 0 14-10 28-36 48z"/><path d="M22 70l56-40M70 28l9 1-1 9"/></svg>
+    <div class="num">VI</div><div class="nome">Os Enamorados</div>
+    <div class="words"><span>Escolha</span><span>Coração</span><span>Vínculo</span></div>
+  </div>
+  <div class="card">
+    <div class="tipo">Missão</div>
+    <svg class="icon" viewBox="0 0 100 100"><path d="M34 92V34h32v58M30 34h40l-6-12H36z"/><path d="M44 50h12M44 66h12"/><path d="M76 4L62 26h12L58 46"/></svg>
+    <div class="num">XVI</div><div class="nome">A Torre</div>
+    <div class="words"><span>Libertação</span><span>Despertar</span><span>Recomeço</span></div>
+  </div>
+  <div class="card">
+    <div class="tipo">Ano 2026</div>
+    <svg class="icon" viewBox="0 0 100 100"><path d="M16 10h68M50 10v18"/><circle cx="50" cy="72" r="10"/><path d="M50 28v34M50 28l-12 14 12 6M50 46l-14 6M50 46l14 6"/><circle cx="50" cy="72" r="18" style="stroke-dasharray:4 6"/></svg>
+    <div class="num">XII</div><div class="nome">O Enforcado</div>
+    <div class="words"><span>Pausa</span><span>Entrega</span><span>Perspectiva</span></div>
+  </div>
+</div>
+
+<div class="foot">Eu brilho, giro e crio.<br><b>Escolho pelo coração</b> e deixo cair o que me prende.</div>
+</body>
+</html>
